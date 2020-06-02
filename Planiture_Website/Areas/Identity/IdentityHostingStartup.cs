@@ -19,8 +19,9 @@ namespace Planiture_Website.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("Planiture_WebsiteContextConnection")));
 
-                services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<Planiture_WebsiteContext>();
+                //THE FOLLOWING WAS COMMENTED OUT BY KINGZWILL...THIS CODE IS NOT NECESSARY BECAUSE IT WAS ALREADY ADDED TO THE Startup.cs FILE
+                /*services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                    .AddEntityFrameworkStores<Planiture_WebsiteContext>();*/
             });
         }
     }

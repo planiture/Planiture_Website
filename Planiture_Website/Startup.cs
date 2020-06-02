@@ -27,6 +27,10 @@ namespace Planiture_Website
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc(); //ADDED BY KINGZWILL
+
+            services.AddMvc(option => option.EnableEndpointRouting = false); //ADDED BY KINGZWILL
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -57,6 +61,12 @@ namespace Planiture_Website
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseDefaultFiles(); //KINGZWILL
+            app.UseCookiePolicy(); //KINGZWILL
+            app.UseHttpsRedirection(); //KINGZWILL
+            app.UseMvc(); //KINGZWILL
+            app.UseStaticFiles(); //KINGZWILL
 
             app.UseEndpoints(endpoints =>
             {
