@@ -95,18 +95,18 @@ header { /*KINGZWILL ADDED THE FOLLOWING*/
     transition: 0.6s;
 }
 
-.sticky { /*KINGZWILL ADDED THE FOLLOWING*/
+.sticky { /*ADDED BY KINGZWILL*/
     padding: 5px 100px;
     background: #fff;
     border-bottom: 1px solid;
     color: darkgoldenrod;
 }
 
-.navbar .sticky .logo {
+.navbar .sticky .logo { /*ADDED BY KINGZWILL*/
     color: #000000;
 }
 
-/*.navbar .logo { 
+.navbar .logo { 
     position: relative;
     font-weight: 700;
     color: #fff;
@@ -116,16 +116,16 @@ header { /*KINGZWILL ADDED THE FOLLOWING*/
     letter-spacing: 2px;
     transition: 0.6s;
 }
-*/
 
-header ul { /*KINGZWILL ADDED THE FOLLOWING*/
+
+header ul { /*ADDED BY KINGZWILL*/
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-header ul li { /*KINGZWILL ADDED THE FOLLOWING*/
+header ul li { /*ADDED BY KINGZWILL*/
     position: relative;
     list-style: none;
 }
@@ -154,18 +154,18 @@ header ul li a { /*KINGZWILL ADDED THE FOLLOWING*/
     align-items: center;
 }
 
-.banner h2 { /*KINGZWILL ADDED THE FOLLOWING*/
+.banner h2 { /*ADDED BY KINGZWILL*/
     color: darkgoldenrod;
     text-align: center;
     line-height: 1em;
 }
 
-.banner h2 span {
+.banner h2 span {/*ADDED BY KINGZWILL*/
     color: gold;
     /*font-size:60px;*/
 }
 
-.banner h2 b {
+.banner h2 b {/*ADDED BY KINGZWILL*/
     /*font-size: 60px;*/
     color: black;
 
@@ -174,7 +174,7 @@ header ul li a { /*KINGZWILL ADDED THE FOLLOWING*/
 /* Navigation Bar
 -------------------------------------------------- */
 
-a.navbar-brand {
+a.navbar-brand { /*KINGZWILL ADDED THE FOLLOWING*/
     white-space: normal;
     text-align: center;
     word-break: break-all;
@@ -194,9 +194,42 @@ a.navbar-brand {
 }
 
 .navbar { /*ADDED BY KINGZWILL*/
-    overflow: hidden;
-    /*background-color: #333;*/
+    /*overflow: hidden;*/
     top: 0;
+}
+
+a.navbar-brand { /*KINGZWILL ADDED THE FOLLOWING*/
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+    /*ADDED BY KINGZWILL*/
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.navbar a { /*ADDED BY KINGZWILL*/
+    font-weight: 500;
+    color: blue;
+}
+
+.navbar { /*ADDED BY KINGZWILL*/
+    /*overflow: hidden;*/
+    top: 0;
+}
+
+.navbar li:hover { /*ADDED BY KINGZWILL*/
+    background: none;
+    border-color: black;
+    border-style: solid
+}
+
+.nav-link div div a {
+    color: purple;
 }
 
 
@@ -204,3 +237,352 @@ a.navbar-brand {
 
 
 
+
+/* Button
+-------------------------------------------------- */
+
+.navbar button { /*ADDED BY KINGZWILL*/
+    align-items: center;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 4px 2px;
+    cursor: pointer;
+    background-color: goldenrod;
+    color: black;
+    position: relative;
+    transition: 0.6s;
+    display: inline-block;
+}
+
+/*Login-dropdown menu*/
+ul.navbar-nav li div.dropdown:hover > div.dropdown-menu { /*ADDED BY KINGZWILL*/
+    display: inline-grid; /*only grid and inline-grid works the way i want so far*/
+}
+
+.navbar button:hover { /*ADDED BY KINGZWILL*/
+    background-color: darkgoldenrod;
+    position: relative;
+    transition: 0.6s;
+    display: block;
+}
+
+/*Menu-dropdown menu*/
+ul.navbar-nav li div.dropdown:hover > ul.dropdown-menu {
+    display: inline-grid;
+}
+
+
+/* MENU Page
+-------------------------------------------------- */
+
+.menu-background {
+    position: relative;
+    width: 100%;
+    min-height: 30vh;
+    background-image: url(company.PNG);
+    /*background-color: darkgrey;*/
+    background-size: auto;
+    display: flex; /*changed from inline*/
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-body {
+    background: #ffe8d7;
+    padding: 100px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: thick;
+}
+
+.menu-body .container {
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+
+.menu {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 30px;
+    max-width: 100%;
+    margin-top: 40px;
+}
+
+.menu-item {
+    position: relative;
+    min-height: 300px;
+    width: 250px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.menu-item a{
+    text-underline-position: below;
+    background: none;
+    color: darkgoldenrod;
+}
+
+.menu-item img {
+    border-radius: 8px;
+    position: relative;
+    transition: 0.6s;
+}
+
+/* INVESTMENTS Page
+-------------------------------------------------- */
+
+.invest-background {
+    /*position: relative;*/
+    /*width: 100%;*/
+    padding: 100px;
+    min-height: 100vh;
+    /*background-image: url(investmentimage.jpg);*/
+    background-color: whitesmoke;
+    background-size: cover;
+    display: flex; /*changed from inline*/
+    justify-content: center;
+    align-items: center;
+}
+
+.invest-background .container {
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+
+.mx800p{
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.mx800p h2 {
+    color: black;
+    text-align: center;
+    line-height: 1em;
+    text-transform: uppercase;
+}
+
+.mx800p h3{
+    text-align: center;
+    line-height: 1em;
+    text-transform: uppercase;
+    color: black;
+}
+
+.mx800p p{
+    color: black;
+    
+}
+
+/* SUBSCRIPTIONS Page
+-------------------------------------------------- */
+
+.subscribe-background {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(800px,5fr));
+    grid-gap: 30px;
+    max-width: 150%;
+    margin-top: 40px;
+}
+
+.subscribe-menu {
+    position: relative;
+    /*width: 100%;*/
+    padding: 100px;
+    min-height: 100vh;
+    background-image: url(subscriptionimage.jpg);
+    background-color: whitesmoke;
+    background-size: cover;
+    display: flex; /*changed from inline*/
+    justify-content: center;
+    align-items: center;
+}
+
+.subscribe-menu .container {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.subscribe-menu h1{
+    font-size: 40px;
+    font-weight: 200;
+    margin-bottom: 10px;
+}
+
+.subscribe-menu p{
+    position: relative;
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+
+}
+
+.subscribe-menu a {
+    font-weight: 500;
+    color: blue;
+}
+
+.subscribe-menu a:hover {
+    background: none;
+    color: darkgoldenrod;
+    text-decoration-line: underline
+}
+
+.subscribe-menu .row .col-sm-4 .thumbnail {
+    border: 5px solid ;
+    border-radius: 4px;
+    padding: 5px;
+    border-color: darkgoldenrod;
+}
+
+/* PLANITURE ACADEMY Page
+-------------------------------------------------- */
+
+.academy-background {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(800px,5fr));
+    grid-gap: 30px;
+    max-width: 150%;
+    margin-top: 40px;
+}
+
+.academy-menu {
+    position: relative;
+    /*width: 100%;*/
+    padding: 100px;
+    min-height: 100vh;
+    background-image: url(subscriptionimage.jpg);
+    background-color: whitesmoke;
+    background-size: cover;
+    display: flex; /*changed from inline*/
+    justify-content: center;
+    align-items: center;
+}
+
+.academy-menu .container {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.academy-menu h1{
+    font-size: 40px;
+    font-weight: 200;
+    margin-bottom: 10px;
+    color: darkgoldenrod;
+    text-transform: uppercase;
+}
+
+.academy-menu p{
+    position: relative;
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+
+}
+
+.academy-menu  .row .col-sm-6 .thumbnail {
+    border: 5px solid;
+    border-radius: 4px;
+    padding: 5px;
+    border-color: darkgoldenrod;
+}
+
+/* SECURITY Page
+-------------------------------------------------- */
+
+.security-background {
+    /*position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(800px,5fr));
+    grid-gap: 30px;
+    max-width: 150%;
+    margin-top: 40px;
+    background-image: url(securityimage.jpg);*/
+
+
+     position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-image: url(securityimage.jpg);
+    /*background-color: darkgrey;*/
+    background-size: cover;
+    display: flex; /*changed from inline*/
+    justify-content: center;
+    align-items: center;
+}
+
+/* CUSTOMER SERVICE Page
+-------------------------------------------------- */
+
+.customer-background {
+    /*position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(800px,5fr));
+    grid-gap: 30px;
+    max-width: 150%;
+    margin-top: 40px;
+    background-image: url(securityimage.jpg);*/
+
+
+     position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-image: url(customerimage.jpg);
+    /*background-color: darkgrey;*/
+    background-size: cover;
+    display: flex; /*changed from inline*/
+    justify-content: center;
+    align-items: center;
+}
+
+/*.customer-menu {
+    position: relative;
+    padding: 100px;
+    min-height: 100vh;
+    background-image: url(subscriptionimage.jpg);
+    background-color: whitesmoke;
+    background-size: cover;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}*/
+
+.customer-menu .container {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.customer-menu h1{
+    font-size: 40px;
+    font-weight: 200;
+    margin-bottom: 10px;
+    color: darkgoldenrod;
+    text-transform: uppercase;
+}
+
+.customer-menu p {
+    position: relative;
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}

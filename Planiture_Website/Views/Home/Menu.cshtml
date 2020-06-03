@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "Menu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<asp:Content id="BodyContent" ContentPlaceHolderID="Main Content" runat="server">
+    <section class="menu-background"></section><!--added image-->
+
+    <section class="menu-body" id="menu">
+        <div class="container">
+            <h1 class="text-center">@ViewData["Title"]</h1>
+            <!--Divider here-->
+            <hr />
+            <div class="menu">
+                <div class="menu-item">
+                    <a asp-area="" asp-controller="Home" asp-action="Investments"><img src="~/css/investments.jpg" width="250" height="250" /><br />INVESTMENT</a>
+                </div>
+                <div class="menu-item">
+                    <a asp-area="" asp-controller="Home" asp-action="Subscriptions"><img src="~/css/subscriptions.jpg" width="250" height="250" />SUBSCRIPTIONS</a>
+                </div>
+                <div class="menu-item">
+                    <a asp-area="" asp-controller="Home" asp-action="PlanitureAcademy"><img src="~/css/academy.jpg" width="250" height="250" /><br />PLANITURE ACADEMY</a>
+                </div>
+                <div class="menu-item">
+                    <a><img src="~/css/upload.jpg" width="250" height="250" /><br />UPLOAD/SIGN DOCUMENTS</a>
+                </div>
+                <div class="menu-item">
+                    <a><img src="~/css/information.jpg" width="250" height="250" /><br />INFORMATION CENTER</a>
+                </div>
+                <div class="menu-item">
+                    <a><img src="~/css/career.jpg" width="250" height="250" /><br />CAREER</a>
+                </div>
+                <div class="menu-item">
+                    <a><img src="~/css/calculator.jpg" width="250" height="250" /><br />CALCULATOR</a>
+                </div>
+                <div class="menu-item">
+                    <a asp-area="" asp-controller="Home" asp-action="Security"><img src="~/css/security.jpg" width="250" height="250" /><br />SECURITY</a>
+                </div>
+                <div class="menu-item">
+                    <a asp-area="" asp-controller="Home" asp-action="CustomerService"><img src="~/css/customer.jpg" width="250" height="250" /><br />CUSTOMER SERVICE</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</asp:Content>
