@@ -58,6 +58,11 @@ namespace Planiture_Website.Controllers
             return View();
         }
 
+        public IActionResult Career()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
