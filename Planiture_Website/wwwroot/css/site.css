@@ -526,6 +526,63 @@ ul.navbar-nav li div.dropdown:hover > ul.dropdown-menu {
     justify-content: center;
     align-items: center;
 }
+/* CAREER Page
+-------------------------------------------------- */
+
+.career-background {
+    /*position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(800px,5fr));
+    grid-gap: 30px;
+    max-width: 150%;
+    margin-top: 40px;
+    background-image: url(securityimage.jpg);*/
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-image: url();
+    /*background-color: darkgrey;*/
+    background-size: cover;
+    display: flex; /*changed from inline*/
+    justify-content: center;
+    align-items: center;
+}
+
+.career-menu {
+    position: relative;
+    padding: 100px;
+    min-height: 100vh;
+    background-image: url();
+    background-color: whitesmoke;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.career-menu .container {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.career-menu h1{
+    font-size: 40px;
+    font-weight: 200;
+    margin-bottom: 10px;
+    color: darkgoldenrod;
+    text-transform: uppercase;
+}
+
+.career-menu p {
+    position: relative;
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
 
 /* CUSTOMER SERVICE Page
 -------------------------------------------------- */
@@ -537,7 +594,7 @@ ul.navbar-nav li div.dropdown:hover > ul.dropdown-menu {
     grid-gap: 30px;
     max-width: 150%;
     margin-top: 40px;
-    background-image: url(securityimage.jpg);*/
+    background-image: url(customerimage.jpg);*/
 
 
      position: relative;
@@ -555,7 +612,7 @@ ul.navbar-nav li div.dropdown:hover > ul.dropdown-menu {
     position: relative;
     padding: 100px;
     min-height: 100vh;
-    background-image: url(subscriptionimage.jpg);
+    background-image: url(customerimage.jpg);
     background-color: whitesmoke;
     background-size: cover;
     display: flex; 
@@ -586,3 +643,6 @@ ul.navbar-nav li div.dropdown:hover > ul.dropdown-menu {
     margin-bottom: 20px;
     letter-spacing: 1px;
 }
+
+
+
