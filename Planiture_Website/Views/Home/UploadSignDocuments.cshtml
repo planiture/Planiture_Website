@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewData["Title"] = "UploadSignDocuments";
+}
+
+
+
+<asp:Content id="BodyContent" ContentPlaceHolderID="Main Content" runat="server">
+    <section id="upload-background">
+        <!--added image-->
+        
+        
+        <div class="upload-menu">
+            <form name="" method="" action="">
+                <h1>UploadSignDocuments</h1>
+                <hr />
+                
+                <div class="form-group">
+                    <label for="document_name">Document</label>
+                    <input type="text" class="form-control" id="document_name" />
+                </div>
+                <div class="form-group file-upload">
+                    <label for="browse"><u><b>BROWSE FILE</b></u></label>
+                    <input type="file" class="form-control file-upload-button" id="browse" accept="documents/*" multiple/>
+                    <span class="file-upload-label">No file(s) selected</span>
+                    <br />
+                    <small><a>Click the button to upload files from browser</a></small>
+                </div>
+
+            </form>
+        </div>
+        
+    </section>
+</asp:Content>

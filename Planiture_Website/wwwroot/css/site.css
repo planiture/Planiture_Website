@@ -503,10 +503,10 @@ ul.navbar-nav li div.dropdown:hover > ul.dropdown-menu {
     border-color: darkgoldenrod;
 }
 
-/* SECURITY Page
+/* UPLOAD/SIGN DOCUMENTS Page
 -------------------------------------------------- */
 
-.security-background {
+.upload-background{
     /*position: relative;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(800px,5fr));
@@ -514,21 +514,50 @@ ul.navbar-nav li div.dropdown:hover > ul.dropdown-menu {
     max-width: 150%;
     margin-top: 40px;
     background-image: url(securityimage.jpg);*/
-
-
-     position: relative;
+    position: relative;
     width: 100%;
     min-height: 100vh;
-    background-image: url(securityimage.jpg);
+    background-image: url();
     /*background-color: darkgrey;*/
     background-size: cover;
     display: flex; /*changed from inline*/
     justify-content: center;
     align-items: center;
 }
+
+.upload-menu {
+    position: relative;
+    padding: 100px;
+    min-height: 100vh;
+    background-image: url();
+    background-color: whitesmoke;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+}
+
+.upload-menu h1 {
+    font-size: 40px;
+    font-weight: 200;
+    margin-bottom: 10px;
+    color: darkgoldenrod;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.file-upload{
+    display: inline-flex;
+    align-items: center;
+    font-size: 15px;
+
+}
+
+.file-upload-button {
+    display: none;
+}
+.
 /* CAREER Page
 -------------------------------------------------- */
-
 .career-background {
     /*position: relative;
     display: grid;
@@ -560,13 +589,13 @@ ul.navbar-nav li div.dropdown:hover > ul.dropdown-menu {
     align-items: center;
 }
 
-.career-menu .container {
+/*.career-menu .container {
     position: relative;
     text-align: center;
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
-}
+}*/
 
 .career-menu h1{
     font-size: 40px;
@@ -574,6 +603,11 @@ ul.navbar-nav li div.dropdown:hover > ul.dropdown-menu {
     margin-bottom: 10px;
     color: darkgoldenrod;
     text-transform: uppercase;
+    text-align: center;
+}
+
+.career-menu h5{
+    text-align: center;
 }
 
 .career-menu p {
@@ -583,6 +617,206 @@ ul.navbar-nav li div.dropdown:hover > ul.dropdown-menu {
     margin-bottom: 20px;
     letter-spacing: 1px;
 }
+
+.career-menu .row .col-sm-4 .thumbnail {
+    border: 2px solid ;
+    border-radius: 4px;
+    padding: 5px;
+    border-color: black;
+}
+
+.career-menu a{
+    position: relative;
+    font-size: 20px;
+    font-weight: 500;
+    border-color: black;
+    background-color: darkgoldenrod;
+    color: black;
+    font-weight: 500;
+    transition: 0.6s;
+}
+
+.career-menu a:hover{
+    border-color: black;
+    background-color: gold;
+    color: black;
+    transition: 0.6s;
+}
+
+/* CAREER - Customer Service Job Page
+-------------------------------------------------- */
+
+.customerjob-background {
+    /*position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(800px,5fr));
+    grid-gap: 30px;
+    max-width: 150%;
+    margin-top: 40px;
+    background-image: url(securityimage.jpg);*/
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-image: url();
+    /*background-color: darkgrey;*/
+    background-size: cover;
+    display: flex; /*changed from inline*/
+    justify-content: center;
+    align-items: center;
+}
+
+.customerjob-menu {
+    position: relative;
+    padding: 100px;
+    min-height: 100vh;
+    background-image: url();
+    background-color: whitesmoke;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.customerjob-menu h1 {
+    font-size: 40px;
+    font-weight: 200;
+    margin-bottom: 10px;
+    color: darkgoldenrod;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+/* CAREER - Market Analyzer Job Page
+-------------------------------------------------- */
+
+.marketjob-background {
+    /*position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(800px,5fr));
+    grid-gap: 30px;
+    max-width: 150%;
+    margin-top: 40px;
+    background-image: url(securityimage.jpg);*/
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-image: url();
+    /*background-color: darkgrey;*/
+    background-size: cover;
+    display: flex; /*changed from inline*/
+    justify-content: center;
+    align-items: center;
+}
+
+.marketjob-menu {
+    position: relative;
+    padding: 100px;
+    min-height: 100vh;
+    background-image: url();
+    background-color: whitesmoke;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.marketjob-menu h1 {
+    font-size: 40px;
+    font-weight: 200;
+    margin-bottom: 10px;
+    color: darkgoldenrod;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+/* CAREER - Social Media Manager Job Page
+-------------------------------------------------- */
+
+.mediajob-background {
+    /*position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(800px,5fr));
+    grid-gap: 30px;
+    max-width: 150%;
+    margin-top: 40px;
+    background-image: url(securityimage.jpg);*/
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-image: url();
+    /*background-color: darkgrey;*/
+    background-size: cover;
+    display: flex; /*changed from inline*/
+    justify-content: center;
+    align-items: center;
+}
+
+.mediajob-menu {
+    position: relative;
+    padding: 100px;
+    min-height: 100vh;
+    background-image: url();
+    background-color: whitesmoke;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mediajob-menu h1 {
+    font-size: 40px;
+    font-weight: 200;
+    margin-bottom: 10px;
+    color: darkgoldenrod;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+
+
+
+
+
+
+/* SECURITY Page
+-------------------------------------------------- */
+
+.security-background {
+    /*position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(800px,5fr));
+    grid-gap: 30px;
+    max-width: 150%;
+    margin-top: 40px;
+    background-image: url(securityimage.jpg);*/
+
+
+     position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-image: url(securityimage.jpg);
+    /*background-color: darkgrey;*/
+    background-size: cover;
+    display: flex; /*changed from inline*/
+    justify-content: center;
+    align-items: center;
+}
+
 
 /* CUSTOMER SERVICE Page
 -------------------------------------------------- */
