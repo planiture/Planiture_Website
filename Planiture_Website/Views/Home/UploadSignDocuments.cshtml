@@ -12,23 +12,72 @@
         
         <div class="upload-menu">
             <form name="" method="" action="">
-                <h1>UploadSignDocuments</h1>
+                <h1>Upload Sign Documents</h1>
                 <hr />
-                
+
                 <div class="form-group">
                     <label for="document_name">Document</label>
                     <input type="text" class="form-control" id="document_name" />
                 </div>
-                <div class="form-group file-upload">
-                    <label for="browse"><u><b>BROWSE FILE</b></u></label>
-                    <input type="file" class="form-control file-upload-button" id="browse" accept="documents/*" multiple/>
-                    <span class="file-upload-label">No file(s) selected</span>
+                <div class="form-group upload-file">
+                    <label for="browse-btn"><u><b>BROWSE FILE</b></u></label>
+                    <input type="file" class="form-control file-input" id="browseFiles" name="files[]" multiple />
+                    <button class="upload-btn" id="browse-btn" type="button">Choose File(s)</button>
+                    <span class="upload-label">No file(s) selected</span>
                     <br />
-                    <small><a>Click the button to upload files from browser</a></small>
+                    <br />
                 </div>
-
+                <br />
+                <br />
+                <label>FORMS: </label>
+                <button class="deposit-btn" id="deposit-btn" type="button">Display Deposit Form</button>
+                <button class="withdrawal-btn" id="withdrawal-btn" type="button">Display Withdrawal Form</button>
+                <button class="payment-btn" id="payment-btn" type="button">Display PAYMENT AUTHORIZATION FORM</button>
+                
             </form>
         </div>
-        
+        <div class="modal">
+            <div class="modal-content">
+                <div class="close">+</div>
+                <form>
+                    <div class="row100">
+                        <fieldset>
+                            <legend>Client Info.</legend>
+                            <div class="inputarea">
+                                <input type="text" id="fullname" placeholder="Full Name" />
+                            </div>
+                            <div class="inputarea">
+                                <label>Date:</label>
+                                <input type="date" id="date" placeholder="Date" />
+                            </div>
+                            <div class="inputarea">
+                                <label>Account Type:</label>
+                                <input type="radio" id="cashflip" value="cashflip" />
+                                <label>C@SHFLIP</label>
+                                <input type="radio" id="investment_account" value="investment_account" />
+                                <label>INVESTMENT ACCOUNT</label>
+                                <input type="radio" id="stocks_portfolio" value="stocks_portfolio" />
+                                <label>STOCKS PORTFOLIO</label>
+                            </div>
+                            <div class="inputarea">
+                                <label>AMOUNT: </label>
+                                <input type="text" id="amount" placeholder="0.00" />
+                            </div>
+                            <div class="inputarea">
+                                <label>Client Signature:</label>
+                                <input type="text" id="signature" />
+                            </div>
+                            <div class="inputarea">
+                                <label>Date:</label>
+                                <input type="date" placeholder="Date" />
+                            </div>
+                            <div>
+                                <input type="submit" role="button"/>
+                            </div>
+                        </fieldset>
+                    </div>
+                </form>
+            </div>
+        </div>
     </section>
 </asp:Content>

@@ -545,17 +545,118 @@ ul.navbar-nav li div.dropdown:hover > ul.dropdown-menu {
     text-align: center;
 }
 
-.file-upload{
+
+.upload-file{
     display: inline-flex;
     align-items: center;
     font-size: 15px;
 
 }
 
-.file-upload-button {
+.file-input{
     display: none;
 }
-.
+
+.upload-btn {
+    -webkit-appearance: none;
+    background: darkgoldenrod;
+    border: 2px solid black;
+    border-radius: 4px;
+    outline: none;
+    padding: 0.5em 0.8em;
+    margin-right: 15px;
+    color: black;
+    font-size: 1em;
+    font-family: sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    align-content: center;
+}
+
+.upload-btn:hover{
+    background: gold;
+}
+
+.upload-btn:active{
+    background: goldenrod;
+    color: black;
+}
+
+.upload-label{
+    max-width: 250px;
+    font-size: 0.95em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.deposit-btn {
+    -webkit-appearance: none;
+    background: darkgoldenrod;
+    border: 2px solid black;
+    border-radius: 4px;
+    outline: none;
+    padding: 0.5em 0.8em;
+    margin-right: 15px;
+    color: black;
+    font-size: 1em;
+    font-family: sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    align-content: center;
+}
+
+.deposit-btn:hover {
+    background: gold;
+}
+
+.deposit-btn:active{
+    background: goldenrod;
+    color: black;
+}
+
+
+
+
+
+
+.modal {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.modal-content {
+    width: 800px;
+    height: 500px;
+    background-color: white;
+    border-radius: 4px;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+}
+
+.inputarea input {
+    width: 50%;
+    display: block;
+    margin: 15px auto;
+}
+
+.close{
+    position: absolute;
+    top: 0;
+    right: 14px;
+    font-size: 42px;
+    transform: rotate(45deg);
+    cursor: pointer; 
+}
+
 /* CAREER Page
 -------------------------------------------------- */
 .career-background {
