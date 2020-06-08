@@ -36,12 +36,25 @@ Array.prototype.forEach.call(document.querySelectorAll('.upload-btn'), function 
     });
 })
 
-//displays deposit form on screen when the deposit form button is clicked
-document.getElementById('deposit-btn').addEventListener('click', function () {
-    document.querySelector('.modal').style.display = 'flex';
+//displays a form on screen when the deposit form button is clicked
+
+var modalBtns = document.querySelectorAll(".modal-open");
+
+modalBtns.forEach(function (btn) {
+    btn.onclick = function () {
+        var modal = btn.getAttribute("data-modal");
+
+        document.getElementById(modal).style.display = "flex";
+    }
 });
 
-//close the deposit form after it has been opened
-document.querySelector('.close').addEventListener('click', function () {
-    document.querySelector('.modal').style.display = 'none';
-})
+
+//close the form after it has been opened
+
+var closeBtns = document.querySelectorAll('.modal-close');
+
+closeBtns.forEach(function (btn) {
+    btn.onclick = function () {
+        var modal = btn.closest(".modal").style.display = "none";
+    }
+});

@@ -8,8 +8,8 @@
 <asp:Content id="BodyContent" ContentPlaceHolderID="Main Content" runat="server">
     <section id="upload-background">
         <!--added image-->
-        
-        
+
+
         <div class="upload-menu">
             <form name="" method="" action="">
                 <h1>Upload Sign Documents</h1>
@@ -30,19 +30,19 @@
                 <br />
                 <br />
                 <label>FORMS: </label>
-                <button class="deposit-btn" id="deposit-btn" type="button">Display Deposit Form</button>
-                <button class="withdrawal-btn" id="withdrawal-btn" type="button">Display Withdrawal Form</button>
-                <button class="payment-btn" id="payment-btn" type="button">Display PAYMENT AUTHORIZATION FORM</button>
-                
+                <button class="deposit-btn modal-open" id="deposit-btn" type="button" data-modal="modal-deposit">Display Deposit Form</button>
+                <button class="withdrawal-btn modal-open" id="withdrawal-btn" type="button" data-modal="modal-withdrawal">Display Withdrawal Form</button>
+                <button class="payment-btn modal-open" id="payment-btn" type="button">Display PAYMENT AUTHORIZATION FORM</button>
+
             </form>
         </div>
-        <div class="modal">
+        <div class="modal" id="modal-deposit">
             <div class="modal-content">
-                <div class="close">+</div>
+                <div class="close modal-close">+</div>
                 <form>
                     <div class="row100">
                         <fieldset>
-                            <legend>Client Info.</legend>
+                            <legend>Deposit Form</legend>
                             <div class="inputarea">
                                 <input type="text" id="fullname" placeholder="Full Name" />
                             </div>
@@ -72,9 +72,86 @@
                                 <input type="date" placeholder="Date" />
                             </div>
                             <div>
-                                <input type="submit" role="button"/>
+                                <input type="submit" role="button" />
                             </div>
+                            <button class="submit-btn" id="submit-btn" type="submit">submit</button>
+                            <button class="reset-btn" id="reset-btn" type="reset">Reset</button>
                         </fieldset>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal" id="modal-withdrawal">
+            <div class="modal-content" id="withdrawal-content">
+                <div class="close modal-close">+</div>
+                <form>
+                    <div class="row100">
+                        <fieldset>
+                            <legend>Withdrawal Form</legend>
+                            <input type="text" id="fullname" placeholder="Full Name" />
+                            <br />
+                            <label>Date:</label>
+                            <input type="date" id="date" placeholder="Date" />
+                            <br />
+                            <label>Investment No.:</label>
+                            <span>(found on your account and your transaction sheet)</span>
+                            <
+                            <br />
+                            <label>Account Type:</label>
+                            <input type="radio" id="cashflip" value="cashflip" />
+                            <label>C@SHFLIP</label>
+                            <input type="radio" id="investment_account" value="investment_account" />
+                            <label>INVESTMENT ACCOUNT</label>
+                            <input type="radio" id="stocks_portfolio" value="stocks_portfolio" />
+                            <label>STOCKS PORTFOLIO</label>
+                            <br />
+                            <label>WITHDRAWAL AMOUNT: </label>
+                            <input type="text" id="amount" placeholder="0.00" />
+                            <br />
+                            <label>Client Signature:</label>
+                            <input type="text" id="signature" />
+                            <br />
+                            <label>Date:</label>
+                            <input type="date" placeholder="Date" />
+                        </fieldset>
+                        <button class="submit-btn" id="submit-btn" type="submit">submit</button>
+                        <button class="reset-btn" id="reset-btn" type="reset">Reset</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="modal" id="modal-">
+            <div class="modal-content" id="-content">
+                <div class="close modal-close">+</div>
+                <form>
+                    <div class="row100">
+                        <fieldset>
+                            <legend>Withdrawal Form</legend>
+                            <input type="text" id="fullname" placeholder="Full Name" />
+                            <br />
+                            <label>Date:</label>
+                            <input type="date" id="date" placeholder="Date" />
+                            <br />
+                            <label>Account Type:</label>
+                            <input type="radio" id="cashflip" value="cashflip" />
+                            <label>C@SHFLIP</label>
+                            <input type="radio" id="investment_account" value="investment_account" />
+                            <label>INVESTMENT ACCOUNT</label>
+                            <input type="radio" id="stocks_portfolio" value="stocks_portfolio" />
+                            <label>STOCKS PORTFOLIO</label>
+                            <br />
+                            <label>AMOUNT: </label>
+                            <input type="text" id="amount" placeholder="0.00" />
+                            <br />
+                            <label>Client Signature:</label>
+                            <input type="text" id="signature" />
+                            <br />
+                            <label>Date:</label>
+                            <input type="date" placeholder="Date" />
+                        </fieldset>
+                        <button class="submit-btn" id="submit-btn" type="submit">submit</button>
+                        <button class="reset-btn" id="reset-btn" type="reset">Reset</button>
                     </div>
                 </form>
             </div>
