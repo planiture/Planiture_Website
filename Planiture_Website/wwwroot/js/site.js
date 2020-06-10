@@ -58,3 +58,4 @@ closeBtns.forEach(function (btn) {
         var modal = btn.closest(".modal").style.display = "none";
     }
 });
+

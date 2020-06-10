@@ -1,0 +1,219 @@
+﻿@model Planiture_Website.Models.UploadSignDocumentClass
+
+@{
+    ViewData["Title"] = "Upload/Sign Document";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    
+</head>
+<body class="upload-background">
+    <!--added image-->
+    <div>
+        <div class="upload-menu">
+            <form asp-action="UploadSignDocument" method="post">
+                <h1>Upload Sign Documents</h1>
+                <hr />
+                <div class="form-group">
+                    <label for="documentName">Document: </label>
+                    <input type="text" class="form-control" id="documentName" />
+                </div>
+                <div class="form-group upload-file">
+                    <label for="browseBtn"><u><b>BROWSE FILE:</b></u></label>
+                    <input type="file" class="form-control file-input" id="browseFiles" name="files[]" multiple />
+                    <button class="upload-btn" id="browseBtn" type="button">Choose File(s)</button>
+                    <span class="upload-label">No file(s) selected</span>
+                </div>
+                <br />
+                <br />
+                <div class="form-group">
+                    <button class="deposit-btn modal-open" id="depositBtn" type="button" data-modal="modal-deposit">Deposit Form</button>
+                    <button class="withdrawal-btn modal-open" id="withdrawalBtn" type="button" data-modal="modal-withdrawal">Withdrawal Form</button>
+                    <button class="payment-btn modal-open" id="paymentBtn" type="button"data-modal="modal-paymentAuthorization">Payment Authorization Form</button>
+                </div>
+            </form>
+            <div class="modal" id="modal-deposit">
+                <div class="modal-content kingz">
+                    <div class="close modal-close">+</div>
+                    <form>
+                        <div class="row">
+                            <div class="col-md 9">
+                                <br />
+                                <h4>CLIENT INFORMATION</h4>
+                                <p> (please sign your signature and date at the end of the form)</p>
+                                <br />
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label asp-for="dFullName" class="control-label">Full Name: </label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input asp-for="dFullName" class="form-control" placeholder="your name..." />
+                                        <span asp-validation-for="dFullName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label asp-for="dDateFilled" class="control-label">Date: </label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input asp-for="dDateFilled" class="form-control" />
+                                        <span asp-validation-for="dDateFilled" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label>Account Type: </label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input type="radio" id="dCashflip" value="cashflip" />
+                                        <label>Cashflip</label>
+                                        <input type="radio" id="dInvestmentAccount" value="investment_account" />
+                                        <label>Investment Account</label>
+                                        <input type="radio" id="dStocksPortfolio" value="stocks_portfolio" />
+                                        <label>Stocks Portfolio</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label asp-for="dAmount" class="control-label">Amount: </label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input asp-for="dAmount" class="form-control" placeholder="$0.00" />
+                                        <span asp-validation-for="dAmount" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label asp-for="dSignature" class="control-label">Signature: </label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input asp-for="dSignature" class="form-control" placeholder="your signature..." />
+                                        <span asp-validation-for="dSignature" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label asp-for="dDateSigned" class="control-label">Date: </label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input asp-for="dDateSigned" class="form-control" />
+                                        <span asp-validation-for="dDateSigned" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <input type="submit" value="Submit" class="btn btn-primary" />
+                                    <input class="reset-btn" id="reset-btn" type="reset" onclick="this.form.reset();return false">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <h2> Desposit Form</h2>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal" id="modal-withdrawal">
+                <div class="modal-content kingz">
+                    <div class="close modal-close">+</div>
+                    <form>
+                        <div class="row">
+                            <div class="col-md 9">
+                                <br />
+                                <h4>CLIENT INFORMATION</h4>
+                                <p> (please sign your signature and date at the end of the form)</p>
+                                <br />
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label asp-for="wFullName" class="control-label">Full Name: </label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input asp-for="wFullName" class="form-control" placeholder="your name..." />
+                                        <span asp-validation-for="wFullName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label asp-for="wDateFilled" class="control-label">Date: </label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input asp-for="wDateFilled" class="form-control" />
+                                        <span asp-validation-for="wDateFilled" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label>Account Type: </label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input type="radio" id="wCashflip" value="cashflip" />
+                                        <label>Cashflip</label>
+                                        <input type="radio" id="wInvestmentAccount" value="investment_account" />
+                                        <label>Investment Account</label>
+                                        <input type="radio" id="wStocksPortfolio" value="stocks_portfolio" />
+                                        <label>Stocks Portfolio</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label asp-for="wAmount" class="control-label">Amount: </label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input asp-for="wAmount" class="form-control" placeholder="$0.00" />
+                                        <span asp-validation-for="wAmount" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label asp-for="wSignature" class="control-label">Signature: </label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input asp-for="wSignature" class="form-control" placeholder="your signature..." />
+                                        <span asp-validation-for="wSignature" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-25">
+                                        <label asp-for="wDateSigned" class="control-label">Date: </label>
+                                    </div>
+                                    <div class="col-75">
+                                        <input asp-for="dDateSigned" class="form-control" />
+                                        <span asp-validation-for="wDateSigned" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <input type="submit" value="Submit" class="btn btn-primary" />
+                                    <input class="reset-btn" id="reset-btn" type="reset" onclick="this.form.reset();return false">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <h2> Withdrawal Form</h2>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal" id="modal-paymentAuthorization">
+                <div class="modal-content kingz">
+                    <div class="close modal-close">+</div>
+                    <form>
+                        <div class="row">
+                            <div class="col-md 9">
+
+                            </div>
+                            <div class="col-md-3">
+                                <h2> Payment Authorization Form</h2>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -78,7 +78,7 @@ namespace Planiture_Website.Controllers
             return View();
         }
 
-        public IActionResult UploadSignDocuments()
+        public IActionResult UploadSignDocument()
         {
             return View();
         }

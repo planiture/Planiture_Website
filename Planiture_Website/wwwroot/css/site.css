@@ -590,6 +590,10 @@ ul.navbar-nav li div.dropdown:hover > ul.dropdown-menu {
     white-space: nowrap;
 }
 
+
+/* UPLOAD/SIGN DOCUMENTS Page - Display Forms Buttons
+-------------------------------------------------- */
+
 .deposit-btn {
     -webkit-appearance: none;
     background: darkgoldenrod;
@@ -615,16 +619,64 @@ ul.navbar-nav li div.dropdown:hover > ul.dropdown-menu {
     color: black;
 }
 
+.withdrawal-btn {
+    -webkit-appearance: none;
+    background: darkgoldenrod;
+    border: 2px solid black;
+    border-radius: 4px;
+    outline: none;
+    padding: 0.5em 0.8em;
+    margin-right: 15px;
+    color: black;
+    font-size: 1em;
+    font-family: sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    align-content: center;
+}
+
+.withdrawal-btn:hover {
+    background: gold;
+}
+
+.withdrawal-btn:active {
+    background: goldenrod;
+    color: black;
+}
+
+.payment-btn {
+    -webkit-appearance: none;
+    background: darkgoldenrod;
+    border: 2px solid black;
+    border-radius: 4px;
+    outline: none;
+    padding: 0.5em 0.8em;
+    margin-right: 15px;
+    color: black;
+    font-size: 1em;
+    font-family: sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    align-content: center;
+}
+
+.payment-btn:hover {
+    background: gold;
+}
+
+.payment-btn:active {
+    background: goldenrod;
+    color: black;
+}
 
 
-
-/*Deposit Form*/
-
+/* UPLOAD/SIGN DOCUMENTS Page - Deposit Form
+-------------------------------------------------- */
 .modal {
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.7);
-    opacity: 0.7;
+    opacity: 0.9;
     position: absolute;
     top: 0;
     display: flex;
@@ -635,19 +687,84 @@ ul.navbar-nav li div.dropdown:hover > ul.dropdown-menu {
 
 .modal-content {
     width: 800px;
-    height: 500px;
+    height: 700px;
     background-color: white;
     border-radius: 4px;
     text-align: center;
     padding: 20px;
-    position: relative;
+    position: relative
 }
 
-.inputarea input {
-    width: 50%;
-    display: block;
-    margin: 15px auto;
+/*trying something*/
+.csstransforms .col-md-3 {
+    border-left: 34px solid #369;
+    padding-left: 10px;
 }
+
+.csstransforms .col-md-3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Border is the new background */
+    background: none;
+    /* Rotate from top left corner (not default) */
+    transform-origin: 0 0;
+    transform: rotate(180deg);
+}
+
+.col-md-3 h2 {
+    font: bold 30px Sans-Serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: #369;
+    color: #fff;
+    padding: 5px 10px;
+    margin: 0 0 10px 0;
+    line-height: 24px;
+    transform: rotate(90deg);
+}
+
+.col-md-3 {
+    display: block;
+    position: relative;
+    margin: 40px 0;
+}
+
+
+
+.kingz {
+    border-radius: 5px;
+    background-color: darkgoldenrod;
+    padding: 20px;
+}
+
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+
+
+
 
 .close{
     position: absolute;
@@ -658,44 +775,16 @@ ul.navbar-nav li div.dropdown:hover > ul.dropdown-menu {
     cursor: pointer; 
 }
 
-/*Withdrawal Form*/
 
-.modal-withdrawal {
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.7);
-    opacity: 0.7;
-    position: absolute;
-    top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+/* UPLOAD/SIGN DOCUMENTS Page - Withdrawal Form
+-------------------------------------------------- */
 
-.withdrawal-content {
-    width: 800px;
-    height: 500px;
-    background-color: white;
-    border-radius: 4px;
-    text-align: center;
-    padding: 20px;
-    position: relative;
-}
 
-.row100 {
-    width: 50%;
-    display: block;
-    margin: 15px auto;
-}
+/* UPLOAD/SIGN DOCUMENTS Page - Payment Authorization Form
+-------------------------------------------------- */
 
-.close {
-    position: absolute;
-    top: 0;
-    right: 14px;
-    font-size: 42px;
-    transform: rotate(45deg);
-    cursor: pointer;
-}
+
+
 
 /* CAREER Page
 -------------------------------------------------- */
