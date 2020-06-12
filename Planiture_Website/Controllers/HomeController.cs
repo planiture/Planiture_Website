@@ -48,7 +48,7 @@ namespace Planiture_Website.Controllers
             return View();
         }
 
-        public IActionResult Security()
+        public IActionResult Policy()
         {
             return View();
         }
@@ -78,7 +78,7 @@ namespace Planiture_Website.Controllers
             return View();
         }
 
-        public IActionResult UploadSignDocument()
+        public IActionResult UploadApprovedDocument()
         {
             return View();
         }

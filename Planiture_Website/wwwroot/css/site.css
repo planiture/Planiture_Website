@@ -100,9 +100,6 @@ body {
     display: none;
 }
 
-.feedback-modal h4, .feedback-modal p{
-
-}
 
 .feedbackmodal-content{
     position: relative;
@@ -403,6 +400,7 @@ ul.navbar-nav li div.dropdown:hover > ul.dropdown-menu {
     align-items: center;
 }
 
+
 .menu-body {
     background: #ffe8d7;
     padding: 100px;
@@ -436,8 +434,45 @@ ul.navbar-nav li div.dropdown:hover > ul.dropdown-menu {
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
-.menu-item a{
+
+.menu-item .text{
+    position: absolute;
+    z-index: 999;
+    margin: 0 auto;
+    left: 0;
+    right: 0;        
+    text-align: center;
+    top: 40%;
+    background: rgba(0, 0, 0, 0.8);
+    font-family: Arial,sans-serif;
+    color: #fff;
+    width: 80%;
+}
+.menu .invest-image {
+    background-image: url(investments.jpg);
+    position: relative;
+    min-height: 300px;
+    width: 250px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu .subscribe-image {
+    background-image: url(subscriptions.jpg);
+    position: relative;
+    min-height: 300px;
+    width: 250px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-item a {
     text-underline-position: below;
     background: none;
     color: darkgoldenrod;
@@ -453,11 +488,10 @@ ul.navbar-nav li div.dropdown:hover > ul.dropdown-menu {
 -------------------------------------------------- */
 
 .invest-background {
-    /*position: relative;*/
-    /*width: 100%;*/
-    padding: 100px;
+    position: relative;
+    width: 100%;
     min-height: 100vh;
-    /*background-image: url(investmentimage.jpg);*/
+    background-image: url();
     background-color: whitesmoke;
     background-size: cover;
     display: flex; /*changed from inline*/
@@ -465,35 +499,11 @@ ul.navbar-nav li div.dropdown:hover > ul.dropdown-menu {
     align-items: center;
 }
 
-.invest-background .container {
-    position: relative;
-    text-align: center;
-    width: 100%;
+.invest-menu{
+
 }
 
-.mx800p{
-    max-width: 800px;
-    margin: 0 auto;
-}
 
-.mx800p h2 {
-    color: black;
-    text-align: center;
-    line-height: 1em;
-    text-transform: uppercase;
-}
-
-.mx800p h3{
-    text-align: center;
-    line-height: 1em;
-    text-transform: uppercase;
-    color: black;
-}
-
-.mx800p p{
-    color: black;
-    
-}
 
 /* SUBSCRIPTIONS Page
 -------------------------------------------------- */
