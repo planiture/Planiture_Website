@@ -16,6 +16,7 @@ namespace Planiture_Website.Controllers
 
         public IActionResult GetDocumentInfo()
         {
+            //just trying a thing
             UploadSignDocumentClass obj = new UploadSignDocumentClass();
 
             return View(obj);

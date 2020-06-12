@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body>
+<body class="layout">
     <header id="header" class="sticky">
         <!--added sticky class to header... KINGZWILL-->
         <nav class="navbar navbar-expand-sm  navbar-fixed-top navbar-toggleable-sm navbar-light mb-3">
@@ -23,7 +23,7 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Welcome</a>
                         </li>
                         <li class="nav-item">
                             <div class="dropdown">
@@ -58,6 +58,40 @@
             Copyright &copy; 2020 - Planiture. All rights reserved - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>-->
+    <div class="" role="button" tabindex="0" style="height:130px; position:fixed; z-index:999;
+        right:0; top:80%; margin-top:-65px; width:40px;">
+        <button class="feedback-btn modal-open" id="feedbackBtn" type="button" data-modal="modal-feedback" style="-webkit-transform: rotate(-90deg);height:50px; position:fixed;z-index:999;right: -50px;">FeedBack</button>
+    </div>
+    <div class="modal feedback-modal" id="modal-feedback">
+        <div class="feedbackmodal-content kingz">
+            <div class="close modal-close">+</div>
+            <form>
+                <div class="modal-header">
+                    <h2>FeedBack</h2>
+                </div>
+                
+                <div class="row100">
+                    <div class="inputBx50">
+                        <input type="text" placeholder="Full Name" />
+                    </div>
+                    <div class="inputBx50">
+                        <input type="text" placeholder="Investment No." />
+                    </div>
+                </div>
+                <div class="row100">
+                    <p></p>
+                    <div class="inputBx100">
+                        <textarea placeholder="Message"></textarea>
+                    </div>
+                </div>
+                <div class="row100">
+                    <div class="inputBx100">
+                        <input type="submit" value="Send" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

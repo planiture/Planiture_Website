@@ -1,4 +1,4 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
 /* html
@@ -68,9 +68,124 @@ body {
     min-height: 1000px; /*JUST ADDED BY KINGZWILL*/
 }
 
-/* Body Footer
+/* Body - Feedback Button & Form
 -------------------------------------------------- */
 
+.feedback-btn {
+    -webkit-appearance: none;
+    background: darkgoldenrod;
+    border: 2px solid black;
+    border-radius: 4px;
+    outline: none;
+    padding: 0.5em 0.8em;
+    margin-right: 15px;
+    color: black;
+    font-size: 1em;
+    font-family: sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    align-content: center;
+}
+
+.feedback-modal {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    opacity: 0.9;
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.feedback-modal h4, .feedback-modal p{
+
+}
+
+.feedbackmodal-content{
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.feedbackmodal-content form{
+    width: 100%;
+}
+
+.feedbackmodal-content .row100{
+    display: flex;
+    width: 100%;
+}
+
+.feedbackmodal-content .row100 .inputBx50{
+    width: 50%;
+    margin-left: 0 20px;
+}
+
+.feedbackmodal-content .row100 .inputBx100{
+    width: 100%;
+    margin: 0 20px;
+}
+
+.feedbackmodal-content .row100 input,
+.feedbackmodal-content .row100 textarea{
+    position: relative;
+    border: none;
+    border-bottom: 1px solid #fff;
+    color: black;
+    background: transparent;
+    width: 100%;
+    padding: 10px 0;
+    outline: none;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 20px 0;
+    resize: none;
+}
+
+.feedbackmodal-content .row100 textarea{
+    height: 100px;
+}
+
+.feedbackmodal-content .row100 input::placeholder,
+.feedbackmodal-content .row100 textarea::placeholder{
+    color: black;
+}
+
+.feedbackmodal-content .row100 input[type="submit"] {
+    -webkit-appearance: none;
+    background: #fff;
+    border-radius: 4px;
+    font-size: 1em;
+    font-family: sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    align-content: center;
+}
+
+
+.modal-header h2 {
+    font: bold 30px Sans-Serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: #369;
+    color: #fff;
+    padding: 5px 10px;
+    margin: 0 0 10px 0;
+    line-height: 24px;
+}
+
+.modal-header {
+    display: block;
+    position: relative;
+    margin: 40px 0;
+}
+
+/* Body Footer
+-------------------------------------------------- */
 .footer {
     position: absolute;
     bottom: 0;
@@ -670,9 +785,9 @@ ul.navbar-nav li div.dropdown:hover > ul.dropdown-menu {
 }
 
 
-/* UPLOAD/SIGN DOCUMENTS Page - Deposit Form
+/* UPLOAD/SIGN DOCUMENTS Page - ALL FORMS
 -------------------------------------------------- */
-.modal {
+.upload-menu .modal {
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.7);
@@ -685,7 +800,7 @@ ul.navbar-nav li div.dropdown:hover > ul.dropdown-menu {
     display: none;
 }
 
-.modal-content {
+.upload-menu .modal-content {
     width: 800px;
     height: 700px;
     background-color: white;
@@ -722,6 +837,7 @@ ul.navbar-nav li div.dropdown:hover > ul.dropdown-menu {
     margin: 0 0 10px 0;
     line-height: 24px;
     transform: rotate(90deg);
+
 }
 
 .col-md-3 {
@@ -774,17 +890,6 @@ label {
     transform: rotate(45deg);
     cursor: pointer; 
 }
-
-
-/* UPLOAD/SIGN DOCUMENTS Page - Withdrawal Form
--------------------------------------------------- */
-
-
-/* UPLOAD/SIGN DOCUMENTS Page - Payment Authorization Form
--------------------------------------------------- */
-
-
-
 
 /* CAREER Page
 -------------------------------------------------- */
@@ -1108,5 +1213,6 @@ label {
     letter-spacing: 1px;
 }
 
-
+/* SHOP Page
+-------------------------------------------------- */
 
