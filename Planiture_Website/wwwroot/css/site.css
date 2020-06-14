@@ -1,6 +1,8 @@
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+/*KINGZWILL ADDED THE FOLLOWING*/
+
 /* html
 -------------------------------------------------- */
 
@@ -61,11 +63,11 @@ a {
 /* Body
 -------------------------------------------------- */
 
-body { 
-    /* Margin bottom by footer height */
-    margin-bottom: 60px;                              /*something here affects the footer*/
+/*JUST ADDED BY KINGZWILL*/
+body {
+    margin-bottom: 60px; /*something here affects the footer*/
     background-color: #808080;
-    min-height: 1000px; /*JUST ADDED BY KINGZWILL*/
+    min-height: 1000px; 
 }
 
 /* Body - Feedback Button & Form
@@ -87,6 +89,15 @@ body {
     align-content: center;
 }
 
+.feedback-btn:hover{
+    background: gold;
+}
+
+.feedback-btn:active{
+    background: goldenrod;
+    color: black;
+}
+
 .feedback-modal {
     width: 100%;
     height: 100%;
@@ -99,7 +110,6 @@ body {
     align-items: center;
     display: none;
 }
-
 
 .feedbackmodal-content{
     position: relative;
@@ -163,7 +173,6 @@ body {
     align-content: center;
 }
 
-
 .modal-header h2 {
     font: bold 30px Sans-Serif;
     letter-spacing: 2px;
@@ -214,7 +223,7 @@ header { /*KINGZWILL ADDED THE FOLLOWING*/
     color: darkgoldenrod;
 }
 
-.navbar .sticky .logo { /*ADDED BY KINGZWILL*/
+/*.navbar .sticky .logo {
     color: #000000;
 }
 
@@ -228,7 +237,7 @@ header { /*KINGZWILL ADDED THE FOLLOWING*/
     letter-spacing: 2px;
     transition: 0.6s;
 }
-
+*/
 
 header ul { /*ADDED BY KINGZWILL*/
     position: relative;
@@ -240,6 +249,10 @@ header ul { /*ADDED BY KINGZWILL*/
 header ul li { /*ADDED BY KINGZWILL*/
     position: relative;
     list-style: none;
+}
+
+.dropdown-menu li {
+    text-align: left;
 }
 
 header ul li a { /*KINGZWILL ADDED THE FOLLOWING*/
@@ -254,12 +267,12 @@ header ul li a { /*KINGZWILL ADDED THE FOLLOWING*/
 
 /* Banner
 -------------------------------------------------- */
+
 .banner { /*KINGZWILL ADDED THE FOLLOWING*/
     position: relative;
     width: 100%;
     min-height: 100vh;
     background-image: url(sky.jpg);
-    /*background-color: darkgrey;*/
     background-size: cover;
     display: flex; /*changed from inline*/
     justify-content: center;
@@ -274,11 +287,9 @@ header ul li a { /*KINGZWILL ADDED THE FOLLOWING*/
 
 .banner h2 span {/*ADDED BY KINGZWILL*/
     color: gold;
-    /*font-size:60px;*/
 }
 
 .banner h2 b {/*ADDED BY KINGZWILL*/
-    /*font-size: 60px;*/
     color: black;
 
 }
@@ -334,21 +345,55 @@ a.navbar-brand { /*KINGZWILL ADDED THE FOLLOWING*/
     top: 0;
 }
 
+.navbar .dropdown-menu{
+    padding: 5px;
+    position: relative;
+}
+
+.navbar .dropdown-menu li{
+    text-align: left;
+}
+
+.navbar .dropdown-menu li:hover{
+    background-color: grey;
+    transition: 0.4s;
+}
+
+.navbar .dropdown-menu a{
+    color: black;
+    text-decoration: none;
+}
+
+.navbar .dropdown .dropdown-menu a.dropbtn{
+    -webkit-appearance: none;
+    background: darkgoldenrod;
+    border: 2px solid black;
+    border-radius: 4px;
+    outline: none;
+    padding: 0.5em 0.8em;
+    margin-right: 15px;
+    color: black;
+    font-size: 1em;
+    font-family: sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    align-content: center;
+}
+
+.navbar .dropdown .dropdown-menu a.dropbtn:hover {
+    background: gold;
+}
+
+.navbar .dropdown .dropdown-menu a.dropbtn:active {
+    background: goldenrod;
+    color: black;
+}
+
 .navbar li:hover { /*ADDED BY KINGZWILL*/
     background: none;
     border-color: black;
-    border-style: solid
+    border-style: solid;
 }
-
-.nav-link div div a {
-    color: purple;
-}
-
-
-
-
-
-
 
 /* Button
 -------------------------------------------------- */
@@ -372,6 +417,10 @@ ul.navbar-nav li div.dropdown:hover > div.dropdown-menu { /*ADDED BY KINGZWILL*/
     display: inline-grid; /*only grid and inline-grid works the way i want so far*/
 }
 
+
+
+
+
 .navbar button:hover { /*ADDED BY KINGZWILL*/
     background-color: darkgoldenrod;
     position: relative;
@@ -383,7 +432,6 @@ ul.navbar-nav li div.dropdown:hover > div.dropdown-menu { /*ADDED BY KINGZWILL*/
 ul.navbar-nav li div.dropdown:hover > ul.dropdown-menu {
     display: inline-grid;
 }
-
 
 /* MENU Page
 -------------------------------------------------- */
@@ -984,7 +1032,7 @@ label {
 .career-menu .row .col-sm-4 .thumbnail {
     border: 2px solid ;
     border-radius: 4px;
-    padding: 5px;
+    padding: 4px;
     border-color: black;
 }
 
@@ -1010,18 +1058,10 @@ label {
 -------------------------------------------------- */
 
 .customerjob-background {
-    /*position: relative;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(800px,5fr));
-    grid-gap: 30px;
-    max-width: 150%;
-    margin-top: 40px;
-    background-image: url(securityimage.jpg);*/
     position: relative;
     width: 100%;
     min-height: 100vh;
     background-image: url();
-    /*background-color: darkgrey;*/
     background-size: cover;
     display: flex; /*changed from inline*/
     justify-content: center;
@@ -1060,18 +1100,10 @@ label {
 -------------------------------------------------- */
 
 .marketjob-background {
-    /*position: relative;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(800px,5fr));
-    grid-gap: 30px;
-    max-width: 150%;
-    margin-top: 40px;
-    background-image: url(securityimage.jpg);*/
     position: relative;
     width: 100%;
     min-height: 100vh;
     background-image: url();
-    /*background-color: darkgrey;*/
     background-size: cover;
     display: flex; /*changed from inline*/
     justify-content: center;
@@ -1111,18 +1143,10 @@ label {
 -------------------------------------------------- */
 
 .mediajob-background {
-    /*position: relative;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(800px,5fr));
-    grid-gap: 30px;
-    max-width: 150%;
-    margin-top: 40px;
-    background-image: url(securityimage.jpg);*/
     position: relative;
     width: 100%;
     min-height: 100vh;
     background-image: url();
-    /*background-color: darkgrey;*/
     background-size: cover;
     display: flex; /*changed from inline*/
     justify-content: center;
@@ -1159,21 +1183,11 @@ label {
 /* POLICY Page
 -------------------------------------------------- */
 
-.security-background {
-    /*position: relative;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(800px,5fr));
-    grid-gap: 30px;
-    max-width: 150%;
-    margin-top: 40px;
-    background-image: url(securityimage.jpg);*/
-
-
-     position: relative;
+.policy-background {
+    position: relative;
     width: 100%;
     min-height: 100vh;
     background-image: url(securityimage.jpg);
-    /*background-color: darkgrey;*/
     background-size: cover;
     display: flex; /*changed from inline*/
     justify-content: center;
@@ -1320,4 +1334,92 @@ label {
     max-height: 20rem;
 }
 
+/* SHOP Page
+-------------------------------------------------- */
+
+.shop-background {
+    position: relative;
+    padding: 100px;
+    min-height: 100vh;
+    background-image: url();
+    background-color: whitesmoke;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+}
+
+.shop-menu {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.category{
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 30px;
+    max-width: 100%;
+    margin-top: 40px;
+}
+.category .type{
+    position: relative;
+    background: darkgoldenrod;
+    min-height: 300px;
+    width: 250px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.category .type:hover{
+    background: #000;
+}
+
+.category .type a{
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.category .type:hover a{
+    color: white;
+}
+
+.shop-menu .row .col-sm-4 .thumbnail {
+    border: 5px solid;
+    border-radius: 4px;
+    padding: 5px;
+    border-color: darkgoldenrod;
+}
+
+.shop-menu .row .col-sm-4 .thumbnail a{
+    font-weight: 500;
+    color: blue;
+}
+
+.shop-menu .row .col-sm-4 .thumbnail b p{
+    font-weight: bold;
+}
+
+.shop-menu .row .col-sm-4 .thumbnail a:hover{
+    background: none;
+    color: darkgoldenrod;
+    text-decoration-line: underline
+}
+
+.shop-menu p {
+    position: relative;
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+/* SHOP Page - CASHFLIP
+-------------------------------------------------- */
 
