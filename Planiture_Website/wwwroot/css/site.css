@@ -60,14 +60,23 @@ a {
     border-color: #1861ac;
 }
 
-/* Body
+/* LOGIN page
 -------------------------------------------------- */
 
+
+
+
+
+
+
+
+/* Body
+-------------------------------------------------- */
 /*JUST ADDED BY KINGZWILL*/
 body {
     margin-bottom: 60px; /*something here affects the footer*/
     background-color: #808080;
-    min-height: 1000px; 
+    min-height: 1000px;
 }
 
 /* Body - Feedback Button & Form

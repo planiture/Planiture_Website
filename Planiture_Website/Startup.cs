@@ -34,8 +34,16 @@ namespace Planiture_Website
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            //Just added
+            /*services.AddIdentity<Planiture_Website.Areas.Identity.Data.ApplicationUser, IdentityRole>(options =>
+            {
+                options.User.RequireUniqueEmail = false;
+            });*/
+
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

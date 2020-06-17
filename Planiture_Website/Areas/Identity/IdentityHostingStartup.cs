@@ -17,7 +17,7 @@ namespace Planiture_Website.Areas.Identity
             builder.ConfigureServices((context, services) => {
                 services.AddDbContext<Planiture_WebsiteContext>(options =>
                     options.UseSqlServer(
-                        context.Configuration.GetConnectionString("Planiture_WebsiteContextConnection")));
+                        context.Configuration.GetConnectionString("AuthDbContextConnection")));
 
                 //THE FOLLOWING WAS COMMENTED OUT BY KINGZWILL...THIS CODE IS NOT NECESSARY BECAUSE IT WAS ALREADY ADDED TO THE Startup.cs FILE
                 /*services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
