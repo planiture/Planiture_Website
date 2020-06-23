@@ -33,15 +33,12 @@ namespace Planiture_Website
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("AuthDbContextConnection")));
+
              services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-
+            
             //Just added
-            /*services.AddIdentity<Planiture_Website.Areas.Identity.Data.ApplicationUser, IdentityRole>(options =>
-            {
-                options.User.RequireUniqueEmail = false;
-            });*/
 
 
             services.AddControllersWithViews();
@@ -72,9 +69,7 @@ namespace Planiture_Website
 
             app.UseDefaultFiles(); //KINGZWILL
             app.UseCookiePolicy(); //KINGZWILL
-            app.UseHttpsRedirection(); //KINGZWILL
-            app.UseMvc(); //KINGZWILL
-            app.UseStaticFiles(); //KINGZWILL
+           app.UseMvc(); //KINGZWILL
 
             app.UseEndpoints(endpoints =>
             {

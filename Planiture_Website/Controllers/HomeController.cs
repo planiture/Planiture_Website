@@ -83,12 +83,22 @@ namespace Planiture_Website.Controllers
             return View();
         }
 
-        public IActionResult Shop()
+        public IActionResult Store()
         {
             return View();
         }
 
         public IActionResult InformationCenter()
+        {
+            return View();
+        }
+
+        public IActionResult AccountOptions()
+        {
+            return View();
+        }
+
+        public IActionResult GoldenInvestorApplication()
         {
             return View();
         }

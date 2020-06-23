@@ -60,15 +60,6 @@ a {
     border-color: #1861ac;
 }
 
-/* LOGIN page
--------------------------------------------------- */
-
-
-
-
-
-
-
 
 /* Body
 -------------------------------------------------- */
@@ -1346,88 +1337,7 @@ label {
 /* SHOP Page
 -------------------------------------------------- */
 
-.shop-background {
-    position: relative;
-    padding: 100px;
-    min-height: 100vh;
-    background-image: url();
-    background-color: whitesmoke;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-}
 
-.shop-menu {
-    position: relative;
-    text-align: center;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.category{
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    grid-gap: 30px;
-    max-width: 100%;
-    margin-top: 40px;
-}
-.category .type{
-    position: relative;
-    background: darkgoldenrod;
-    min-height: 300px;
-    width: 250px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.category .type:hover{
-    background: #000;
-}
-
-.category .type a{
-    text-decoration: none;
-    color: black;
-    font-size: 14px;
-    letter-spacing: 2px;
-}
-
-.category .type:hover a{
-    color: white;
-}
-
-.shop-menu .row .col-sm-4 .thumbnail {
-    border: 5px solid;
-    border-radius: 4px;
-    padding: 5px;
-    border-color: darkgoldenrod;
-}
-
-.shop-menu .row .col-sm-4 .thumbnail a{
-    font-weight: 500;
-    color: blue;
-}
-
-.shop-menu .row .col-sm-4 .thumbnail b p{
-    font-weight: bold;
-}
-
-.shop-menu .row .col-sm-4 .thumbnail a:hover{
-    background: none;
-    color: darkgoldenrod;
-    text-decoration-line: underline
-}
-
-.shop-menu p {
-    position: relative;
-    font-size: 18px;
-    font-weight: 300;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
-}
 
 /* SHOP Page - CASHFLIP
 -------------------------------------------------- */

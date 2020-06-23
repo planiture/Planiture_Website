@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewData["Title"] = "AccountOptions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .body {
+        position: relative;
+        padding: 100px;
+        min-height: 100vh;
+        background-color: whitesmoke;
+        background-size: cover;
+    }
+    .thumbnail {
+        border: 1px solid;
+        border-radius: 4px;
+        padding: 50px;
+        background-color: peachpuff;
+    }
+    #cancelbtn {
+        -webkit-appearance: none;
+        background: darkgoldenrod;
+        border: 2px solid black;
+        border-radius: 4px;
+        outline: none;
+        padding: 0.5em 0.8em;
+        margin-right: 15px;
+        color: black;
+        font-size: 1em;
+        font-family: sans-serif;
+        font-weight: bold;
+        cursor: pointer;
+        align-content: center;
+        width: 60%;
+    }
+    #cancelbtn:hover{
+        background: gold;
+    }
+    #cancelbtn:active{
+        background: goldenrod;
+        color: black;
+    }
+    a .thumbnail {
+        font-weight: 500;
+        color: black;
+    }
+    a .thumbnail p{
+        font-weight: bold;
+    }
+    a:hover .thumbnail {
+        background: none;
+        color: darkgoldenrod;
+        text-decoration-line: underline;
+    }
+</style>
+
+<div class="body">
+    <br />
+    <h3>Application</h3>
+    <p>
+        (SELECT AN ACCOUNT)
+    </p>
+    <br />
+    <div class="row">
+        <div class="col-sm-6 col-md-6">
+            <a asp-area="" asp-controller="Home" asp-action="">
+                <div class="thumbnail">
+                    <center><p>BASIC ACCOUNT</p></center>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <a asp-area="" asp-controller="Home" asp-action="">
+                <div class="thumbnail">
+                    <center><p>PRIVATE INVESTORS ACCOUNT</p></center>
+                </div>
+            </a>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm-6 col-md-6">
+            <a asp-area="" asp-controller="Home" asp-action="GoldenInvestorApplication">
+                <div class="thumbnail">
+                    <center><p>GOLDEN20 ACCOUNT</p></center>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <a asp-area="" asp-controller="Home" asp-action="">
+                <div class="thumbnail">
+                    <center><p>STOCK PORTFOLIO</p></center>
+                </div>
+            </a>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm-3 col-md-3"></div>
+        <div class="col-sm-6 col-md-6">
+            <a asp-area="" asp-controller="Home" asp-action="">
+                <div class="thumbnail">
+                    <center><p>NEW TRADERS ACCOUNT</p></center>
+                </div>
+            </a>
+        </div>
+        <div class="col-sm-3 col-md-3"></div>
+    </div>
+    <br />
+    <div align="center">
+        <button id="cancelbtn" type="reset">CANCEL & RETURN</button>
+    </div>
+</div>
+

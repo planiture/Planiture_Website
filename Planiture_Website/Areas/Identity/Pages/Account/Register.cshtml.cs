@@ -13,21 +13,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using Planiture_Website.Areas.Identity.Data;
 
 namespace Planiture_Website.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
-            UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager,
+            UserManager<IdentityUser> userManager,
+            SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -46,10 +45,73 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+            //Personal Information
+            [PersonalData]
             [Required]
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+
+            [PersonalData]
+            [Required]
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+
+            /*[PersonalData]
+            [Display(Name = "DOB")]
+            public date DOB {get; set;}
+            
+            [PersonalData]
+            [Display(Name = "Date")]
+            public date DateJoined {get; set;}
+                 */
+
+            [PersonalData]
+            [Display(Name = "Gender")]
+            public string Gender { get; set; }
+
+            [PersonalData]
+            [Required]
+            [Display(Name = "Occupation")]
+            public string Occupation { get; set; }
+
+            [PersonalData]
+            [Required]
+            [Display(Name = "Prefix")]
+            public string Prefix { get; set; }
+
+            [PersonalData]
+            [Required]
+            [Display(Name = "Mobile")]
+            public string Mobile { get; set; }
+
+            [PersonalData]
+           // [Display(Name = "Email")]
             [EmailAddress]
-            [Display(Name = "Email")]
             public string Email { get; set; }
+
+            [PersonalData]
+            [Required]
+            [Display(Name = "Address")]
+            public string CusAddress { get; set; }
+
+            [PersonalData]
+            [Display(Name = "Residency")]
+            public string Residency { get; set; }
+
+            [PersonalData]
+            [Required]
+            [Display(Name = "Signature")]
+            public string Signature { get; set; }
+
+            [Required]
+            [Display(Name = "FormType")]
+            public string FormType { get; set; }
+
+            
+
+            [Required]
+            [Display(Name = "User Name")]
+            public string UserName { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
@@ -75,7 +137,7 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
+                var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
