@@ -8,7 +8,7 @@
 
 <div class="body">
 
-    <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+    <form id="apply-form" asp-route-returnUrl="@Model.ReturnUrl" method="post">
         <br />
         <h3>Application</h3>
         <p>
@@ -71,6 +71,18 @@
                         <span asp-validation-for="Input.Mobile" class="text-danger"></span>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 form-group">
+                        <textarea asp-for="Input.CusAddress" class="form-control" id="TextArea1.3" rows="4" cols="20"></textarea>
+                        <label asp-for="Input.CusAddress">Area Code</label>
+                        <span asp-validation-for="Input.CusAddress" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-6 col-md-6 form-group">
+                        <input asp-for="Input.Residency" class="form-control" />
+                        <label asp-for="Input.Residency"></label>
+                        <span asp-validation-for="Input.Residency" class="text-danger"></span>
+                    </div>
+                </div>
             </fieldset>
             <fieldset>
                 <legend>Login Info.</legend>
@@ -103,8 +115,8 @@
         </div>
         
         <div class="nextpage" align="center">
-            <button class="previous round" onclick="showPrev();">CANCEL</button>
-            <button class="next round" onclick="showNext();">SAVE & CONTINUE</button>
+            <button class="previous round" id="cancelBtn" onclick="">CANCEL</button>
+            <button class="next round" type="submit" onclick="showNext();">SAVE & CONTINUE</button>
         </div>
     </form>
 </div>
@@ -112,17 +124,18 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
-<!--
-<script>
-    var currentTab = 1;
-    $("#content1").show();
 
-    function showNext() {
-        $(".tab-content").show();
-        $("#content" + (currentTab + 1)).show();
-        currentTab++;
-    }
-</script>-->
+<script>
+    const applyForm = document.getElementById("apply-form");
+
+
+    applyForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        console.log("Form has been submitted!");
+
+        
+    });
+</script>
 
 <style>
     .body {

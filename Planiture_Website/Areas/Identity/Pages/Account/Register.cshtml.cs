@@ -98,7 +98,7 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
             [Display(Name = "Residency")]
             public string Residency { get; set; }
 
-            [PersonalData]
+            /*[PersonalData]
             [Required]
             [Display(Name = "Signature")]
             public string Signature { get; set; }
@@ -106,7 +106,7 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
             [Required]
             [Display(Name = "FormType")]
             public string FormType { get; set; }
-
+            */
             
 
             [Required]
