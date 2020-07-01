@@ -12,6 +12,7 @@ using Planiture_Website.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Planiture_Website.Controllers;
 
 namespace Planiture_Website
 {
@@ -31,11 +32,15 @@ namespace Planiture_Website
 
             services.AddMvc(option => option.EnableEndpointRouting = false); //ADDED BY KINGZWILL
 
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContextPool<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("AuthDbContextConnection")));
 
-             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //services.AddDbContext<ApplicationDbContext>(options =>
+             //   options.UseSqlServer(
+              //      Configuration.GetConnectionString("AuthDbContextConnection")));
+
+             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             
             //Just added

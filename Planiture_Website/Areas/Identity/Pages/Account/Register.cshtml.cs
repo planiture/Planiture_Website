@@ -13,6 +13,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using System.Data.SqlClient;
+using System.Data;
+using Microsoft.OData.Edm;
+using Planiture_Website.Data;
 
 namespace Planiture_Website.Areas.Identity.Pages.Account
 {
@@ -23,17 +27,20 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly ApplicationDbContext _context; //just added
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _context = context; //just added
         }
 
         [BindProperty]
@@ -42,6 +49,9 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
         public string ReturnUrl { get; set; }
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
+
+
+
 
         public class InputModel
         {
@@ -56,14 +66,9 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
             [Display(Name = "Last Name")]
             public string LastName { get; set; }
 
-            /*[PersonalData]
-            [Display(Name = "DOB")]
-            public date DOB {get; set;}
-            
             [PersonalData]
-            [Display(Name = "Date")]
-            public date DateJoined {get; set;}
-                 */
+            [Display(Name = "DOB")]
+            public Date DOB {get; set;}
 
             [PersonalData]
             [Display(Name = "Gender")]
@@ -85,7 +90,6 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
             public string Mobile { get; set; }
 
             [PersonalData]
-           // [Display(Name = "Email")]
             [EmailAddress]
             public string Email { get; set; }
 
@@ -110,8 +114,8 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
             
 
             [Required]
-            [Display(Name = "User Name")]
-            public string UserName { get; set; }
+            [Display(Name = "Username")]
+            public string Username { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
@@ -125,7 +129,7 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
         }
 
-        /*public async Task OnGetAsync(string returnUrl = null)
+        public async Task OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
@@ -137,8 +141,9 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = Input.UserName, Email = Input.UserName };
+                var user = new IdentityUser { UserName = Input.Username, Email = Input.Email};
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
@@ -150,6 +155,8 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
                         pageHandler: null,
                         values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
+
+
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
@@ -168,15 +175,12 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
+
             }
 
             // If we got this far, something failed, redisplay form
             return Page();
-        }*/
-        public ActionResult Register()
-        {
-
-            return Page();
         }
+
     }
 }
