@@ -40,5 +40,8 @@ namespace Planiture_Website.Models
         [Required]
         [Display(Name = "ReportsTo")]
         public string ReportsTo { get; set; }
+
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
     }
 }

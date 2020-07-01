@@ -45,5 +45,8 @@ namespace Planiture_Website.Models
         public string OtherAccount { get; set; }
 
         public string Acc_CustomerID { get; set; }
+
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
     }
 }

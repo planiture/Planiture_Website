@@ -78,5 +78,9 @@ namespace Planiture_Website.Controllers
         public string ApprovedBy { get; set; }
         public string Trans_TransactionStatus { get; set; }
 
+        //Provide Concurrency
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
+
     }
 }

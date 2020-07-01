@@ -70,5 +70,8 @@ namespace Planiture_Website.Models
         [Required]
         [Display(Name = "Address")]
         public string BenAddress { get; set; }
+
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
     }
 }

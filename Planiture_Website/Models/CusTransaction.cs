@@ -48,5 +48,8 @@ namespace Planiture_Website.Models
         [Required]
         [Display(Name = "Trans_TransactionStatus")]
         public string Trans_TransactionStatus { get; set; }
+
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
     }
 }

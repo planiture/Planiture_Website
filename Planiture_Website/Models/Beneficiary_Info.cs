@@ -35,5 +35,8 @@ namespace Planiture_Website.Models
 
         [PersonalData]
         public string Ben_CustomerID { get; set; }
+
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
     }
 }
