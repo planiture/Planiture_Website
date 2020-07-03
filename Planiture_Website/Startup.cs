@@ -36,12 +36,16 @@ namespace Planiture_Website
                 options.UseSqlServer(
                     Configuration.GetConnectionString("AuthDbContextConnection")));
 
+            services.AddDefaultIdentity<ApplicationUser>(options =>
+                options.SignIn.RequireConfirmedAccount = true)
+                    .AddEntityFrameworkStores<ApplicationDbContext>();
+
             //services.AddDbContext<ApplicationDbContext>(options =>
              //   options.UseSqlServer(
               //      Configuration.GetConnectionString("AuthDbContextConnection")));
 
-             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+             //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+              //  .AddEntityFrameworkStores<ApplicationDbContext>();
             
             //Just added
 

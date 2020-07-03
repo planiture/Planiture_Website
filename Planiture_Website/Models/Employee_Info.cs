@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,6 +10,10 @@ namespace Planiture_Website.Models
 {
     public class Employee_Info
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int EmployeeID { get; set; }
+
         [PersonalData]
         [Required]
         [Display(Name = "Emp_FirstName")]
@@ -43,5 +48,7 @@ namespace Planiture_Website.Models
 
         [Timestamp]
         public byte[] RowVersion { get; set; }
+
+        public ICollection<CusTransaction> cusTransactionsEmployee { get; set; }
     }
 }

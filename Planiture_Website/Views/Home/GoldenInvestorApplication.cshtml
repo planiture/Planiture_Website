@@ -1,4 +1,4 @@
-﻿@model Planiture_Website.Models.GoldenInvestorApplicationClass
+﻿@model Planiture_Website.Models.Investment_Info
 
 @{
     ViewData["Title"] = "Golden Investor Application";
@@ -12,6 +12,7 @@
         background-color: whitesmoke;
         background-size: cover;
     }
+
     #submitBtn {
         -webkit-appearance: none;
         background: darkgoldenrod;
@@ -28,13 +29,15 @@
         align-content: center;
         width: 60%;
     }
-    #submitBtn:hover{
-        background: gold;
-    }
-    #submitBtn:active{
-        background: goldenrod;
-        color: black;
-    }
+
+        #submitBtn:hover {
+            background: gold;
+        }
+
+        #submitBtn:active {
+            background: goldenrod;
+            color: black;
+        }
 </style>
 
 <div class="body">
@@ -51,8 +54,8 @@
                 <div class="col-sm-6 col-md-6">
                     <div class="form-group">
                         <label asp-for="Ques1">HAVE YOU EVER INVESTED BEFORE?</label>
-                        <select asp-for="Ques1" class="form-control">
-                            <option value=" " disabled>---Select---</option>
+                        <select asp-for="Ques1" class="form-control" required>
+                            <option value="" selected hidden>Choice</option>
                             <option value="No">No</option>
                             <option value="Yes">Yes</option>
                         </select>
@@ -61,7 +64,7 @@
                 </div>
                 <div class="col-sm-6 col-md-6 form-group">
                     <label asp-for="Ques2">IF YES, WHAT HAVE YOU INVESTED IN? </label>
-                    <input asp-for="Ques2" class="form-control" />
+                    <input asp-for="Ques2" class="form-control" required/>
                     <span asp-validation-for="Ques2" class="text-danger"></span>
                 </div>
             </div>
@@ -69,8 +72,8 @@
                 <div class="col-sm-6 col-md-6">
                     <div class="form-group">
                         <label asp-for="Ques3">DO YOU CONSIDER YOURSELF A LOW, MEDIUM OR HIGH RISK TAKER? </label>
-                        <select asp-for="Ques3" class="form-control">
-                            <option value=" " disabled>---Select---</option>
+                        <select asp-for="Ques3" class="form-control" required>
+                            <option value="" selected hidden>Choice</option>
                             <option value="LOW">LOW</option>
                             <option value="MEDIUM">MEDIUM</option>
                             <option value="HIGH">HIGH</option>
@@ -80,8 +83,8 @@
                 </div>
                 <div class="col-sm-6 col-md-6 form-group">
                     <label asp-for="Ques4">DO YOU CONSIDER YOURSELF A SHORT OR LONG TERM INVESTOR?</label>
-                    <select asp-for="Ques4" class="form-control">
-                        <option value=" " disabled>---Select---</option>
+                    <select asp-for="Ques4" class="form-control" required>
+                        <option value="" selected hidden>Select</option>
                         <option value="SHORT">SHORT</option>
                         <option value="LONG">LONG</option>
                     </select>
@@ -92,14 +95,14 @@
                 <div class="col-sm-6 col-md-6">
                     <div class="form-group">
                         <label asp-for="Ques5">WHAT IS YOUR FINANCIAL GOALS IN A YEAR OR TWO FROM NOW?</label>
-                        <textarea asp-for="Ques5" class="form-control" id="TextArea1" rows="4" cols="20"></textarea>
+                        <textarea asp-for="Ques5" class="form-control" id="TextArea1" rows="4" cols="20" required></textarea>
                         <span asp-validation-for="Ques5" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6">
                     <div class="form-group">
                         <label asp-for="Ques6">WHAT INSPIRED YOUR CHOICE TO INVEST?</label>
-                        <textarea asp-for="Ques6" class="form-control" id="TextArea2" rows="4" cols="20"></textarea>
+                        <textarea asp-for="Ques6" class="form-control" id="TextArea2" rows="4" cols="20" required></textarea>
                         <span asp-validation-for="Ques6" class="text-danger"></span>
                     </div>
                 </div>
@@ -111,40 +114,40 @@
                 <br />
                 <div class="row">
                     <div class="col-sm-6 col-md-6 form-group">
-                        <input asp-for="Bene_FirstName" class="form-control" />
+                        <input asp-for="Bene_FirstName" class="form-control" required/>
                         <label asp-for="Bene_FirstName"></label>
                         <span asp-validation-for="Bene_FirstName" class="text-danger"></span>
                     </div>
                     <div class="col-sm-6 col-md-6 form-group">
-                        <input asp-for="Bene_LastName" class="form-control" />
+                        <input asp-for="Bene_LastName" class="form-control" required/>
                         <label asp-for="Bene_LastName"></label>
                         <span asp-validation-for="Bene_LastName" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6 col-md-6">
-                        <input asp-for="Bene_Contact" class="form-control" />
+                        <input asp-for="Bene_Contact" class="form-control" required/>
                         <label asp-for="Bene_Contact"></label>
                         <span asp-validation-for="Bene_Contact" class="text-danger"></span>
                     </div>
                     <div class="col-sm-6 col-md-6">
-                        <input asp-for="Bene_Relationship" class="form-control" />
+                        <input asp-for="Bene_Relationship" class="form-control" required/>
                         <label asp-for="Bene_Relationship"></label>
                         <span asp-validation-for="Bene_Relationship" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label asp-for="Bene_Email"></label>
-                    <input asp-for="Bene_Email" class="form-control" placeholder="ex: name@mail.com" />
+                    <input asp-for="Bene_Email" class="form-control" placeholder="ex: name@mail.com" required/>
                     <span asp-validation-for="Bene_Email" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="BenAddress"></label>
-                    <textarea asp-for="BenAddress" class="form-control" id="TextArea1" rows="4" cols="20"></textarea>
+                    <textarea asp-for="BenAddress" class="form-control" id="TextArea1" rows="4" cols="20" required></textarea>
                     <span asp-validation-for="BenAddress" class="text-danger"></span>
                 </div>
                 <center>
-                    <input type="checkbox" id="NoBeneficiary" value="No">
+                    <input type="checkbox" id="NoBeneficiary" value="No" required/>
                     <label for="NoBeneficiary">I DO NOT HAVE A BENEFICIARY CURRENTLY</label><br>
                 </center>
             </fieldset>
@@ -161,19 +164,19 @@
                     <input type="text" placeholder="PLANITURE" disabled />
                     <br />
                     <label>INVESTOR SIGNATURE: </label>
-                    <input type="text" placeholder="PLANITURE" disabled />
+                    <input type="text" id="signature" placeholder="PLANITURE" disabled />
                     <br />
                     <label>DATE: </label>
                     <input type="date" id="TodayDate" />
                     <br />
                     <label>CLIENT FULL NAME: </label>
-                    <input type="text" />
+                    <input type="text" required/>
                     <br />
-                    <label>SIGNATURE: </label>
-                    <input type="text" />
+                    <label asp-for="Signature">SIGNATURE: </label>
+                    <input type="text" asp-for="Signature" required/>
                     <br />
                     <label>DATE: </label>
-                    <input type="date" id="SignDate" />
+                    <input type="date" id="SignDate" required/>
                     <br />
                     <br />
                 </div>

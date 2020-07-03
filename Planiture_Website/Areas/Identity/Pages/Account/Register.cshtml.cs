@@ -17,21 +17,24 @@ using System.Data.SqlClient;
 using System.Data;
 using Microsoft.OData.Edm;
 using Planiture_Website.Data;
+using Planiture_Website.Controllers;
+using System.ComponentModel.DataAnnotations.Schema;
+using Planiture_Website.Models;
 
 namespace Planiture_Website.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
-        private readonly IEmailSender _emailSender;
+        private readonly IEmailSender _emailSender; //need to format this 
         private readonly ApplicationDbContext _context; //just added
 
         public RegisterModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
             ApplicationDbContext context)
@@ -55,46 +58,56 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+            [Key]
+            [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+            public int CustomerID { get; set; } 
+
             //Personal Information
             [PersonalData]
-            [Required]
+            //[Required]
             [Display(Name = "First Name")]
             public string FirstName { get; set; }
 
             [PersonalData]
-            [Required]
+            //[Required]
             [Display(Name = "Last Name")]
             public string LastName { get; set; }
 
             [PersonalData]
             [Display(Name = "DOB")]
-            public Date DOB {get; set;}
+            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+            public DateTime DOB {get; set;}
+
+            [PersonalData]
+            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy HH:mm}")]
+            public DateTime MemberSince { get; set; }
+
 
             [PersonalData]
             [Display(Name = "Gender")]
             public string Gender { get; set; }
 
             [PersonalData]
-            [Required]
+            //[Required]
             [Display(Name = "Occupation")]
             public string Occupation { get; set; }
 
             [PersonalData]
-            [Required]
+            //[Required]
             [Display(Name = "Prefix")]
             public string Prefix { get; set; }
 
             [PersonalData]
-            [Required]
+            //[Required]
             [Display(Name = "Mobile")]
             public string Mobile { get; set; }
 
             [PersonalData]
-            [EmailAddress]
+            //[EmailAddress]
             public string Email { get; set; }
 
             [PersonalData]
-            [Required]
+            //[Required]
             [Display(Name = "Address")]
             public string CusAddress { get; set; }
 
@@ -102,22 +115,11 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
             [Display(Name = "Residency")]
             public string Residency { get; set; }
 
-            /*[PersonalData]
-            [Required]
-            [Display(Name = "Signature")]
-            public string Signature { get; set; }
-
-            [Required]
-            [Display(Name = "FormType")]
-            public string FormType { get; set; }
-            */
-            
-
-            [Required]
+            //[Required]
             [Display(Name = "Username")]
             public string Username { get; set; }
 
-            [Required]
+            //[Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
@@ -127,54 +129,102 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Timestamp]
+            public byte[] RowVersion { get; set; }
+
+            public ICollection<Investment_Info> Bene_Investments { get; set; }
+            //public ICollection<Beneficiary_Info> Beneficicaries { get; set; }
+            public ICollection<Account_Info> Accounts { get; set; }
+            public ICollection<CusTransaction> cusTransactionsCustomer { get; set; }
         }
 
-        public async Task OnGetAsync(string returnUrl = null)
+        public IActionResult OnGetAsync()
         {
-            ReturnUrl = returnUrl;
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            //ReturnUrl = returnUrl;
+            //ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+        /*[HttpGet]
+        public IActionResult Register()
         {
-            returnUrl = returnUrl ?? Url.Content("~/");
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            return Page();
+        }
+
+        [HttpPost]
+        public async Task <IActionResult> Register(InputModel model)
+        {
+            string catadd = model.Prefix + model.Mobile;
+
+            if(ModelState.IsValid)
+            {
+                var kingz = new ApplicationUser()
+                {
+                    CusFirstName = model.FirstName,
+                    CusLastName = model.LastName,
+                    DOB = model.DOB,
+                    Gender = model.Gender,
+                    Occupation = model.Occupation,
+                    CusMobile = catadd,
+                    CusEmail = model.Email,
+                    CusAddress = model.CusAddress,
+                    Residency = model.Residency,
+                    Cus_UserName = model.Username,
+                    Password = model.Password,
+                };
+
+                _context.Customer_Info.Update(model);
+
+                //_context.Customer_Info.Update(model);
+                _logger.LogInformation("User created a new account with passord.");
+
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Invalid username or password.");
+            }
+            return Page();
+        }*/
+
+        public async Task<IActionResult> OnPostAsync(InputModel model)
+        {
+            //returnUrl = returnUrl ?? Url.Content("~/");
+            //ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            string catadd = "(" +Input.Prefix +")"+ Input.Mobile;
+
+            //DateTime tempDate = Input.DOB.
+
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = Input.Username, Email = Input.Email};
-                var result = await _userManager.CreateAsync(user, Input.Password);
-
-                if (result.Succeeded)
+                var user = new ApplicationUser
                 {
-                    _logger.LogInformation("User created a new account with password.");
+                    CusFirstName = Input.FirstName,
+                    CusLastName = Input.LastName,
+                    CusDOB = Input.DOB,
+                    CusGender = Input.Gender,
+                    CusOccupation = Input.Occupation,
+                    CusMobile = catadd,
+                    CusUserRole = "Customer",
+                    CusEmail = Input.Email,
+                    CusAddress = Input.CusAddress,
+                    CusResidency = Input.Residency,
+                    Cus_UserName = Input.Username,
+                    CusPassword = Input.Password,
+                    Cus_ConfirmPassword = Input.ConfirmPassword,
+                };
 
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
-                        protocol: Request.Scheme);
+                _logger.LogInformation("User account created a new account with password.");
 
+                _context.Customer_Info.Add(Input);
+                //_context.Add(log);
+               
 
-
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
-                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
-                    {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
-                    }
-                    else
-                    {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
-                    }
-                }
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
+                await _context.SaveChangesAsync();
+                 return RedirectToAction("GoldenInvestorApplication", "Home");
+                //return LocalRedirect("Index");
 
             }
 

@@ -3,6 +3,7 @@ using Microsoft.OData.Edm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime.Serialization.Formatters;
 using System.Threading.Tasks;
@@ -14,22 +15,32 @@ namespace Planiture_Website.Controllers
     {
         //primary key for ApplicationUser Identity Table
         [Key]
-        public int ID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int CusID { get; set; }
 
         //Info for Customer_Info table
         public string CusFirstName { get; set; }
         public string CusLastName { get; set; }
-        public Date DOB { get; set; }
-        public string Gender { get; set; }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        public DateTime CusDOB { get; set; }
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy HH:mm}")]
+        public DateTime MemberSince { get; set; }
+
+        public string CusGender { get; set; }
         public string Cus_UserName { get; set; }
-        public string Password { get; set; }
-        public string UserRole { get; set; }
-        public string Occupation { get; set; }
+        public string CusPassword { get; set; }
+        public string Cus_ConfirmPassword { get; set; }
+        public string CusUserRole { get; set; }
+        public string CusOccupation { get; set; }
         public string CusMobile { get; set; }
         public string CusEmail { get; set; }
+        public string CusPrefix { get; set; }
         public string CusAddress { get; set; }
-        public string Residency { get; set; }
-        public string Signature { get; set; }
+        public string CusResidency { get; set; }
+        public string CusSignature { get; set; }
 
         //Info for InvestmentQuestion table
         public string FormType { get; set; }

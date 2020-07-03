@@ -2,13 +2,19 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using static Planiture_Website.Areas.Identity.Pages.Account.RegisterModel;
 
 namespace Planiture_Website.Models
 {
     public class Account_Info
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int AccountNumber { get; set; }
+
         [PersonalData]
         [Required]
         [Display(Name = "AccountName")]
@@ -48,5 +54,12 @@ namespace Planiture_Website.Models
 
         [Timestamp]
         public byte[] RowVersion { get; set; }
+
+        //Customer_Info Foreign Key
+        public int CustomerID { get; set; }
+        [ForeignKey("CustomerID")]
+        public InputModel Customer_Info { get; set; }
+
+        public ICollection<CusTransaction> cusTransactionsAccount { get; set; }
     }
 }
