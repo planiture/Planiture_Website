@@ -10,8 +10,8 @@ using Planiture_Website.Data;
 namespace Planiture_Website.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200703014936_update")]
-    partial class update
+    [Migration("20200703035544_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -111,11 +111,11 @@ namespace Planiture_Website.Migrations
                     b.Property<float>("AvailableBalance")
                         .HasColumnType("real");
 
-                    b.Property<int>("CustomerID")
-                        .HasColumnType("int");
-
                     b.Property<float>("DepositAmount")
                         .HasColumnType("real");
+
+                    b.Property<int?>("InputModelCustomerID")
+                        .HasColumnType("int");
 
                     b.Property<string>("OtherAccount")
                         .IsRequired()
@@ -131,7 +131,7 @@ namespace Planiture_Website.Migrations
 
                     b.HasKey("AccountNumber");
 
-                    b.HasIndex("CustomerID");
+                    b.HasIndex("InputModelCustomerID");
 
                     b.ToTable("Account_Info");
                 });
@@ -145,17 +145,17 @@ namespace Planiture_Website.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AccountNumber")
+                    b.Property<int?>("Account_InfoAccountNumber")
                         .HasColumnType("int");
 
                     b.Property<string>("ApprovedBy")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CustomerID")
+                    b.Property<int?>("Employee_InfoEmployeeID")
                         .HasColumnType("int");
 
-                    b.Property<int>("EmployeeID")
+                    b.Property<int?>("InputModelCustomerID")
                         .HasColumnType("int");
 
                     b.Property<byte[]>("RowVersion")
@@ -192,11 +192,11 @@ namespace Planiture_Website.Migrations
 
                     b.HasKey("TransactionID");
 
-                    b.HasIndex("AccountNumber");
+                    b.HasIndex("Account_InfoAccountNumber");
 
-                    b.HasIndex("CustomerID");
+                    b.HasIndex("Employee_InfoEmployeeID");
 
-                    b.HasIndex("EmployeeID");
+                    b.HasIndex("InputModelCustomerID");
 
                     b.ToTable("CusTransaction");
                 });
@@ -272,11 +272,11 @@ namespace Planiture_Website.Migrations
                     b.Property<string>("Bene_Relationship")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CustomerID")
-                        .HasColumnType("int");
-
                     b.Property<string>("FormType")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("InputModelCustomerID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Ques1")
                         .HasColumnType("nvarchar(max)");
@@ -306,48 +306,38 @@ namespace Planiture_Website.Migrations
 
                     b.HasKey("InvestID");
 
-                    b.HasIndex("CustomerID");
+                    b.HasIndex("InputModelCustomerID");
 
                     b.ToTable("Investment_Info");
                 });
 
             modelBuilder.Entity("Planiture_Website.Models.Account_Info", b =>
                 {
-                    b.HasOne("Planiture_Website.Areas.Identity.Pages.Account.RegisterModel+InputModel", "Customer_Info")
+                    b.HasOne("Planiture_Website.Areas.Identity.Pages.Account.RegisterModel+InputModel", null)
                         .WithMany("Accounts")
-                        .HasForeignKey("CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("InputModelCustomerID");
                 });
 
             modelBuilder.Entity("Planiture_Website.Models.CusTransaction", b =>
                 {
-                    b.HasOne("Planiture_Website.Models.Account_Info", "Accounts")
+                    b.HasOne("Planiture_Website.Models.Account_Info", null)
                         .WithMany("cusTransactionsAccount")
-                        .HasForeignKey("AccountNumber")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Account_InfoAccountNumber");
 
-                    b.HasOne("Planiture_Website.Areas.Identity.Pages.Account.RegisterModel+InputModel", "Customers")
-                        .WithMany("cusTransactionsCustomer")
-                        .HasForeignKey("CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Planiture_Website.Models.Employee_Info", "Employees")
+                    b.HasOne("Planiture_Website.Models.Employee_Info", null)
                         .WithMany("cusTransactionsEmployee")
-                        .HasForeignKey("EmployeeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Employee_InfoEmployeeID");
+
+                    b.HasOne("Planiture_Website.Areas.Identity.Pages.Account.RegisterModel+InputModel", null)
+                        .WithMany("cusTransactionsCustomer")
+                        .HasForeignKey("InputModelCustomerID");
                 });
 
             modelBuilder.Entity("Planiture_Website.Models.Investment_Info", b =>
                 {
-                    b.HasOne("Planiture_Website.Areas.Identity.Pages.Account.RegisterModel+InputModel", "Customer_Info")
+                    b.HasOne("Planiture_Website.Areas.Identity.Pages.Account.RegisterModel+InputModel", null)
                         .WithMany("Bene_Investments")
-                        .HasForeignKey("CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("InputModelCustomerID");
                 });
 #pragma warning restore 612, 618
         }

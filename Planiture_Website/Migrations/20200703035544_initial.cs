@@ -68,18 +68,17 @@ namespace Planiture_Website.Migrations
                     OtherAccount = table.Column<string>(nullable: false),
                     Acc_CustomerID = table.Column<string>(nullable: true),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    CustomerID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1000, 1")
+                    InputModelCustomerID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Account_Info", x => x.AccountNumber);
                     table.ForeignKey(
-                        name: "FK_Account_Info_Customer_Info_CustomerID",
-                        column: x => x.CustomerID,
+                        name: "FK_Account_Info_Customer_Info_InputModelCustomerID",
+                        column: x => x.InputModelCustomerID,
                         principalTable: "Customer_Info",
                         principalColumn: "CustomerID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -103,18 +102,17 @@ namespace Planiture_Website.Migrations
                     Bene_Email = table.Column<string>(nullable: true),
                     BenAddress = table.Column<string>(nullable: true),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    CustomerID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1000, 1"),
+                    InputModelCustomerID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Investment_Info", x => x.InvestID);
                     table.ForeignKey(
-                        name: "FK_Investment_Info_Customer_Info_CustomerID",
-                        column: x => x.CustomerID,
+                        name: "FK_Investment_Info_Customer_Info_InputModelCustomerID",
+                        column: x => x.InputModelCustomerID,
                         principalTable: "Customer_Info",
                         principalColumn: "CustomerID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -132,58 +130,57 @@ namespace Planiture_Website.Migrations
                     ApprovedBy = table.Column<string>(nullable: false),
                     Trans_TransactionStatus = table.Column<string>(nullable: false),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    CustomerID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1000, 1"),
-                    AccountNumber = table.Column<int>(nullable: false),
-                    EmployeeID = table.Column<int>(nullable: false)
+                    Account_InfoAccountNumber = table.Column<int>(nullable: true),
+                    Employee_InfoEmployeeID = table.Column<int>(nullable: true),
+                    InputModelCustomerID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CusTransaction", x => x.TransactionID);
                     table.ForeignKey(
-                        name: "FK_CusTransaction_Account_Info_AccountNumber",
-                        column: x => x.AccountNumber,
+                        name: "FK_CusTransaction_Account_Info_Account_InfoAccountNumber",
+                        column: x => x.Account_InfoAccountNumber,
                         principalTable: "Account_Info",
                         principalColumn: "AccountNumber",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_CusTransaction_Customer_Info_CustomerID",
-                        column: x => x.CustomerID,
-                        principalTable: "Customer_Info",
-                        principalColumn: "CustomerID"
-                        /*onDelete: ReferentialAction.Cascade*/);
-                    table.ForeignKey(
-                        name: "FK_CusTransaction_Employee_Info_EmployeeID",
-                        column: x => x.EmployeeID,
+                        name: "FK_CusTransaction_Employee_Info_Employee_InfoEmployeeID",
+                        column: x => x.Employee_InfoEmployeeID,
                         principalTable: "Employee_Info",
                         principalColumn: "EmployeeID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_CusTransaction_Customer_Info_InputModelCustomerID",
+                        column: x => x.InputModelCustomerID,
+                        principalTable: "Customer_Info",
+                        principalColumn: "CustomerID",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Account_Info_CustomerID",
+                name: "IX_Account_Info_InputModelCustomerID",
                 table: "Account_Info",
-                column: "CustomerID");
+                column: "InputModelCustomerID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CusTransaction_AccountNumber",
+                name: "IX_CusTransaction_Account_InfoAccountNumber",
                 table: "CusTransaction",
-                column: "AccountNumber");
+                column: "Account_InfoAccountNumber");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CusTransaction_CustomerID",
+                name: "IX_CusTransaction_Employee_InfoEmployeeID",
                 table: "CusTransaction",
-                column: "CustomerID");
+                column: "Employee_InfoEmployeeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CusTransaction_EmployeeID",
+                name: "IX_CusTransaction_InputModelCustomerID",
                 table: "CusTransaction",
-                column: "EmployeeID");
+                column: "InputModelCustomerID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Investment_Info_CustomerID",
+                name: "IX_Investment_Info_InputModelCustomerID",
                 table: "Investment_Info",
-                column: "CustomerID");
+                column: "InputModelCustomerID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

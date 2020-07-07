@@ -140,6 +140,7 @@ namespace Planiture_Website.Controllers
                     Ben_Email = invest.Bene_Email,
                     Ben_Address = invest.BenAddress,
                     CusSignature = invest.Signature,
+                    
                 };
 
                 _context.Investment_Info.Update(invest);
@@ -150,7 +151,126 @@ namespace Planiture_Website.Controllers
             }
 
             return RedirectToAction("Index", "Home");
-            //return View();
+        }
+
+        [HttpGet]
+        public IActionResult BasicAccount()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> BasicAccount(Investment_Info invest)
+        {
+            if (ModelState.IsValid)
+            {
+                var kingz = new ApplicationUser()
+                {
+                    FormType = "Basic Account", //this is currently hardcoded... it this later
+                    Ques1 = invest.Ques1,
+                    Ques2 = invest.Ques2,
+                    Ques3 = invest.Ques3,
+                    Ques4 = invest.Ques4,
+                    Ques5 = invest.Ques5,
+                    Ques6 = invest.Ques6,
+                    Ben_FirstName = invest.Bene_FirstName,
+                    Ben_LastName = invest.Bene_LastName,
+                    Ben_Contact = invest.Bene_Contact,
+                    Ben_Relationship = invest.Bene_Relationship,
+                    Ben_Email = invest.Bene_Email,
+                    Ben_Address = invest.BenAddress,
+                    CusSignature = invest.Signature,
+
+                };
+
+                _context.Investment_Info.Update(invest);
+                _logger.LogInformation("User Beneficiary and investment background added.");
+
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Home");
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public IActionResult TradersAccount()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> TradersAccount(Investment_Info invest)
+        {
+            if (ModelState.IsValid)
+            {
+                var kingz = new ApplicationUser()
+                {
+                    FormType = "Golden Investor", //this is currently hardcoded... it this later
+                    Ques1 = invest.Ques1,
+                    Ques2 = invest.Ques2,
+                    Ques3 = invest.Ques3,
+                    Ques4 = invest.Ques4,
+                    Ques5 = invest.Ques5,
+                    Ques6 = invest.Ques6,
+                    Ben_FirstName = invest.Bene_FirstName,
+                    Ben_LastName = invest.Bene_LastName,
+                    Ben_Contact = invest.Bene_Contact,
+                    Ben_Relationship = invest.Bene_Relationship,
+                    Ben_Email = invest.Bene_Email,
+                    Ben_Address = invest.BenAddress,
+                    CusSignature = invest.Signature,
+
+                };
+
+                _context.Investment_Info.Update(invest);
+                _logger.LogInformation("User Beneficiary and investment background added.");
+
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Home");
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public IActionResult AdvancedAccount()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AdvancedAccount(Investment_Info invest)
+        {
+            if (ModelState.IsValid)
+            {
+                var kingz = new ApplicationUser()
+                {
+                    FormType = "Golden Investor", //this is currently hardcoded... it this later
+                    Ques1 = invest.Ques1,
+                    Ques2 = invest.Ques2,
+                    Ques3 = invest.Ques3,
+                    Ques4 = invest.Ques4,
+                    Ques5 = invest.Ques5,
+                    Ques6 = invest.Ques6,
+                    Ben_FirstName = invest.Bene_FirstName,
+                    Ben_LastName = invest.Bene_LastName,
+                    Ben_Contact = invest.Bene_Contact,
+                    Ben_Relationship = invest.Bene_Relationship,
+                    Ben_Email = invest.Bene_Email,
+                    Ben_Address = invest.BenAddress,
+                    CusSignature = invest.Signature,
+
+                };
+
+                _context.Investment_Info.Update(invest);
+                _logger.LogInformation("User Beneficiary and investment background added.");
+
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Home");
+            }
+
+            return RedirectToAction("Index", "Home");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

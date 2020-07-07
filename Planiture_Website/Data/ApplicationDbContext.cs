@@ -54,30 +54,25 @@ namespace Planiture_Website.Data
                 .UseIdentityColumn();
 
             //Configuring database relationships and references
-            modelBuilder.Entity<Investment_Info>() //Customer_Info Foreign Key
-                .HasOne(p => p.Customer_Info)
-                .WithMany(b => b.Bene_Investments)
-                .HasForeignKey(p => p.CustomerID);
-
-            modelBuilder.Entity<Account_Info>() //Account_Info Foreign Key
-                .HasOne(p => p.Customer_Info)
-                .WithMany(b => b.Accounts)
-                .HasForeignKey(p => p.CustomerID);
-
-            modelBuilder.Entity<CusTransaction>() //Customer_Info Foreign Key
-                .HasOne(p => p.Customers)
-                .WithMany(b => b.cusTransactionsCustomer)
-                .HasForeignKey(p => p.CustomerID);
-
-            modelBuilder.Entity<CusTransaction>() //Account_Info Foreign Key
-                .HasOne(p => p.Accounts)
-                .WithMany(b => b.cusTransactionsAccount)
-                .HasForeignKey(p => p.AccountNumber);
-
-            modelBuilder.Entity<CusTransaction>() //Employee_Info Foreign Key
-                .HasOne(p => p.Employees)
-                .WithMany(b => b.cusTransactionsEmployee)
-                .HasForeignKey(p => p.EmployeeID);
+            modelBuilder.Entity<InputModel>() //Customer_Info Foreign Key
+                .HasMany(p => p.Bene_Investments)
+                .WithOne();
+            //modelBuilder.Entity<InputModel>()
+               // .Navigation(b => b.Bene_Invesments)
+                  //  .UsePropertyAccessMode(PropertyAccessMode.Property);
+            modelBuilder.Entity<InputModel>()
+                .HasMany(p => p.Accounts)
+                .WithOne();
+            modelBuilder.Entity<InputModel>()
+                .HasMany(p => p.cusTransactionsCustomer)
+                .WithOne();
+            modelBuilder.Entity<Employee_Info>()
+                .HasMany(p => p.cusTransactionsEmployee)
+                .WithOne();
+            modelBuilder.Entity<Account_Info>()
+                .HasMany(p => p.cusTransactionsAccount)
+                .WithOne();
+            
         }
     }
 }

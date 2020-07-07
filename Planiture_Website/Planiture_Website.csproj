@@ -13,6 +13,12 @@
     <Compile Remove="Migrations\20200702233717_initial.Designer.cs" />
     <Compile Remove="Migrations\20200702234519_initial.cs" />
     <Compile Remove="Migrations\20200702234519_initial.Designer.cs" />
+    <Compile Remove="Migrations\20200703010549_initial.cs" />
+    <Compile Remove="Migrations\20200703010549_initial.Designer.cs" />
+    <Compile Remove="Migrations\20200703014936_update.cs" />
+    <Compile Remove="Migrations\20200703014936_update.Designer.cs" />
+    <Compile Remove="Migrations\20200703034806_initial.cs" />
+    <Compile Remove="Migrations\20200703034806_initial.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +28,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

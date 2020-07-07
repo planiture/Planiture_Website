@@ -1,9 +1,10 @@
 ﻿@model Planiture_Website.Models.Investment_Info
 
 @{
-    ViewData["Title"] = "Golden Investor Application";
+    ViewData["Title"] = "Basic Account";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <style>
     .body {
         position: relative;
@@ -30,23 +31,23 @@
         width: 60%;
     }
 
-        #submitBtn:hover {
-            background: gold;
-        }
+    #submitBtn:hover {
+        background: gold;
+    }
 
-        #submitBtn:active {
-            background: goldenrod;
-            color: black;
-        }
+    #submitBtn:active {
+        background: goldenrod;
+        color: black;
+    }
+
 </style>
-
 <div class="body">
     <form method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <br />
         <br />
-        <fieldset class="golden-investor">
-            <legend>Golden Investor Group</legend>
+        <fieldset class="basic-account">
+            <legend>Basic Account Group</legend>
             <br />
             <br />
             <p>INVESTMENT QUESTIONS:<br />-----------------------------------------------------------------------------------------------------------------</p>
@@ -64,7 +65,7 @@
                 </div>
                 <div class="col-sm-6 col-md-6 form-group">
                     <label asp-for="Ques2">IF YES, WHAT HAVE YOU INVESTED IN? </label>
-                    <input asp-for="Ques2" class="form-control" required/>
+                    <input asp-for="Ques2" class="form-control" required />
                     <span asp-validation-for="Ques2" class="text-danger"></span>
                 </div>
             </div>
@@ -114,31 +115,31 @@
                 <br />
                 <div class="row">
                     <div class="col-sm-6 col-md-6 form-group">
-                        <input asp-for="Bene_FirstName" class="form-control" required/>
+                        <input asp-for="Bene_FirstName" class="form-control" required />
                         <label asp-for="Bene_FirstName"></label>
                         <span asp-validation-for="Bene_FirstName" class="text-danger"></span>
                     </div>
                     <div class="col-sm-6 col-md-6 form-group">
-                        <input asp-for="Bene_LastName" class="form-control" required/>
+                        <input asp-for="Bene_LastName" class="form-control" required />
                         <label asp-for="Bene_LastName"></label>
                         <span asp-validation-for="Bene_LastName" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6 col-md-6">
-                        <input asp-for="Bene_Contact" class="form-control" required/>
+                        <input asp-for="Bene_Contact" class="form-control" required />
                         <label asp-for="Bene_Contact"></label>
                         <span asp-validation-for="Bene_Contact" class="text-danger"></span>
                     </div>
                     <div class="col-sm-6 col-md-6">
-                        <input asp-for="Bene_Relationship" class="form-control" required/>
+                        <input asp-for="Bene_Relationship" class="form-control" required />
                         <label asp-for="Bene_Relationship"></label>
                         <span asp-validation-for="Bene_Relationship" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label asp-for="Bene_Email"></label>
-                    <input asp-for="Bene_Email" class="form-control" placeholder="ex: name@mail.com" required/>
+                    <input asp-for="Bene_Email" class="form-control" placeholder="ex: name@mail.com" required />
                     <span asp-validation-for="Bene_Email" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -147,7 +148,7 @@
                     <span asp-validation-for="BenAddress" class="text-danger"></span>
                 </div>
                 <center>
-                    <input type="checkbox" id="NoBeneficiary" value="No" required/>
+                    <input type="checkbox" id="NoBeneficiary" value="No" required />
                     <label for="NoBeneficiary">I DO NOT HAVE A BENEFICIARY CURRENTLY</label><br>
                 </center>
             </fieldset>
@@ -170,13 +171,13 @@
                     <input type="date" id="TodayDate" />
                     <br />
                     <label>CLIENT FULL NAME: </label>
-                    <input type="text" required/>
+                    <input type="text" required />
                     <br />
                     <label asp-for="Signature">SIGNATURE: </label>
-                    <input type="text" asp-for="Signature" required/>
+                    <input type="text" asp-for="Signature" required />
                     <br />
                     <label>DATE: </label>
-                    <input type="date" id="SignDate" required/>
+                    <input type="date" id="SignDate" required />
                     <br />
                     <br />
                 </div>
@@ -189,4 +190,6 @@
 </div>
 
 
-
+<!--<div>
+    <a asp-action="Index">Back to List</a>
+</div>-->

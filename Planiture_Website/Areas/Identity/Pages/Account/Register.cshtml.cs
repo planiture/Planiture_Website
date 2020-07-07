@@ -134,65 +134,22 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
             public byte[] RowVersion { get; set; }
 
             public ICollection<Investment_Info> Bene_Investments { get; set; }
-            //public ICollection<Beneficiary_Info> Beneficicaries { get; set; }
             public ICollection<Account_Info> Accounts { get; set; }
             public ICollection<CusTransaction> cusTransactionsCustomer { get; set; }
         }
 
-        public IActionResult OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(string returnUrl = null)
         {
-            //ReturnUrl = returnUrl;
-            //ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            ReturnUrl = returnUrl;
+            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             return Page();
         }
 
-        /*[HttpGet]
-        public IActionResult Register()
+
+        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            return Page();
-        }
-
-        [HttpPost]
-        public async Task <IActionResult> Register(InputModel model)
-        {
-            string catadd = model.Prefix + model.Mobile;
-
-            if(ModelState.IsValid)
-            {
-                var kingz = new ApplicationUser()
-                {
-                    CusFirstName = model.FirstName,
-                    CusLastName = model.LastName,
-                    DOB = model.DOB,
-                    Gender = model.Gender,
-                    Occupation = model.Occupation,
-                    CusMobile = catadd,
-                    CusEmail = model.Email,
-                    CusAddress = model.CusAddress,
-                    Residency = model.Residency,
-                    Cus_UserName = model.Username,
-                    Password = model.Password,
-                };
-
-                _context.Customer_Info.Update(model);
-
-                //_context.Customer_Info.Update(model);
-                _logger.LogInformation("User created a new account with passord.");
-
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                ModelState.AddModelError("", "Invalid username or password.");
-            }
-            return Page();
-        }*/
-
-        public async Task<IActionResult> OnPostAsync(InputModel model)
-        {
-            //returnUrl = returnUrl ?? Url.Content("~/");
-            //ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            returnUrl = returnUrl ?? Url.Content("~/");
+            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             string catadd = "(" +Input.Prefix +")"+ Input.Mobile;
 
             //DateTime tempDate = Input.DOB.
@@ -212,18 +169,24 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
                     CusAddress = Input.CusAddress,
                     CusResidency = Input.Residency,
                     Cus_UserName = Input.Username,
-                    CusPassword = Input.Password,
-                    Cus_ConfirmPassword = Input.ConfirmPassword,
+                    //CusPassword = Input.Password,
+                    //Cus_ConfirmPassword = Input.ConfirmPassword,
                 };
 
-                _logger.LogInformation("User account created a new account with password.");
+                var result = await _userManager.CreateAsync(user, Input.Password);
 
-                _context.Customer_Info.Add(Input);
+
+
+
+
+                //_logger.LogInformation("User account created a new account with password.");
+
+                //_context.Customer_Info.Add(Input);
                 //_context.Add(log);
-               
 
-                await _context.SaveChangesAsync();
-                 return RedirectToAction("GoldenInvestorApplication", "Home");
+
+                //await _context.SaveChangesAsync();
+                //return RedirectToAction("AccountOptions", "Home");
                 //return LocalRedirect("Index");
 
             }

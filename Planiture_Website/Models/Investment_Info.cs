@@ -90,8 +90,8 @@ namespace Planiture_Website.Models
         [Timestamp]
         public byte[] RowVersion { get; set; }
 
-        public int CustomerID { get; set; }
-        [ForeignKey("CustomerID")]
-        public InputModel Customer_Info { get; set; }
+       // public int CustomerID { get; set; }
+       // [ForeignKey("CustomerID")]
+       // public InputModel Customer_Info { get; set; }
     }
 }

@@ -59,19 +59,19 @@ namespace Planiture_Website.Models
         public byte[] RowVersion { get; set; }
 
         //Customer_Info Foreign Key
-        public int CustomerID { get; set; }
-        [ForeignKey("CustomerID")]
-        public InputModel Customers { get; set; }
+        //public int CustomerID { get; set; }
+        //[ForeignKey("CustomerID")]
+        //public InputModel Customers { get; set; }
 
         //Account_Info Foreign Key
-        public int AccountNumber { get; set; }
-        [ForeignKey("AccountNumber")]
-        public Account_Info Accounts { get; set; }
+       // public int AccountNumber { get; set; }
+       // [ForeignKey("AccountNumber")]
+       // public Account_Info Accounts { get; set; }
 
         //Employee_Info Foreign Key
-        public int EmployeeID { get; set; }
-        [ForeignKey("EmployeeID")]
-        public Employee_Info Employees { get; set; }
+      //  public int EmployeeID { get; set; }
+      //  [ForeignKey("EmployeeID")]
+      //  public Employee_Info Employees { get; set; }
 
 
     }

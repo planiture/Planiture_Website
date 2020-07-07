@@ -56,9 +56,9 @@ namespace Planiture_Website.Models
         public byte[] RowVersion { get; set; }
 
         //Customer_Info Foreign Key
-        public int CustomerID { get; set; }
-        [ForeignKey("CustomerID")]
-        public InputModel Customer_Info { get; set; }
+        //public int CustomerID { get; set; }
+       // [ForeignKey("CustomerID")]
+        //public InputModel Customer_Info { get; set; }
 
         public ICollection<CusTransaction> cusTransactionsAccount { get; set; }
     }
