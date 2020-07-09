@@ -8,11 +8,14 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
-using Planiture_Website.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Planiture_Website.Controllers;
+using Planiture_Website.Models;
+using Planiture_Website.Services;
+using Planiture_Website.Models.Services;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace Planiture_Website
 {
@@ -32,20 +35,26 @@ namespace Planiture_Website
 
             services.AddMvc(option => option.EnableEndpointRouting = false); //ADDED BY KINGZWILL
 
-            services.AddDbContextPool<ApplicationDbContext>(options =>
+            services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("AuthDbContextConnection")));
 
-            services.AddDefaultIdentity<ApplicationUser>(options =>
+            services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
                 options.SignIn.RequireConfirmedAccount = true)
+                    .AddDefaultTokenProviders()
+                    .AddDefaultUI()
                     .AddEntityFrameworkStores<ApplicationDbContext>();
 
             //services.AddDbContext<ApplicationDbContext>(options =>
-             //   options.UseSqlServer(
-              //      Configuration.GetConnectionString("AuthDbContextConnection")));
+            //   options.UseSqlServer(
+            //      Configuration.GetConnectionString("AuthDbContextConnection")));
 
-             //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-              //  .AddEntityFrameworkStores<ApplicationDbContext>();
+            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //  .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            //added the following to confirm user email
+            services.AddTransient<IMailSender, EmailSender>();
+            services.Configure<MessageSenderOptions>(Configuration);
             
             //Just added
 

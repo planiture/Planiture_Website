@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Planiture_Website.Data;
 
 [assembly: HostingStartup(typeof(Planiture_Website.Areas.Identity.IdentityHostingStartup))]
 namespace Planiture_Website.Areas.Identity

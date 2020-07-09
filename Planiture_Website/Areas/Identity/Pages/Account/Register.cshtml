@@ -5,7 +5,6 @@
 }
 
 
-
 <div class="body">
 
     <form id="apply-form" method="post">
@@ -22,19 +21,19 @@
                 <label>Full Name</label>
                 <div class="row">
                     <div class="col-sm-6 col-md-6 form-group">
-                        <input id="FirstNametxt" asp-for="Input.FirstName" class="form-control" required/>
+                        <input id="FirstNametxt" asp-for="Input.FirstName" class="form-control" required />
                         <label asp-for="Input.FirstName"></label>
                         <span asp-validation-for="Input.FirstName" class="text-danger"></span>
                     </div>
                     <div class="col-sm-6 col-md-6 form-group">
-                        <input id="LastNametxt" asp-for="Input.LastName" class="form-control" required/>
+                        <input id="LastNametxt" asp-for="Input.LastName" class="form-control" required />
                         <label asp-for="Input.LastName"></label>
                         <span asp-validation-for="Input.LastName" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6 col-md-6 form-group">
-                        <input asp-for="Input.DOB" type="date" id="DOBtxt" class="form-control" required/>
+                        <input asp-for="Input.DOB" type="date" id="DOBtxt" class="form-control" required />
                         <label asp-for="Input.DOB">DOB</label>
                     </div>
                     <div class="col-sm-6 col-md-6 form-group">
@@ -50,36 +49,36 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-6 col-md-6 form-group">
-                        <input id="Occupationtxt" asp-for="Input.Occupation" class="form-control" required/>
+                        <input id="Occupationtxt" asp-for="Input.Occupation" class="form-control" required />
                         <label asp-for="Input.Occupation"></label>
                         <span asp-validation-for="Input.Occupation" class="text-danger"></span>
                     </div>
                     <div class="col-sm-6 col-md-6 form-group">
-                        <input id="Emailtxt" asp-for="Input.Email" class="form-control" placeholder="ex: name@mail.com" required/>
+                        <input id="Emailtxt" asp-for="Input.Email" class="form-control" placeholder="ex: name@mail.com" required />
                         <label asp-for="Input.Email"></label>
                         <span asp-validation-for="Input.Email" class="text-danger"></span>
                     </div>
                 </div>
                 <label>Phone Number</label>
                 <div class="row">
+                    <!--<div class="col-sm-6 col-md-6 form-group">
+                        <input id="AreaCodetxt" asp-for="Input.AreaCode" class="form-control" placeholder="1(954)" required />
+                        <label asp-for="Input.AreaCode">Area Code</label>
+                    </div>-->
                     <div class="col-sm-6 col-md-6 form-group">
-                        <input id="Prefixtxt" asp-for="Input.Prefix" class="form-control" placeholder="1(954)" required/>
-                        <label asp-for="Input.Prefix">Area Code</label>
-                    </div>
-                    <div class="col-sm-6 col-md-6 form-group">
-                        <input id="Mobiletxt" asp-for="Input.Mobile" class="form-control" placeholder="123-4567" required/>
+                        <input id="Mobiletxt" asp-for="Input.Mobile" class="form-control" placeholder="123-4567" required />
                         <label asp-for="Input.Mobile"></label>
                         <span asp-validation-for="Input.Mobile" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6 col-md-6 form-group">
-                        <input id="Addresstxt" asp-for="Input.CusAddress" class="form-control" placeholder="Address" required/>
+                        <input id="Addresstxt" asp-for="Input.CusAddress" class="form-control" placeholder="Address" required />
                         <label asp-for="Input.CusAddress"></label>
                         <span asp-validation-for="Input.CusAddress" class="text-danger"></span>
                     </div>
                     <div class="col-sm-6 col-md-6 form-group">
-                        <input id="Residencytxt" asp-for="Input.Residency" class="form-control" placeholder="Residency" required/>
+                        <input id="Residencytxt" asp-for="Input.Residency" class="form-control" placeholder="Residency" required />
                         <label asp-for="Input.Residency"></label>
                         <span asp-validation-for="Input.Residency" class="text-danger"></span>
                     </div>
@@ -91,21 +90,21 @@
                     <div>
                         <div class="form-group">
                             <label asp-for="Input.Username"></label>
-                            <input id="Usernametxt" asp-for="Input.Username" class="form-control" required/>
+                            <input id="Usernametxt" asp-for="Input.Username" class="form-control" required />
                             <span asp-validation-for="Input.Username" class="text-danger"></span>
                         </div>
                         <div class="row">
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <label asp-for="Input.Password"></label>
-                                    <input id="Passwordtxt" asp-for="Input.Password" class="form-control" required/>
+                                    <input id="Passwordtxt" asp-for="Input.Password" class="form-control" required />
                                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-md-6">
                                 <div class="form-group">
                                     <label asp-for="Input.ConfirmPassword"></label>
-                                    <input asp-for="Input.ConfirmPassword" class="form-control" required/>
+                                    <input asp-for="Input.ConfirmPassword" class="form-control" required />
                                     <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                                 </div>
                             </div>
@@ -115,7 +114,7 @@
             </fieldset>
         </div>
         <div class="form-group" align="center">
-            <button id="cancelBtn" type="reset">CANCEL</button>
+            <button id="cancelBtn" type="reset" class="btn btn-primary">CANCEL</button>
             <input type="submit" value="SAVE & CONTINUE" class="btn btn-primary" />
         </div>
     </form>
@@ -125,17 +124,6 @@
     <partial name="_ValidationScriptsPartial" />
 }
 
-<!--<script>
-    const applyForm = document.getElementById("apply-form");
-
-
-    applyForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        console.log("Form has been submitted!");
-    });
-
-</script>-->
-
 <style>
     .body {
         position: relative;
@@ -144,7 +132,6 @@
         background-color: whitesmoke;
         background-size: cover;
     }
-
     /*.tab-content {
         display: none;
     }
@@ -152,5 +139,4 @@
        display: block;
        display: initial;
     }*/
-
 </style>

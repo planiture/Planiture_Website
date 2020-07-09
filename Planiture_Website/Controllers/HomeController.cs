@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Logging;
-using Planiture_Website.Data;
 using Planiture_Website.Models;
 
 namespace Planiture_Website.Controllers
@@ -126,7 +125,7 @@ namespace Planiture_Website.Controllers
             {
                 var kingz = new ApplicationUser()
                 {
-                    FormType = "Golden Investor", //this is currently hardcoded... it this later
+                    /*FormType = "Golden Investor", //this is currently hardcoded... it this later
                     Ques1 = invest.Ques1,
                     Ques2 = invest.Ques2,
                     Ques3 = invest.Ques3,
@@ -139,11 +138,13 @@ namespace Planiture_Website.Controllers
                     Ben_Relationship = invest.Bene_Relationship,
                     Ben_Email = invest.Bene_Email,
                     Ben_Address = invest.BenAddress,
-                    CusSignature = invest.Signature,
+                    CusSignature = invest.Signature,*/
                     
                 };
 
-                _context.Investment_Info.Update(invest);
+                //Add way to pass info to table
+                //_context.Investment_Info.Update(invest);
+
                 _logger.LogInformation("User Beneficiary and investment background added.");
 
                 await _context.SaveChangesAsync();
@@ -166,7 +167,7 @@ namespace Planiture_Website.Controllers
             {
                 var kingz = new ApplicationUser()
                 {
-                    FormType = "Basic Account", //this is currently hardcoded... it this later
+                    /*FormType = "Basic Account", //this is currently hardcoded... it this later
                     Ques1 = invest.Ques1,
                     Ques2 = invest.Ques2,
                     Ques3 = invest.Ques3,
@@ -179,11 +180,13 @@ namespace Planiture_Website.Controllers
                     Ben_Relationship = invest.Bene_Relationship,
                     Ben_Email = invest.Bene_Email,
                     Ben_Address = invest.BenAddress,
-                    CusSignature = invest.Signature,
+                    CusSignature = invest.Signature,*/
 
                 };
 
-                _context.Investment_Info.Update(invest);
+                //Add way to store info in table
+                //_context.Investment_Info.Update(invest);
+
                 _logger.LogInformation("User Beneficiary and investment background added.");
 
                 await _context.SaveChangesAsync();
@@ -206,7 +209,7 @@ namespace Planiture_Website.Controllers
             {
                 var kingz = new ApplicationUser()
                 {
-                    FormType = "Golden Investor", //this is currently hardcoded... it this later
+                    /*FormType = "Golden Investor", //this is currently hardcoded... it this later
                     Ques1 = invest.Ques1,
                     Ques2 = invest.Ques2,
                     Ques3 = invest.Ques3,
@@ -219,11 +222,13 @@ namespace Planiture_Website.Controllers
                     Ben_Relationship = invest.Bene_Relationship,
                     Ben_Email = invest.Bene_Email,
                     Ben_Address = invest.BenAddress,
-                    CusSignature = invest.Signature,
+                    CusSignature = invest.Signature,*/
 
                 };
 
-                _context.Investment_Info.Update(invest);
+                //Add a way to save info to table
+                //_context.Investment_Info.Update(invest);
+
                 _logger.LogInformation("User Beneficiary and investment background added.");
 
                 await _context.SaveChangesAsync();
@@ -246,7 +251,7 @@ namespace Planiture_Website.Controllers
             {
                 var kingz = new ApplicationUser()
                 {
-                    FormType = "Golden Investor", //this is currently hardcoded... it this later
+                    /*FormType = "Golden Investor", //this is currently hardcoded... it this later
                     Ques1 = invest.Ques1,
                     Ques2 = invest.Ques2,
                     Ques3 = invest.Ques3,
@@ -259,11 +264,12 @@ namespace Planiture_Website.Controllers
                     Ben_Relationship = invest.Bene_Relationship,
                     Ben_Email = invest.Bene_Email,
                     Ben_Address = invest.BenAddress,
-                    CusSignature = invest.Signature,
+                    CusSignature = invest.Signature,*/
 
                 };
+                //Add a method to save the data to table
 
-                _context.Investment_Info.Update(invest);
+                //_context.ApplicationUser.Update(invest);
                 _logger.LogInformation("User Beneficiary and investment background added.");
 
                 await _context.SaveChangesAsync();

@@ -1,0 +1,81 @@
+﻿@page
+@model RegisterConfirmationModel
+@{
+    ViewData["Title"] = "Register confirmation";
+}
+
+<div class="confirm">
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="confirm-body">
+        <br />
+        <div class="confirm-container">
+            @{
+                <h1>@ViewData["Title"]</h1>
+                if (@Model.DisplayConfirmAccountLink)
+                {
+                    <p>
+                        This app does not currently have a real email sender registered, see <a href="https://aka.ms/aspaccountconf">these docs</a> for how to configure a real email sender.
+                        Normally this would be emailed: <a id="confirm-link" href="@Model.EmailConfirmationUrl">Click here to confirm your account</a>
+                    </p>
+                }
+                else
+                {
+                    <p>
+                        Please check your email to confirm your account.
+                    </p>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+<style>
+    /*the background*/
+    .confirm {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(800px,5fr));
+        grid-gap: 30px;
+        max-width: 150%;
+        margin-top: 40px;
+        position: relative;
+        padding: 100px;
+        min-height: 100vh;
+        background-color: whitesmoke;
+        background-size: cover;
+        display: flex;
+    }
+    .confirm-body {
+        position: relative;
+        /*width: 100%;*/
+        padding: 100px;
+        min-height: 100vh;
+        background-image: url(subscriptionimage.jpg);
+        background-color: whitesmoke;
+        background-size: cover;
+        display: flex; /*changed from inline*/
+        justify-content: center;
+        align-items: center;
+    }
+    .confirm-body .confirm-container{
+        position: relative;
+        text-align: center;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .confirm-container p {
+        position: relative;
+        font-size: 18px;
+        font-weight: 300;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+    }
+</style>
