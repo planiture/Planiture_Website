@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewData["Title"] = "OurAchievements";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<asp:Content id="BodyContent" ContentPlaceHolderID="Main Content" runat="server">
+    <section id="achieve-background">
+        <!--added image-->
+        <div class="achieve-menu" id="achieve">
+            <div class="container">
+                <h1>Our Achievements</h1>
+
+            </div>
+        </div>
+
+    </section>
+</asp:Content>
+
+<style>
+    .achieve-background {
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        background-image: url();
+        background-size: cover;
+        display: flex; /*changed from inline*/
+        justify-content: center;
+        align-items: center;
+    }
+
+    .achieve-menu {
+        position: relative;
+        padding: 100px;
+        min-height: 100vh;
+        background-image: url();
+        background-color: whitesmoke;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .achieve-menu h1 {
+        font-size: 40px;
+        font-weight: 200;
+        margin-bottom: 10px;
+        color: darkgoldenrod;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+
+</style>

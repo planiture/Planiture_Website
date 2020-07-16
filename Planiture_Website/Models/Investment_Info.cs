@@ -9,13 +9,13 @@ using static Planiture_Website.Areas.Identity.Pages.Account.RegisterModel;
 
 namespace Planiture_Website.Models
 {
-    public class Investment_Info
+    public class Investment_Info 
     {
         //Invesment Questions
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int InvestID { get; set; }
+        public int ID { get; set; }
 
         public string FormType { get; set; }
 
@@ -89,9 +89,5 @@ namespace Planiture_Website.Models
 
         [Timestamp]
         public byte[] RowVersion { get; set; }
-
-       // public int CustomerID { get; set; }
-       // [ForeignKey("CustomerID")]
-       // public InputModel Customer_Info { get; set; }
     }
 }

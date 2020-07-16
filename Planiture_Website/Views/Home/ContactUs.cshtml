@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewData["Title"] = "Contact Us";
+}
+
+
+<asp:Content id="BodyContent" ContentPlaceHolderID="Main Content" runat="server">
+    <section class="customer-background">
+        <!--added image-->
+        <div class="customer-menu" id="custom">
+            <div class="hold">
+                <h1>Contact Us</h1>
+
+                <p class="header">
+                    <span>Have any questions or concerns? Check out our <a asp-controller="Home" asp-action="InformationCenter">Information Center</a>.</span>
+                    <br />
+                    <br />
+                    Not finding any help? Speak with a member of support with our options below:
+                </p>
+                <br />
+                <br />
+                <p class="options">
+                    <a asp-controller="Home" asp-action="">Give Feedback</a>
+                </p>
+                <p class="options">
+                    <a asp-controller="Home" asp-action="">File A report (system issue)</a>
+                </p>
+                <br />
+                <div class="contain">
+                    <div class="row">
+                        <div class="col-sm-4 col-md-4">
+                            <h6>CHAT</h6>
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <h6>EMAIL</h6>
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <h6>PLANITURE WHATSAPP GROUP</h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-md-4">
+                            <br />
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <br />
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <br />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-md-4">
+                            <p>(START LIVE CHAT)</p>
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <p><a href="mailto:theplanituregroup@gmail.com">theplanituregroup@gmail.com</a></p>
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <p>(REQUEST LINK)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</asp:Content>
+
+<style>
+    .customer-background {
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        background-size: cover;
+        display: flex; /*changed from inline*/
+        justify-content: center;
+        align-items: center;
+    }
+
+    .customer-menu .hold {
+        position: relative;
+        text-align: center;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .customer-menu .hold .header{
+        text-align: left;
+    }
+
+    .customer-menu .hold .header span{
+        text-transform: uppercase;
+    }
+
+    .customer-menu h1{
+        font-size: 40px;
+        font-weight: 200;
+        margin-bottom: 10px;
+        color: darkgoldenrod;
+        text-transform: uppercase;
+        text-align: right;
+    }
+
+    .customer-menu .contain {
+        border: 2px solid black;
+        /*padding: 4rem;*/
+        padding: 80px;
+        width: 800px;
+    }
+    .customer-menu .hold h5{
+        text-align: center;
+    }
+
+    .customer-menu p {
+        text-align: center;
+    }
+    p.options{
+        text-align: right;
+    }
+</style>

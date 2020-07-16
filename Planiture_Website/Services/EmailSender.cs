@@ -28,7 +28,7 @@ namespace Planiture_Website.Services
         {
             var apiKey = _configuration["SendGridKey"];
             var client = new SendGridClient(apiKey);
-            var from = new EmailAddress("test@gmail.com", "Testing");
+            var from = new EmailAddress("kavonmorris41@gmail.com", "Testing");
             var to = new EmailAddress(ToEmail);
             var msg = MailHelper.CreateSingleEmail(from, to, subject, message, message);
             var response = await client.SendEmailAsync(msg);

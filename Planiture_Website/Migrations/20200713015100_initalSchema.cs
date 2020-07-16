@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Planiture_Website.Migrations
 {
-    public partial class initialSchema : Migration
+    public partial class initalSchema : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,7 +12,7 @@ namespace Planiture_Website.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "1000, 1"),
                     Name = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true)
@@ -27,7 +27,7 @@ namespace Planiture_Website.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "1000, 1"),
                     UserName = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
@@ -47,9 +47,7 @@ namespace Planiture_Website.Migrations
                     DOB = table.Column<DateTime>(nullable: false),
                     MemberSince = table.Column<DateTime>(nullable: false, defaultValueSql: "getdate()"),
                     Gender = table.Column<string>(nullable: true),
-                    CusUserRole = table.Column<string>(nullable: true),
                     Occupation = table.Column<string>(nullable: true),
-                    AreaCode = table.Column<string>(nullable: true),
                     Address = table.Column<string>(nullable: true),
                     Residency = table.Column<string>(nullable: true),
                     Signature = table.Column<string>(nullable: true),
@@ -61,11 +59,63 @@ namespace Planiture_Website.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Investment_Info",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1000, 1"),
+                    FormType = table.Column<string>(nullable: true),
+                    Ques1 = table.Column<string>(nullable: true),
+                    Ques2 = table.Column<string>(nullable: true),
+                    Ques3 = table.Column<string>(nullable: true),
+                    Ques4 = table.Column<string>(nullable: true),
+                    Ques5 = table.Column<string>(nullable: true),
+                    Ques6 = table.Column<string>(nullable: true),
+                    Signature = table.Column<string>(nullable: true),
+                    Bene_FirstName = table.Column<string>(nullable: true),
+                    Bene_LastName = table.Column<string>(nullable: true),
+                    Bene_Contact = table.Column<string>(nullable: true),
+                    Bene_Relationship = table.Column<string>(nullable: true),
+                    Bene_Email = table.Column<string>(nullable: true),
+                    BenAddress = table.Column<string>(nullable: true),
+                    RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Investment_Info", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserInvestment_Infos",
+                columns: table => new
+                {
+                    UserID = table.Column<int>(nullable: false),
+                    InvestID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserInvestment_Infos", x => new { x.InvestID, x.UserID });
+
+                    table.ForeignKey(
+                        name: "FK_UserInvestmentInfo_InvestmentInfo_InvestID",
+                        column: x => x.InvestID,
+                        principalTable: "Investment_Info",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserInvestmentInfo_AspNetUsers_UserID",
+                        column: x => x.UserID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "1000, 1"),
                     RoleId = table.Column<int>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -86,7 +136,7 @@ namespace Planiture_Website.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "1000, 1"),
                     UserId = table.Column<int>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -222,6 +272,12 @@ namespace Planiture_Website.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Investment_Info");
+
+            migrationBuilder.DropTable(
+                name: "UserInvestment_Infos");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

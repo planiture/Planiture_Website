@@ -114,7 +114,7 @@
             </fieldset>
         </div>
         <div class="form-group" align="center">
-            <button id="cancelBtn" type="reset" class="btn btn-primary">CANCEL</button>
+            <button id="cancelBtn" type="reset" class="btn btn-primary" onclick="location.href = '@Url.Page("/Account/Login", "Identity")';">CANCEL</button>
             <input type="submit" value="SAVE & CONTINUE" class="btn btn-primary" />
         </div>
     </form>
@@ -129,14 +129,29 @@
         position: relative;
         padding: 100px;
         min-height: 100vh;
-        background-color: whitesmoke;
         background-size: cover;
+        border: 3px solid #E89E63;
     }
-    /*.tab-content {
-        display: none;
+    .btn {
+        -webkit-appearance: none;
+        border: 1px solid #E89E63;
+        border-radius: 4px;
+        outline: none;
+        padding: 0.5em 0.8em;
+        margin-right: 15px;
+        color: black;
+        font-size: 1em;
+        font-family: sans-serif;
+        font-weight: bold;
+        cursor: pointer;
+        align-content: center;
+        background-color: #ffe8d7;
     }
-    .tab-content .active {
-       display: block;
-       display: initial;
-    }*/
+    .btn:hover{
+        background: gold;
+    }
+    .btn:active{
+        background: goldenrod;
+        color: black;
+    }
 </style>

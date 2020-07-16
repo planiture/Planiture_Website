@@ -14,6 +14,8 @@ namespace Planiture_Website.Models
         {
         }
 
+        public DbSet<Investment_Info> Investment_Info { get; set; }
+        public DbSet<UserInvestment_Info> UserInvestment_Infos { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -23,6 +25,10 @@ namespace Planiture_Website.Models
             builder.Entity<ApplicationUser>()
                 .Property(p => p.MemberSince)
                 .HasDefaultValueSql("getdate()");
+
+            builder.Entity<UserInvestment_Info>()
+                .HasKey(p => new { p.InvestID, p.UserID });// sets both columns has composite primary key
+
 
             //builder.Entity<ApplicationUser>().ToTable("Users");
 

@@ -15,13 +15,13 @@
                     <h3>Sign In</h3>
                     <div asp-validation-summary="All" class="text-danger"></div>
                     <div class="form-group">
-                        <label asp-for="Input.Email">User Name <span>(or email address on account)</span></label>
-                        <input asp-for="Input.Email" class="form-control" />
+                        <label asp-for="Input.Email">User Name <!--<span>(or email address on account)</span>--></label>
+                        <input id="email" asp-for="Input.Email" class="form-control" />
                         <span asp-validation-for="Input.Email" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Input.Password"></label>
-                        <input asp-for="Input.Password" class="form-control" />
+                        <input id="password" asp-for="Input.Password" class="form-control" />
                         <span asp-validation-for="Input.Password" class="text-danger"></span>
                     </div>
                     <div class="form-group">
@@ -41,12 +41,9 @@
                         <p>
                             <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
                         </p>
-                        <!--p>
-                            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                        </p>
                         <p>
                             <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                        </p>-->
+                        </p>
                     </div>
                 </form>
             </section>
@@ -84,9 +81,9 @@
         position: relative;
         padding: 100px;
         min-height: 100vh;
-        background-color: whitesmoke;
         background-size: cover;
         display: flex;
+        border: 3px solid #E89E63;
     }
     /*the divider*/
     #vertical-line {
@@ -100,15 +97,12 @@
         text-align: center;
         line-height: 1em;
     }
-
-        #register-ques h5 span {
+    #register-ques h5 span {
             color: goldenrod;
-        }
-
-        #register-ques h5 b {
+    }
+    #register-ques h5 b {
             color: black;
-        }
-
+    }
     .trying h3 {
         text-align: left;
     }
@@ -124,8 +118,7 @@
 
     .trying .btn {
         -webkit-appearance: none;
-        background: darkgoldenrod;
-        border: 2px solid black;
+        border: 1px solid #E89E63;
         border-radius: 4px;
         outline: none;
         padding: 0.5em 0.8em;
@@ -137,14 +130,13 @@
         cursor: pointer;
         align-content: center;
         width: 60%;
+        background-color: #ffe8d7;
     }
-
-        .trying .btn:hover {
+    .trying .btn:hover {
             background: gold;
-        }
-
-        .trying .btn:active {
+    }
+    .trying .btn:active {
             background: goldenrod;
             color: black;
-        }
+    }
 </style>

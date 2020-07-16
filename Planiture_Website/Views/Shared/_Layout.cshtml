@@ -8,6 +8,328 @@
     <title>Planiture - @ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        /* Navigation Bar
+        -------------------------------------------------- */
+
+        /* Body Header
+        ---------------- */
+
+        header { /*KINGZWILL ADDED THE FOLLOWING*/
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: inline;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0px; /*adjusts the alignment of the navigation bar*/
+            z-index: 100;
+            transition: 0.6s;
+        }
+
+        .sticky { /*ADDED BY KINGZWILL*/
+            padding: 5px 100px;
+            background: #fff;
+            border-bottom: 1px solid;
+            color: darkgoldenrod;
+        }
+
+        /*.navbar .sticky .logo {
+            color: #000000;
+        }
+
+        .navbar .logo { 
+            position: relative;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            font-size: 2em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.6s;
+        }
+        */
+
+        header ul { /*ADDED BY KINGZWILL*/
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        header ul li { /*ADDED BY KINGZWILL*/
+            position: relative;
+            list-style: none;
+        }
+
+        .dropdown-menu li {
+            text-align: left;
+        }
+
+        header ul li a { /*KINGZWILL ADDED THE FOLLOWING*/
+            position: relative;
+            margin: 0 15px;
+            text-decoration: none;
+            color: #fff;
+            letter-spacing: 2px;
+            font-weight: 300;
+            transition: 0.6s;
+        }
+
+        a.navbar-brand { /*KINGZWILL ADDED THE FOLLOWING*/
+            white-space: normal;
+            text-align: center;
+            word-break: break-all;
+            /*ADDED BY KINGZWILL*/
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .navbar a { /*ADDED BY KINGZWILL*/
+            font-weight: 500;
+            color: blue;
+        }
+
+        .navbar { /*ADDED BY KINGZWILL*/
+            /*overflow: hidden;*/
+            top: 0;
+        }
+
+        a.navbar-brand { /*KINGZWILL ADDED THE FOLLOWING*/
+            white-space: normal;
+            text-align: center;
+            word-break: break-all;
+            /*ADDED BY KINGZWILL*/
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .navbar a { /*ADDED BY KINGZWILL*/
+            font-weight: 500;
+            color: blue;
+        }
+
+        .navbar { /*ADDED BY KINGZWILL*/
+            /*overflow: hidden;*/
+            top: 0;
+        }
+
+        .navbar .dropdown-menu{
+            padding: 5px;
+            position: relative;
+        }
+
+        .navbar .dropdown-menu li{
+            text-align: left;
+        }
+
+        .navbar .dropdown-menu li:hover{
+            background-color: grey;
+            transition: 0.4s;
+        }
+
+        .navbar .dropdown-menu a{
+            color: black;
+            text-decoration: none;
+        }
+
+        .navbar .dropdown .dropdown-menu a.dropbtn{
+            -webkit-appearance: none;
+            background: darkgoldenrod;
+            border: 2px solid black;
+            border-radius: 4px;
+            outline: none;
+            padding: 0.5em 0.8em;
+            margin-right: 15px;
+            color: black;
+            font-size: 1em;
+            font-family: sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            align-content: center;
+        }
+
+        .navbar .dropdown .dropdown-menu a.dropbtn:hover {
+            background: gold;
+        }
+
+        .navbar .dropdown .dropdown-menu a.dropbtn:active {
+            background: goldenrod;
+            color: black;
+        }
+
+        .navbar li:hover { /*ADDED BY KINGZWILL*/
+            background: none;
+            border-color: black;
+            border-style: solid;
+        }
+
+        /* Button
+        -------------------------------------------------- */
+
+        .navbar button { /*ADDED BY KINGZWILL*/
+            align-items: center;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+            margin: 4px 2px;
+            cursor: pointer;
+            background-color: goldenrod;
+            color: black;
+            position: relative;
+            transition: 0.6s;
+            display: inline-block;
+        }
+
+        /*Login-dropdown menu*/
+        ul.navbar-nav li div.dropdown:hover > div.dropdown-menu { /*ADDED BY KINGZWILL*/
+            display: inline-grid; /*only grid and inline-grid works the way i want so far*/
+        }
+
+
+        .navbar button:hover { /*ADDED BY KINGZWILL*/
+            background-color: darkgoldenrod;
+            position: relative;
+            transition: 0.6s;
+            display: block;
+        }
+
+        /*Menu-dropdown menu*/
+        ul.navbar-nav li div.dropdown:hover > ul.dropdown-menu {
+            display: inline-grid;
+        }
+
+
+        /* Feedback page css
+        -------------------------------------------------- */
+        .feedback-btn {
+            -webkit-appearance: none;
+            background: darkgoldenrod;
+            border: 2px solid black;
+            border-radius: 4px;
+            outline: none;
+            padding: 0.5em 0.8em;
+            margin-right: 15px;
+            color: black;
+            font-size: 1em;
+            font-family: sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            align-content: center;
+        }
+
+        .feedback-btn:hover{
+            background: gold;
+        }
+
+        .feedback-btn:active{
+            background: goldenrod;
+            color: black;
+        }
+
+        .feedback-modal {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            opacity: 0.9;
+            position: absolute;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            display: none;
+        }
+
+        .feedbackmodal-content{
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+        }
+
+        .feedbackmodal-content form{
+            width: 100%;
+        }
+
+        .feedbackmodal-content .row100{
+            display: flex;
+            width: 100%;
+        }
+
+        .feedbackmodal-content .row100 .inputBx50{
+            width: 50%;
+            margin-left: 0 20px;
+        }
+
+        .feedbackmodal-content .row100 .inputBx100{
+            width: 100%;
+            margin: 0 20px;
+        }
+
+        .feedbackmodal-content .row100 input,
+        .feedbackmodal-content .row100 textarea{
+            position: relative;
+            border: none;
+            border-bottom: 1px solid #fff;
+            color: black;
+            background: transparent;
+            width: 100%;
+            padding: 10px 0;
+            outline: none;
+            font-size: 18px;
+            font-weight: 400;
+            margin: 20px 0;
+            resize: none;
+        }
+
+        .feedbackmodal-content .row100 textarea{
+            height: 100px;
+        }
+
+        .feedbackmodal-content .row100 input::placeholder,
+        .feedbackmodal-content .row100 textarea::placeholder{
+            color: black;
+        }
+
+        .feedbackmodal-content .row100 input[type="submit"] {
+            -webkit-appearance: none;
+            background: #fff;
+            border-radius: 4px;
+            font-size: 1em;
+            font-family: sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            align-content: center;
+        }
+
+        .modal-header h2 {
+            font: bold 30px Sans-Serif;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: #369;
+            color: #fff;
+            padding: 5px 10px;
+            margin: 0 0 10px 0;
+            line-height: 24px;
+        }
+
+        .modal-header {
+            display: block;
+            position: relative;
+            margin: 40px 0;
+        }
+    </style>
 </head>
 <body class="layout">
     <header id="header" class="sticky">
@@ -29,13 +351,13 @@
                             <div class="dropdown">
                                 <a class="nav-link text-dark dropdown-toggle choose" asp-area="" asp-controller="Home" asp-action="Menu">Menu</a>
                                 <ul class="dropdown-menu">
-                                    <li><a asp-area="" asp-controller="Home" asp-action="Investments">Investments</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="Subscriptions">Subscriptions</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="UploadApprovedDocument">Upload/Approved Documents</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="InformationCenter">Information Center</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="Career">Career</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="DailyBinarySignals">Daily/Binary Signals</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="Stocks">Stocks Portfolio</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="IM_Academy">IM_Academy</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="OurTeam">Our Team </a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="OurAchievements">Our Achievements</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="ContactUs">Contact Us</a></li>
                                     <li><a asp-area="" asp-controller="Home" asp-action="Policy">Policy</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="CustomerService">Customer Service</a></li>
                                 </ul>
                             </div>
                         </li>

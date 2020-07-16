@@ -11,14 +11,11 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using Planiture_Website.Controllers;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.Text.RegularExpressions;
+using Planiture_Website.Models;
 
 namespace Planiture_Website.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
-    [ValidateAntiForgeryToken]
     public class LoginModel : PageModel
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -47,7 +44,7 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [Display(Name = "Username/Email")]
+            [Display(Name ="Email/Username")]
             public string Email { get; set; }
 
             [Required]
@@ -74,35 +71,10 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
 
             ReturnUrl = returnUrl;
         }
-        
+
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
-
-            if(Input.Email.IndexOf('@') > -1)
-            {
-                //Validate email format
-                string emailRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
-                                        @"\.[0-9{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
-                                           @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
-
-                Regex re = new Regex(emailRegex);
-                if(!re.IsMatch(Input.Email))
-                {
-                    ModelState.AddModelError("Email", "Email is not valid");
-                }
-            }
-            else
-            {
-                //Validate Username format
-                string emailRegex = @"^[a-zA-Z0-9]*$";
-
-                Regex re = new Regex(emailRegex);
-                if(!re.IsMatch(Input.Email))
-                {
-                    ModelState.AddModelError("Email", "Username is not valid");
-                }
-            }
 
             if (ModelState.IsValid)
             {

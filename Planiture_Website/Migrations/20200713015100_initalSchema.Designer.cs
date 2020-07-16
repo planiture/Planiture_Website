@@ -10,8 +10,8 @@ using Planiture_Website.Models;
 namespace Planiture_Website.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200708224242_initialSchema")]
-    partial class initialSchema
+    [Migration("20200713015100_initalSchema")]
+    partial class initalSchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -122,7 +122,36 @@ namespace Planiture_Website.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Planiture_Website.Controllers.ApplicationUser", b =>
+            modelBuilder.Entity("Planiture_Website.Models.ApplicationRole", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedName")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles");
+                });
+
+            modelBuilder.Entity("Planiture_Website.Models.ApplicationUser", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -135,14 +164,8 @@ namespace Planiture_Website.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AreaCode")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CusUserRole")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DOB")
@@ -229,33 +252,76 @@ namespace Planiture_Website.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Planiture_Website.Models.ApplicationRole", b =>
+            modelBuilder.Entity("Planiture_Website.Models.Investment_Info", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
+                    b.Property<string>("BenAddress")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                    b.Property<string>("Bene_Contact")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NormalizedName")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                    b.Property<string>("Bene_Email")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<string>("Bene_FirstName")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
+                    b.Property<string>("Bene_LastName")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("AspNetRoles");
+                    b.Property<string>("Bene_Relationship")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FormType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Ques1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Ques2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Ques3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Ques4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Ques5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Ques6")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<string>("Signature")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Investment_Info");
+                });
+
+            modelBuilder.Entity("Planiture_Website.Models.UserInvestment_Info", b =>
+                {
+                    b.Property<int>("InvestID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("InvestID", "UserID");
+
+                    b.ToTable("UserInvestment_Infos");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -269,7 +335,7 @@ namespace Planiture_Website.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
-                    b.HasOne("Planiture_Website.Controllers.ApplicationUser", null)
+                    b.HasOne("Planiture_Website.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -278,7 +344,7 @@ namespace Planiture_Website.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
-                    b.HasOne("Planiture_Website.Controllers.ApplicationUser", null)
+                    b.HasOne("Planiture_Website.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -293,7 +359,7 @@ namespace Planiture_Website.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Planiture_Website.Controllers.ApplicationUser", null)
+                    b.HasOne("Planiture_Website.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -302,7 +368,7 @@ namespace Planiture_Website.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.HasOne("Planiture_Website.Controllers.ApplicationUser", null)
+                    b.HasOne("Planiture_Website.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

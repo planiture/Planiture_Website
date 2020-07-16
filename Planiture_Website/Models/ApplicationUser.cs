@@ -9,7 +9,7 @@ using System.Runtime.Serialization.Formatters;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace Planiture_Website.Controllers
+namespace Planiture_Website.Models
 {
     public class ApplicationUser : IdentityUser<int>
     {
@@ -26,13 +26,7 @@ namespace Planiture_Website.Controllers
         public DateTime MemberSince { get; set; }
 
         public string Gender { get; set; }
-        //public string Username { get; set; }
-        //public string Password { get; set; }
-        public string CusUserRole { get; set; }
         public string Occupation { get; set; }
-        //public string CusMobile { get; set; }
-        //public string Email { get; set; }
-        public string AreaCode { get; set; }
         public string Address { get; set; }
         public string Residency { get; set; }
         public string Signature { get; set; }

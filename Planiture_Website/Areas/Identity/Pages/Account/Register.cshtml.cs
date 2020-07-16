@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using Planiture_Website.Controllers;
+using Planiture_Website.Models;
 using Planiture_Website.Services;
 
 namespace Planiture_Website.Areas.Identity.Pages.Account
@@ -23,6 +23,7 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly ILogger<RegisterModel> _logger;
         //private readonly IEmailSender _emailSender;
         private IMailSender _mailSender;
@@ -31,12 +32,14 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IMailSender mailSender)
+            IMailSender mailSender,
+            RoleManager<ApplicationRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _mailSender = mailSender;
+            _roleManager = roleManager;
         }
 
         [BindProperty]
@@ -145,6 +148,15 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
+                    //Create User/Customer role *Default role*
+                    var role = new ApplicationRole();
+                   role.Name = "Customer";
+                   await _roleManager.CreateAsync(role);
+
+                    //Add new user to the default role
+                    var addrole = await _userManager.AddToRoleAsync(user, "Customer");
+                    _logger.LogInformation("User role added.");
+
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(
@@ -155,7 +167,7 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
 
                     //await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                     await _mailSender.SendEmailAsync(Input.Email, "Email Verification",
-                        $"<h1>Please confirm your email address</h1><p>Please confirm your account by <a role='button' href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.</p>");
+                        "<h1>Please confirm your email address</h1> <p>Hi"+Input.Username+", Please confirm your account by <a role='button' href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.</p>");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

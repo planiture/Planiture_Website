@@ -1,7 +1,7 @@
 ﻿@model Planiture_Website.Models.Investment_Info
 
 @{
-    ViewData["Title"] = "Golden Investor Application";
+    ViewData["Title"] = "Golden20 Application";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
@@ -9,14 +9,20 @@
         position: relative;
         padding: 100px;
         min-height: 100vh;
-        background-color: whitesmoke;
         background-size: cover;
     }
 
-    #submitBtn {
+    legend {
+        text-align: right;
+        font-size: 40px;
+        font-weight: 200;
+        margin-bottom: 10px;
+        color: darkgoldenrod;
+    }
+
+    .btn {
         -webkit-appearance: none;
-        background: darkgoldenrod;
-        border: 2px solid black;
+        border: 1px solid #E89E63;
         border-radius: 4px;
         outline: none;
         padding: 0.5em 0.8em;
@@ -27,17 +33,17 @@
         font-weight: bold;
         cursor: pointer;
         align-content: center;
-        width: 60%;
+        background-color: #ffe8d7;
     }
 
-        #submitBtn:hover {
-            background: gold;
-        }
+    .btn:hover {
+        background: gold;
+    }
 
-        #submitBtn:active {
-            background: goldenrod;
-            color: black;
-        }
+    .btn:active {
+        background: goldenrod;
+        color: black;
+    }
 </style>
 
 <div class="body">
@@ -182,8 +188,9 @@
                 </div>
             </div>
         </fieldset>
-        <div align="center">
-            <button id="submitBtn" type="submit">Submit</button>
+        <div class="form-group" align="center">
+            <button id="cancelBtn" type="reset" class="btn btn-primary">CANCEL</button>
+            <input type="submit" value="SAVE & CONTINUE" class="btn btn-primary" />
         </div>
     </form>
 </div>

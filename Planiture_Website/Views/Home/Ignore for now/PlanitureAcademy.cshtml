@@ -130,3 +130,58 @@
         </div>
 </section>
 </asp:Content>
+
+<style>
+    .academy-background {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(800px,5fr));
+        grid-gap: 30px;
+        max-width: 150%;
+        margin-top: 40px;
+    }
+
+    .academy-menu {
+        position: relative;
+        padding: 100px;
+        min-height: 100vh;
+        background-image: url(subscriptionimage.jpg);
+        background-color: whitesmoke;
+        background-size: cover;
+        display: flex; /*changed from inline*/
+        justify-content: center;
+        align-items: center;
+    }
+
+    .academy-menu .container {
+        position: relative;
+        text-align: center;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .academy-menu h1{
+        font-size: 40px;
+        font-weight: 200;
+        margin-bottom: 10px;
+        color: darkgoldenrod;
+        text-transform: uppercase;
+    }
+
+    .academy-menu p{
+        position: relative;
+        font-size: 18px;
+        font-weight: 300;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+
+    }
+
+    .academy-menu  .row .col-sm-6 .thumbnail {
+        border: 5px solid;
+        border-radius: 4px;
+        padding: 5px;
+        border-color: darkgoldenrod;
+    }
+</style>

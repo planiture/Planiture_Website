@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using Planiture_Website.Controllers;
+using Planiture_Website.Models;
 
 namespace Planiture_Website.Areas.Identity.Pages.Account
 {
