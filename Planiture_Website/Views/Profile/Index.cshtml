@@ -1,29 +1,172 @@
-﻿@using Planiture_Website.Models;
-@model IEnumerable<ApplicationUser>
+﻿@model Planiture_Website.Models.ApplicationUser
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
 
-<div class="">
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-            </tr>
-        </thead>
-        <tbody>
-           @foreach(ApplicationUser user in Model)
-           {
-               <tr>@user.Id</tr>
-               <tr>@user.FirstName</tr>
-               <tr>@user.LastName</tr>
-           }
+<asp:Content id="BodyContent" ContentPlaceHolderID="Main Content" runat="server">
+    <section id="profile-background">
+        <div class="profile-menu" id="profile">
+            <div class="container">
+                <br />
+                <br />
+                <h1>Basic Account</h1>
+                <br />
+                <br />
+                <div class="row">
+                    <div class="col-sm-4 col-md-4">
+                        <center>
+                            <div class="row">
+                                <div class="col-sm-1 col-md-1"></div>
+                                <div class="col-sm-1 col-md-10">
+                                    <center>
+                                        <div class="thumbnail-pic">
+                                            <h5>Profile Pic</h5>
+                                        </div>
+                                    </center>
+                                </div>
+                                <div class="col-sm-1 col-md-1"></div>
+                            </div>
+                        </center>
+                    </div>
+                    <div class="col-sm-4 col-md-4"></div>
+                    <div class="col-sm-4 col-md-4">
+                        <div class="thumbnail-invest">
+                            <h5>Investment Account</h5>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-sm-6 col-md-6">
+                        <div class="personal-info">
+                            <dl class="row">
+                                <dt class="col-sm-5">
+                                    @Html.DisplayNameFor(model => model.FirstName)
+                                </dt>
+                                <dd class="col-sm-7">
+                                    @Html.DisplayFor(model => model.FirstName)
+                                </dd>
+                                <dt class="col-sm-5">
+                                    @Html.DisplayNameFor(model => model.LastName)
+                                </dt>
+                                <dd class="col-sm-7">
+                                    @Html.DisplayFor(model => model.LastName)
+                                </dd>
+                                <dt class="col-sm-5">
+                                    @Html.DisplayNameFor(model => model.Address)
+                                </dt>
+                                <dd class="col-sm-7">
+                                    @Html.DisplayFor(model => model.Address)
+                                </dd>
+                                <dt class="col-sm-5">
+                                    @Html.DisplayNameFor(model => model.Email)
+                                </dt>
+                                <dd class="col-sm-7">
+                                    @Html.DisplayFor(model => model.Email)
+                                </dd>
+                                <dt class="col-sm-5">
+                                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                                </dt>
+                                <dd class="col-sm-7">
+                                    @Html.DisplayFor(model => model.PhoneNumber)
+                                </dd>
+                            </dl>
+                            <center><a href="#">(view personal info.)</a></center>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2"></div>
+                    <div class="col-sm-4 col-md-4">
+                        <div class="thumbnail-transaction" style="text-align: center; font-weight: 500;">
+                            <h5 style="font-size: 25px">Transactions</h5>
+                            <br />
+                            <a style="font-size: 20px" href="#">Deposit</a>
+                            <br />
+                            <br />
+                            <a style="font-size: 20px" href="#">Withdraw</a>
+                            <br />
+                            <br />
+                            <p style="font-weight: 500;">
+                                Live Chat<br />
+                                (12pm - 6pm)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</asp:Content>
 
-        </tbody>
-    </table>
-</div>
+
+
+<style>
+    .profile-background {
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        background-size: cover;
+        display: flex; /*changed from inline*/
+        justify-content: center;
+        align-items: center;
+    }
+
+    .profile-menu {
+        position: relative;
+        padding: 100px;
+        min-height: 100vh;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .profile-menu h1 {
+        font-size: 40px;
+        font-weight: 200;
+        margin-bottom: 10px;
+        color: darkgoldenrod;
+        text-transform: uppercase;
+        text-align: right;
+    }
+
+    .profile-menu p {
+        position: relative;
+        font-size: 18px;
+        font-weight: 300;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+    }
+
+    dl{
+        font-size: 16px;
+        text-align: left;
+    }
+
+    .thumbnail-pic {
+        border-radius: 4px;
+        padding: 50px;
+        border: 2px solid black;
+    }
+
+    .thumbnail-invest {
+        border-radius: 4px;
+        padding: 50px;
+        border: 2px solid black;
+        background-color: white;
+    }
+
+    .thumbnail-transaction {
+        border-radius: 4px;
+        padding: 50px;
+        border: 2px solid black;
+    }
+
+    .personal-info {
+        padding: 50px;
+        border: 2px solid black;
+        background-color: white;
+    }
+</style>
