@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Planiture_Website.Areas.Identity.Pages.Account.Manage
 {
-    public class Index1Model : PageModel
+    public class DashboardModel : PageModel
     {
         public void OnGet()
         {

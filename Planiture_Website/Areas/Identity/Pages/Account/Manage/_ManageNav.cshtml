@@ -4,29 +4,33 @@
 }
 
 <div class="sidenav">
+
     <ul class="nav nav-pills flex-column">
-        <li class="nav-item"><a class="nav-link @ManageNavPages.DashboardNavClass(ViewContext)" id="dashboard" asp-page="">Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link @ManageNavPages.AccountsNavClass(ViewContext)" id="accounts" asp-page="">Accounts</a></li>
-        <li class="nav-item"><a class="nav-link @ManageNavPages.TransactionsNavClass(ViewContext)" id="transactions" asp-page="">Transactions</a></li>
-        <li class="nav-item"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profile</a></li>
-        <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a></li>
-        <li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Password</a></li>
+        <li class="nav-item"><a class="nav-link @ManageNavPages.DashboardNavClass(ViewContext)" id="dashboard" asp-page="./Dashboard">Dashboard</a></li>
+        <button class="dropdown-btn">
+            Admin Profile
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+            <a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profile</a>
+            <a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a>
+            <a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Password</a>
+            <a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Two-factor authentication</a>
+            <a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal data</a>
+
+        </div>
+        <li class="nav-item"><a class="nav-link " id="manage-client" asp-page="">Manage Clients</a></li>
         @if (hasExternalLogins)
         {
             <li id="external-logins" class="nav-item"><a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">External logins</a></li>
         }
-        <li class="nav-item"><a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Two-factor authentication</a></li>
-        <li class="nav-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal data</a></li>
-        <!--<li class="nav-item"><a class="nav-link @ManageNavPages.CreateRoleNavClass(ViewContext)" id="personal-data" asp-page="./CreateRole">Create Role</a></li>-->
 
+        <li class="nav-item"><a class="nav-link @ManageNavPages.TransactionsNavClass(ViewContext)" id="transactions" asp-page="">Manage Transactions</a></li>
+        <li class="nav-item"><a class="nav-link @ManageNavPages.AccountsNavClass(ViewContext)" id="accounts" asp-page="">Manage Accounts</a></li>
     </ul>
 
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#clients">Clients</a>
-    <a href="#contact">Contact</a>
     <button class="dropdown-btn">
-        Admininstration
+        Staff Management
         <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-container">
@@ -38,25 +42,10 @@
             <a class="nav-link @ManageNavPages.CreateRoleNavClass(ViewContext)" id="personal-data" asp-page="./CreateRole">Create Role</a>
         </div>
         <a href="#">Employees</a>
-        <a href="#">Customers</a>
     </div>
 </div>
 
 
-
-<!--<ul class="nav nav-pills flex-column">
-    <li class="nav-item"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profile</a></li>
-    <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a></li>
-    <li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Password</a></li>
-    @if (hasExternalLogins)
-    {
-        <li id="external-logins" class="nav-item"><a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">External logins</a></li>
-    }
-    <li class="nav-item"><a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Two-factor authentication</a></li>
-    <li class="nav-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal data</a></li>
-    <li class="nav-item"><a class="nav-link @ManageNavPages.CreateRoleNavClass(ViewContext)" id="personal-data" asp-page="./CreateRole">Create Role</a></li>
-</ul>
-    -->
 <style>
     body {
         font-family: "Lato", sans-serif;
@@ -65,7 +54,7 @@
     /* Fixed sidenav, full height */
     .sidenav {
         height: 100%;
-        width: 200px;
+        width: 300px;
         position: fixed;
         z-index: 1;
         top: 0;
@@ -75,25 +64,26 @@
         padding-top: 20px;
     }
 
-        /* Style the sidenav links and the dropdown button */
-        .sidenav a, .dropdown-btn {
-            padding: 6px 8px 6px 16px;
-            text-decoration: none;
-            font-size: 20px;
-            color: #818181;
-            display: block;
-            border: none;
-            background: none;
-            width: 100%;
-            text-align: left;
-            cursor: pointer;
-            outline: none;
-        }
-
-            /* On mouse-over */
-            .sidenav a:hover, .dropdown-btn:hover {
-                color: #f1f1f1;
-            }
+    /* Style the sidenav links and the dropdown button */
+    .sidenav a, .dropdown-btn {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 20px;
+        color: #818181;
+        display: block;
+        border: none;
+        background: none;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+        outline: none;
+    }
+    
+    /* On mouse-over */
+    .sidenav a:hover, .dropdown-btn:hover {
+        color: #f1f1f1;
+    }
+    
 
     /* Main content */
     .main {
@@ -123,6 +113,7 @@
 </style>
 
 <script>
+    /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
     var dropdown = document.getElementsByClassName("dropdown-btn");
     var i;
 

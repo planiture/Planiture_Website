@@ -28,6 +28,7 @@ namespace Planiture_Website.Areas.Identity.Pages.Account.Manage
         public InputModel Input { get; set; }
         public string ReturnUrl { get; set; }
 
+
         public class InputModel
         {
             [Required]
@@ -56,7 +57,8 @@ namespace Planiture_Website.Areas.Identity.Pages.Account.Manage
                 if(result.Succeeded)
                 {
                     _logger.LogInformation("New role added");
-                    return RedirectToAction("/Account/Manage/Index");
+                    //return RedirectToAction("/Account/Manage/Dashboard");
+                    //ViewBag.message = "Success";
                 }
                 foreach(IdentityError error in result.Errors)
                 {

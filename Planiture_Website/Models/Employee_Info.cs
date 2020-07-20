@@ -49,6 +49,5 @@ namespace Planiture_Website.Models
         [Timestamp]
         public byte[] RowVersion { get; set; }
 
-        public ICollection<CusTransaction> cusTransactionsEmployee { get; set; }
     }
 }
