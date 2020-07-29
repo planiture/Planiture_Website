@@ -14,7 +14,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Planiture_Website.Models;
-using Planiture_Website.Services;
 
 namespace Planiture_Website.Areas.Identity.Pages.Account
 {
@@ -25,20 +24,19 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly ILogger<RegisterModel> _logger;
-        //private readonly IEmailSender _emailSender;
-        private IMailSender _mailSender;
+        private readonly IEmailSender _emailSender;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IMailSender mailSender,
+            IEmailSender emailSender,
             RoleManager<ApplicationRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
-            _mailSender = mailSender;
+            _emailSender = emailSender;
             _roleManager = roleManager;
         }
 
@@ -146,7 +144,7 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User created a new account with password.");
+                    _logger.LogInformation("New user account successfully created.");
 
                     //Create User/Customer role *Default role*
                     var role = new ApplicationRole();
@@ -165,8 +163,7 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    //await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                    await _mailSender.SendEmailAsync(Input.Email, "Email Verification",
+                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         "<h1>Please confirm your email address</h1> <p>Hi"+Input.Username+", Please confirm your account by <a role='button' href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.</p>");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)

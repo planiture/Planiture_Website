@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "Stocks";
+    ViewData["Title"] = "Stock Portfolio";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,29 +11,48 @@
         <!--added image-->
         <div class="stock-menu" id="stock">
             <div class="container">
-                <h1>Stocks</h1>
+                <h1>@ViewData["Title"]</h1>
                 <br />
                 <div class="row" style="align-items: center">
-                    <div class="col-sm-3 col-md-3"></div>
                     <div class="col-sm-6 col-md-6">
                         <div class="thumbnail">
                             <img style="align-content: center" src="~/css/calculator.jpg" alt="Binary_account" width="300" height="250">
                             <br />
                             <br />
+                            <div class="thumbnail-border">
+                                <p>STOCK PORTFOLIO</p>
+                            </div>
                             <div class="caption">
                                 <p>
-                                    <a asp-area="Identity" asp-page="/Account/Register">'Open an Account'</a> - Open an <br />
+                                    <a asp-area="" asp-page="">'View Stock Portfolio'</a> - Open an <br />
                                     account to have your funds <br /> invested into
-                                    stocks from our <br /> stock portfolio recommended
+                                    stock portfolio <br /> recommended
                                     <br /> list.
                                     <br />
                                     <br />
-                                    (Create an Account)
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-3 col-md-3"></div>
+                    <div class="col-sm-6 col-md-6">
+                        <div class="thumbnail">
+                            <img style="align-content: center" src="~/css/account_upgrade.jpg" alt="Binary_account" width="300" height="250">
+                            <br />
+                            <br />
+                            <div class="thumbnail-border">
+                                <p>ACCOUNT UPGRADE</p>
+                            </div>
+                            <div class="caption">
+                                <p>
+                                    <a asp-area="" asp-page="">'Upgrade Account'</a> - Being able <br />
+                                    invested your account funds <br /> into currency,
+                                    commodity plans<br /> and stocks.
+                                    <br />
+                                    <br />
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -82,7 +101,12 @@
     .row .col-md-12 .thumbnail {
         border-radius: 4px;
         padding: 1px;
-        align-content: center;
+        text-align: center;
     }
-
+    .thumbnail-border {
+        border-radius: 4px;
+        padding: 1px;
+        border: 2px solid peachpuff;
+        text-align: center;
+    }
 </style>

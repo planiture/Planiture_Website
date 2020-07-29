@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "IM_Academy";
+    ViewData["Title"] = "Earn & Learn";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,28 +11,49 @@
         <!--added image-->
         <div class="traders-menu" id="traders">
             <div class="container">
-                <h1>IM_Academy Earn & Learn</h1>
+                <h1>@ViewData["Title"]</h1>
                 <br />
                 <br />
                 <div class="row">
-                    <div class="col-sm-3 col-md-3"></div>
                     <div class="col-sm-6 col-md-6">
                         <div class="thumbnail">
-                            <img src="~/css/binaryaccount.jpg" alt="Binary_account" width="300" height="250">
+                            <img src="~/css/forex.jpg" alt="Binary_account" width="300" height="250">
                             <br />
                             <br />
+                            <div class="thumbnail-border">
+                                <p>FOREX - EARN & LEARN</p>
+                            </div>
                             <div class="caption">
                                 <p>
-                                    <a asp-controller="Home" asp-action="IM_AcademyEarnLearn">'EARN & LEARN'</a> - Join our <br />
-                                    learning platform with <br /> mentorship and 
-                                    signal sessions <br /> to earn as you learn ForEx.
+                                    <a asp-controller="Home" asp-action="EarnLearn">'Join the Team'</a> - A large
+                                    <br />learning platform (currency &
+                                    <br /> commodity) with mentorship
+                                    <br />and signal sessions
+                                    <br /> to earn as you learn.
                                     <br />
-                                    (Join Team Planiture)
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-3 col-md-3"></div>
+                    <div class="col-sm-6 col-md-6">
+                        <div class="thumbnail">
+                            <img src="~/css/binary_earn.jpg" alt="Binary_account" width="300" height="250">
+                            <br />
+                            <br />
+                            <div class="thumbnail-border">
+                                <p>BINARY - EARN & LEARN</p>
+                            </div>
+                            <div class="caption">
+                                <p>
+                                    <a asp-controller="Home" asp-action="EarnLearn">'Join the Team'</a> - A large<br />
+                                    learning platform (Binary) with
+                                    <br /> mentorship option and signal
+                                    <br /> sessions to earn as you learn.
+                                    <br />
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -81,5 +102,13 @@
     .row .col-md-6 .thumbnail {
         border-radius: 4px;
         padding: 1px;
+        text-align: center;
+    }
+
+    .thumbnail-border {
+        border-radius: 4px;
+        padding: 1px;
+        border: 2px solid peachpuff;
+        text-align: center;
     }
 </style>

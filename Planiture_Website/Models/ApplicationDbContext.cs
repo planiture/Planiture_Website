@@ -14,8 +14,11 @@ namespace Planiture_Website.Models
         {
         }
 
-        public DbSet<Investment_Info> Investment_Info { get; set; }
-        public DbSet<UserInvestment_Info> UserInvestment_Infos { get; set; }
+        public DbSet<Investment_Info> UserInvestment { get; set; }
+        public DbSet<Account_Info> UserAccount { get; set; }
+        public DbSet<CusTransaction> UserTransaction { get; set; }
+        public DbSet<Feedback> UserFeedback { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -25,9 +28,15 @@ namespace Planiture_Website.Models
             builder.Entity<ApplicationUser>()
                 .Property(p => p.MemberSince)
                 .HasDefaultValueSql("getdate()");
+            //builder.Entity<Investment_Info>()
+            //    .HasOne(p => p.User)
+             //   .WithMany(b => b.UserInvestments)
+              //  .HasForeignKey(f => f.UserID);
 
-            builder.Entity<UserInvestment_Info>()
-                .HasKey(p => new { p.InvestID, p.UserID });// sets both columns has composite primary key
+           // builder.Entity<UserInvestment_Info>()
+             //   .HasKey(p => new { p.InvestID, p.UserID });// sets both columns has composite primary key
+
+
 
 
             //builder.Entity<ApplicationUser>().ToTable("Users");

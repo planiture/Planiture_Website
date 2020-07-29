@@ -120,6 +120,49 @@ namespace Planiture_Website.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Planiture_Website.Models.Account_Info", b =>
+                {
+                    b.Property<int>("AccountNumber")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AccountName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AccountType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("ActualBalance")
+                        .HasColumnType("real");
+
+                    b.Property<float>("AvailableBalance")
+                        .HasColumnType("real");
+
+                    b.Property<float>("DepositAmount")
+                        .HasColumnType("real");
+
+                    b.Property<string>("OtherAccount")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.Property<float>("WithdrawalAmount")
+                        .HasColumnType("real");
+
+                    b.HasKey("AccountNumber");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("UserAccount");
+                });
+
             modelBuilder.Entity("Planiture_Website.Models.ApplicationRole", b =>
                 {
                     b.Property<int>("Id")
@@ -250,6 +293,76 @@ namespace Planiture_Website.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Planiture_Website.Models.CusTransaction", b =>
+                {
+                    b.Property<int>("TransactionID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApprovedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<string>("Trans_AccountNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Trans_CustomerID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Trans_EmployeeID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Trans_OtherAccount")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Trans_TransactionStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("TransactionAmount")
+                        .HasColumnType("real");
+
+                    b.Property<string>("TransactionType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("TransactionID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("UserTransaction");
+                });
+
+            modelBuilder.Entity("Planiture_Website.Models.Feedback", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Investment_Number")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("UserFeedback");
+                });
+
             modelBuilder.Entity("Planiture_Website.Models.Investment_Info", b =>
                 {
                     b.Property<int>("ID")
@@ -304,22 +417,14 @@ namespace Planiture_Website.Migrations
                     b.Property<string>("Signature")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
-
-                    b.ToTable("Investment_Info");
-                });
-
-            modelBuilder.Entity("Planiture_Website.Models.UserInvestment_Info", b =>
-                {
-                    b.Property<int>("InvestID")
-                        .HasColumnType("int");
-
                     b.Property<int>("UserID")
                         .HasColumnType("int");
 
-                    b.HasKey("InvestID", "UserID");
+                    b.HasKey("ID");
 
-                    b.ToTable("UserInvestment_Infos");
+                    b.HasIndex("UserID");
+
+                    b.ToTable("UserInvestment");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -369,6 +474,33 @@ namespace Planiture_Website.Migrations
                     b.HasOne("Planiture_Website.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Planiture_Website.Models.Account_Info", b =>
+                {
+                    b.HasOne("Planiture_Website.Models.ApplicationUser", "User")
+                        .WithMany("UserAccount")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Planiture_Website.Models.CusTransaction", b =>
+                {
+                    b.HasOne("Planiture_Website.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Planiture_Website.Models.Investment_Info", b =>
+                {
+                    b.HasOne("Planiture_Website.Models.ApplicationUser", "User")
+                        .WithMany("UserInvestments")
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

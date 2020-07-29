@@ -31,25 +31,10 @@ namespace Planiture_Website.Models
         public string Residency { get; set; }
         public string Signature { get; set; }
 
-        /*//Info for InvestmentQuestion table
-        public string FormType { get; set; }
-        public string Ques1 { get; set; }
-        public string Ques2 { get; set; }
-        public string Ques3 { get; set; }
-        public string Ques4 { get; set; }
-        public string Ques5 { get; set; }
-        public string Ques6 { get; set; }
+        public IList<Investment_Info> UserInvestments { get; set; }
+        public IList<Account_Info> UserAccount { get; set; }
 
-        //Info for Beneficiary_Info table
-        public string Ben_FirstName { get; set; }
-        public string Ben_LastName { get; set; }
-        public string Ben_Contact { get; set; }
-        public string Ben_Relationship { get; set; }
-        public string Ben_Email { get; set; }
-        public string Ben_Address { get; set; }
-        //public string Ben_CustomerID { get; set; }
-
-        //Info for Account_Info table
+        /*//Info for Account_Info table
         public string AccountName { get; set; }
         public string AccountType { get; set; }
         public float AvailableBalance { get; set; }

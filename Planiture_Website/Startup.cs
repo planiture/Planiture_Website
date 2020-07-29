@@ -13,8 +13,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Planiture_Website.Controllers;
 using Planiture_Website.Models;
-using Planiture_Website.Services;
-using Planiture_Website.Models.Services;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
@@ -71,9 +69,6 @@ namespace Planiture_Website
             //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
             //  .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            //added the following to confirm user email
-            services.AddTransient<IMailSender, EmailSender>();
-            services.Configure<MessageSenderOptions>(Configuration);
 
             //Just added -- this requires the user to be logged in before being able to view the site
 

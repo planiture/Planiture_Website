@@ -1,0 +1,46 @@
+﻿@page
+@model ConfirmEmailModel
+@{
+    ViewData["Title"] = "Confirm email";
+}
+
+<div class="body">
+
+    <br />
+    <br />
+    <br />
+    <div id="success">
+        <p>
+            <span>User Account Has been successfully created!</span>
+            <br />
+            <br />
+            Please Login to continue the application Process...
+            <br />
+            <br />
+            <center><a asp-area="Identity" asp-page="/Account/Login">(Login)</a></center>
+        </p>
+    </div>
+</div>
+
+<style>
+    .body {
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        background-size: cover;
+        display: flex; /*changed from inline*/
+        justify-content: center;
+        align-items: center;
+    }
+    #success {
+        background-color: white;
+        border: 1px solid black;
+        padding: 60px;
+    }
+    #success span{
+        color: white;
+        background-color: green;
+        font-size: 25px;
+        font-weight: 500;
+    }
+</style>

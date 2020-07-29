@@ -37,16 +37,16 @@
         background-color: #ffe8d7;
     }
 
-    .btn:hover {
-        background: gold;
-    }
+        .btn:hover {
+            background: gold;
+        }
 
-    .btn:active {
-        background: goldenrod;
-        color: black;
-    }
-
+        .btn:active {
+            background: goldenrod;
+            color: black;
+        }
 </style>
+
 <div class="body">
     <form method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -71,6 +71,8 @@
                 </div>
                 <div class="col-sm-6 col-md-6 form-group">
                     <label asp-for="Ques2">IF YES, WHAT HAVE YOU INVESTED IN? </label>
+                    <br />
+                    <span class="if-statement" style="font-style: italic; font-size: 14px;">If NO PLEASE ENTER "N/A" </span>
                     <input asp-for="Ques2" class="form-control" required />
                     <span asp-validation-for="Ques2" class="text-danger"></span>
                 </div>
@@ -153,10 +155,6 @@
                     <textarea asp-for="BenAddress" class="form-control" id="TextArea1" rows="4" cols="20" required></textarea>
                     <span asp-validation-for="BenAddress" class="text-danger"></span>
                 </div>
-                <center>
-                    <input type="checkbox" id="NoBeneficiary" value="No" required />
-                    <label for="NoBeneficiary">I DO NOT HAVE A BENEFICIARY CURRENTLY</label><br>
-                </center>
             </fieldset>
             <br />
             <div class="disclaimer-section">
@@ -194,6 +192,7 @@
             <input type="submit" value="SAVE & CONTINUE" class="btn btn-primary" />
         </div>
     </form>
+    
 </div>
 
 

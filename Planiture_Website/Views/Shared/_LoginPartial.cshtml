@@ -16,9 +16,6 @@
                     <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
                 </form>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="CreateApplication">Create Application</a>
-            </li>
         }
         else
         {
@@ -57,7 +54,7 @@
             </div>-->
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="CreateApplication">Create Application</a>
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Open Account</a>
         </li>
     }
 </ul>

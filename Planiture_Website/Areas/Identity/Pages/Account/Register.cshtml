@@ -9,15 +9,12 @@
 
     <form id="apply-form" method="post">
         <br />
-        <h3>Application</h3>
-        <p>
-            Please complete the form below to start investing with us.
-        </p>
+        
         <br />
         <div class="tab-content" id="content1">
             <div asp-validation-summary="All" class="text-danger"></div>
             <fieldset>
-                <legend>Personal Info.</legend>
+                <legend>Personal Information</legend>
                 <label>Full Name</label>
                 <div class="row">
                     <div class="col-sm-6 col-md-6 form-group">
@@ -66,7 +63,7 @@
                         <label asp-for="Input.AreaCode">Area Code</label>
                     </div>-->
                     <div class="col-sm-6 col-md-6 form-group">
-                        <input id="Mobiletxt" asp-for="Input.Mobile" class="form-control" placeholder="123-4567" required />
+                        <input id="Mobiletxt" asp-for="Input.Mobile" class="form-control" placeholder="1234567" required />
                         <label asp-for="Input.Mobile"></label>
                         <span asp-validation-for="Input.Mobile" class="text-danger"></span>
                     </div>

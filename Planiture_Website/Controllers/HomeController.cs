@@ -34,7 +34,7 @@ namespace Planiture_Website.Controllers
             _signInManager = signInManager;
             _context = context;
         }
-        
+       
         public IActionResult Index()
         {
             return View();
@@ -45,58 +45,32 @@ namespace Planiture_Website.Controllers
             return View();
         }
 
-        public IActionResult Investments()
-        {
-            return View();
-        }
-
-        public IActionResult Subscriptions()
-        {
-            return View();
-        }
-
-        public IActionResult PlanitureAcademy()
-        {
-            return View();
-        }
-
         public IActionResult Policy()
         {
             return View();
         }
 
+        [HttpGet]
         public IActionResult ContactUs()
         {
             return View();
         }
 
-        public IActionResult Career()
+        [HttpPost]
+        public async Task<IActionResult> ContactUs(Feedback feedback)
         {
-            return View();
-        }
+            //Stores user feedback to database
+            _context.UserFeedback.Add(feedback);
+            _logger.LogInformation("User Feedback stored");
 
-        public IActionResult CustomerServiceJob()
-        {
-            return View();
-        }
+            await _context.SaveChangesAsync();
+            
+            //Send Copy of User feedback to email
 
-        public IActionResult MarketAnalyzerJob()
-        {
-            return View();
-        }
+            
+            //Success Message for User here
 
-        public IActionResult SocialMediaManagerJob()
-        {
-            return View();
-        }
 
-        public IActionResult UploadApprovedDocument()
-        {
-            return View();
-        }
-
-        public IActionResult Store()
-        {
             return View();
         }
 
@@ -115,14 +89,14 @@ namespace Planiture_Website.Controllers
             return View();
         }
 
-        public IActionResult IM_AcademyEarnLearn()
+        public IActionResult EarnLearn()
         {
             return View();
         }
 
         //Must have a user account with us to view
         //[Authorize(Roles = "Admin, Market_Analysis Rep_Access, Customer")]
-        public IActionResult DailyBinarySignals()
+        public IActionResult DailySignals()
         {
             return View();
         }
@@ -139,173 +113,241 @@ namespace Planiture_Website.Controllers
             return View();
         }
 
-        public IActionResult CheckOut()
+        [Authorize]
+        [HttpGet]
+        public IActionResult Checkout()
         {
             return View();
         }
 
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> CheckOut()
+        {
+            if(ModelState.IsValid)
+            {
+
+                return RedirectToAction("CheckOutConfirmed");
+            }
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult CheckOutConfirmed()
+        {
+            return View();
+        }
         //Customer Account Application Proccess
 
-        
-        public IActionResult CreateApplication()
-        {
-            return View();
-        }
-
+        [Authorize]
         public IActionResult AccountOptions()
         {
             return View();
         }
 
-        //[Authorize]
+        [Authorize]
+        //[Authorize(Roles = "Admin, Golden20")]
         [HttpGet]
         public IActionResult Golden20Application()
         {
             return View();
         }
 
+        [Authorize]
+        //[Authorize(Roles = "Admin, Golden20")]
         [HttpPost]
-        public async Task<IActionResult> Golden20Application(Investment_Info invest)
+        public async Task<IActionResult> Golden20Application(Investment_Info invest, Account_Info account)
         {
             if(ModelState.IsValid)
             {
-                var kingz = new ApplicationUser()
-                {
-                    /*FormType = "Golden Investor", //this is currently hardcoded... it this later
-                    Ques1 = invest.Ques1,
-                    Ques2 = invest.Ques2,
-                    Ques3 = invest.Ques3,
-                    Ques4 = invest.Ques4,
-                    Ques5 = invest.Ques5,
-                    Ques6 = invest.Ques6,
-                    Ben_FirstName = invest.Bene_FirstName,
-                    Ben_LastName = invest.Bene_LastName,
-                    Ben_Contact = invest.Bene_Contact,
-                    Ben_Relationship = invest.Bene_Relationship,
-                    Ben_Email = invest.Bene_Email,
-                    Ben_Address = invest.BenAddress,
-                    CusSignature = invest.Signature,*/
-                    
-                };
+                //Get the existing user from the database
+                var user = await _userManager.GetUserAsync(User);
 
-                //Add way to pass info to table
-                //_context.Investment_Info.Update(invest);
+                //convert Ques1 & Ques2 to all Capital Letter
+                invest.Ques1.ToUpper();
+                invest.Ques2.ToUpper();
 
-                _logger.LogInformation("User Beneficiary and investment background added.");
+                //Append User signature to User Record
+                user.Signature = invest.Signature;
+                await _userManager.UpdateAsync(user);
+                _logger.LogInformation("User signature appended");
+
+                //Append UserID to User's investment Record
+                invest.UserID = user.Id;
+                invest.FormType = "Golden20 Account";
+                _context.UserInvestment.Add(invest);
+                _logger.LogInformation("User beneficiary and investment background added.");
+
+                //Create User Account
+                account.AccountName = user.FirstName + " " + " " + user.LastName; //concat user first and last name together and store it in AccountName
+                account.AccountType = invest.FormType;
+                account.AvailableBalance = 0.00f;
+                account.ActualBalance = 0.00f;
+                account.WithdrawalAmount = 0.00f;
+                account.DepositAmount = 0.00f;
+                account.OtherAccount = "N/A";
+                account.UserID = user.Id;
+
+                _context.UserAccount.Add(account);
+                _logger.LogInformation("User golden20 account created.");
 
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Home");
+
+                return RedirectToAction("Golden20Profile", "Profile");
             }
 
-            return RedirectToAction("Index", "Home");
+            return View();
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult BasicAccount()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
-        public async Task<IActionResult> BasicAccount(Investment_Info invest)
+        public async Task<IActionResult> BasicAccount(Investment_Info invest, Account_Info account)
         {
             if (ModelState.IsValid)
             {
                 //Get the existing user from the database
                 var user = await _userManager.GetUserAsync(User);
 
-                //update it with the values from the investment_Info
+                //convert Ques1 & Ques2 to all Capital Letter
+                invest.Ques1.ToUpper();
+                invest.Ques2.ToUpper();
+
+                //Append User signature to User Record
                 user.Signature = invest.Signature;
                 await _userManager.UpdateAsync(user);
-                _logger.LogInformation("User Signature info updated");
+                _logger.LogInformation("User signature appended");
 
+                //Append UserID to User's investment Record
+                invest.UserID = user.Id;
+                invest.FormType = "Basic Account";
+                _context.UserInvestment.Add(invest);
+                _logger.LogInformation("User beneficiary and investment background added.");
 
-                //Update the foreign keys
+                //Create User Account
+                account.AccountName = user.FirstName + " " + " " + user.LastName; //concat user first and last name together and store it in AccountName
+                account.AccountType = invest.FormType;
+                account.AvailableBalance = 0.00f;
+                account.ActualBalance = 0.00f;
+                account.WithdrawalAmount = 0.00f;
+                account.DepositAmount = 0.00f;
+                account.OtherAccount = "N/A";
+                account.UserID = user.Id;
 
-                /*var userinvest = new UserInvestment_Info()
-                {
-                    InvestID = invest.ID,
-                    UserID = user.Id,
-                };*/
-                
-
-                invest.FormType = "Basic";
-                _context.Investment_Info.Add(invest);
-                _logger.LogInformation("User Beneficiary and investment background added.");
-                //_context.UserInvestment_Infos.Add(userinvest);
-                //_logger.LogInformation("Link between user info and investment info created");
+                _context.UserAccount.Add(account);
+                _logger.LogInformation("User basic account created.");
 
                 await _context.SaveChangesAsync();
+                
+                return RedirectToAction("Index", "Profile");
 
-                /*SqlConnection connect = new SqlConnection("Data Source=MSI;Initial Catalog=Planiture_Records;Integrated Security=True");
-
-                connect.Open();
-                string sqlquery = ("insert into [Investment_Info] (FormType,Ques1,Ques2,Ques3,Ques4,Ques5,Ques6,Signature,Bene_FirstName,Bene_LastName,Bene_Contact,Bene_Relationship,Bene_Email,BenAddress)" +
-                    " values(@FormType,@Ques1,@Ques2,@Ques3,@Ques4,@Ques5,@Ques6,@Signature,@Bene_FirstName,@Bene_LastName,@Bene_Contact,@Bene_Relationship,@Bene_Email,@BenAddress)");
-                SqlCommand cmd = new SqlCommand(sqlquery, connect);
-                cmd.Parameters.AddWithValue("@FormType", "Basic");
-                cmd.Parameters.AddWithValue("@Ques1", invest.Ques1);
-                cmd.Parameters.AddWithValue("@Ques2", invest.Ques2);
-                cmd.Parameters.AddWithValue("@Ques3", invest.Ques3);
-                cmd.Parameters.AddWithValue("@Ques4", invest.Ques4);
-                cmd.Parameters.AddWithValue("@Ques5", invest.Ques5);
-                cmd.Parameters.AddWithValue("@Ques6", invest.Ques6);
-                cmd.Parameters.AddWithValue("@Signature", invest.Signature);
-                cmd.Parameters.AddWithValue("@Bene_FirstName", invest.Bene_FirstName);
-                cmd.Parameters.AddWithValue("@Bene_LastName", invest.Bene_LastName);
-                cmd.Parameters.AddWithValue("@Bene_Contact", invest.Bene_Contact);
-                cmd.Parameters.AddWithValue("@Bene_Relationship", invest.Bene_Relationship);
-                cmd.Parameters.AddWithValue("@Bene_Email", invest.Bene_Email);
-                cmd.Parameters.AddWithValue("@BenAddress", invest.BenAddress);
-
-                cmd.ExecuteNonQuery();
-                connect.Close();*/
-
-                return RedirectToAction("Index", "Home");
             }
-
-            return RedirectToAction("Index", "Home");
+            return View();
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult AdvancedAccount()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
-        public async Task<IActionResult> AdvancedAccount(Investment_Info invest)
+        public async Task<IActionResult> AdvancedAccount(Investment_Info invest, Account_Info account)
         {
             if (ModelState.IsValid)
             {
-                var kingz = new ApplicationUser()
-                {
-                    /*FormType = "Golden Investor", //this is currently hardcoded... it this later
-                    Ques1 = invest.Ques1,
-                    Ques2 = invest.Ques2,
-                    Ques3 = invest.Ques3,
-                    Ques4 = invest.Ques4,
-                    Ques5 = invest.Ques5,
-                    Ques6 = invest.Ques6,
-                    Ben_FirstName = invest.Bene_FirstName,
-                    Ben_LastName = invest.Bene_LastName,
-                    Ben_Contact = invest.Bene_Contact,
-                    Ben_Relationship = invest.Bene_Relationship,
-                    Ben_Email = invest.Bene_Email,
-                    Ben_Address = invest.BenAddress,
-                    CusSignature = invest.Signature,*/
+                //Get the existing user from the database
+                var user = await _userManager.GetUserAsync(User);
 
-                };
-                //Add a method to save the data to table
+                //convert Ques1 & Ques2 to all Capital Letter
+                invest.Ques1.ToUpper();
+                invest.Ques2.ToUpper();
 
-                //_context.ApplicationUser.Update(invest);
-                _logger.LogInformation("User Beneficiary and investment background added.");
+                //Append User signature to User Record
+                user.Signature = invest.Signature;
+                await _userManager.UpdateAsync(user);
+                _logger.LogInformation("User signature appended");
+
+                //Append UserID to User's investment Record
+                invest.UserID = user.Id;
+                invest.FormType = "Advanced Account";
+                _context.UserInvestment.Add(invest);
+                _logger.LogInformation("User beneficiary and investment background added.");
+
+                //Create User Account
+                account.AccountName = user.FirstName + " " + " " + user.LastName; //concat user first and last name together and store it in AccountName
+                account.AccountType = invest.FormType;
+                account.AvailableBalance = 0.00f;
+                account.ActualBalance = 0.00f;
+                account.WithdrawalAmount = 0.00f;
+                account.DepositAmount = 0.00f;
+                account.OtherAccount = "N/A";
+                account.UserID = user.Id;
+
+                _context.UserAccount.Add(account);
+                _logger.LogInformation("User advanced account created.");
 
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Home");
+
+                return RedirectToAction("AdvancedProfile", "Profile");
             }
 
-            return RedirectToAction("Index", "Home");
+            return View();
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult StocksAccount()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> StocksAccount(Investment_Info invest, Account_Info account)
+        {
+            if(ModelState.IsValid)
+            {
+                //Get the existing user from the database
+                var user = await _userManager.GetUserAsync(User);
+
+                //Append User signature to User Record
+                user.Signature = invest.Signature;
+                await _userManager.UpdateAsync(user);
+                _logger.LogInformation("User signature appended");
+
+                //Append UserID to User's investment Record
+                invest.UserID = user.Id;
+                invest.FormType = "Stocks Account";
+                _context.UserInvestment.Add(invest);
+                _logger.LogInformation("User beneficiary and investment background added.");
+
+                //Create User Account
+                account.AccountName = user.FirstName + " " + " " + user.LastName; //concat user first and last name together and store it in AccountName
+                account.AccountType = invest.FormType;
+                account.AvailableBalance = 0.00f;
+                account.ActualBalance = 0.00f;
+                account.WithdrawalAmount = 0.00f;
+                account.DepositAmount = 0.00f;
+                account.OtherAccount = "N/A";
+                account.UserID = user.Id;
+
+                _context.UserAccount.Add(account);
+                _logger.LogInformation("User stocks account created.");
+
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("StocksProfile", "Profile");
+            }
+
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

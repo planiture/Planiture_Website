@@ -1,10 +1,12 @@
-﻿<!--KINGZWILL-->
+﻿
+
+<!--KINGZWILL-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="~/css/website logo.jpg" rel="icon" type="images/png"/>
+    <link href="~/css/website logo.jpg" rel="icon" type="images/png" />
     <title>Planiture - @ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
@@ -15,7 +17,6 @@
 
         /* Body Header
         ---------------- */
-
         header { /*KINGZWILL ADDED THE FOLLOWING*/
             position: fixed;
             top: 0;
@@ -32,25 +33,8 @@
         .sticky { /*ADDED BY KINGZWILL*/
             padding: 5px 100px;
             background: #fff;
-            border-bottom: 1px solid;
-            color: darkgoldenrod;
+            border-bottom: 1px solid black;
         }
-
-        /*.navbar .sticky .logo {
-            color: #000000;
-        }
-
-        .navbar .logo { 
-            position: relative;
-            font-weight: 700;
-            color: #fff;
-            text-decoration: none;
-            font-size: 2em;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: 0.6s;
-        }
-        */
 
         header ul { /*ADDED BY KINGZWILL*/
             position: relative;
@@ -59,18 +43,20 @@
             align-items: center;
         }
 
-        header ul li { /*ADDED BY KINGZWILL*/
-            position: relative;
-            list-style: none;
-        }
+            header ul li { /*ADDED BY KINGZWILL*/
+                position: relative;
+                list-style: none;
+            }
 
-        .dropdown-menu li {
-            text-align: left;
+        .navbar li:hover { /*Adds a black box on the navigation options on hover*/
+            background: none;
+            border-color: black;
+            border-style: solid;
         }
 
         header ul li a { /*KINGZWILL ADDED THE FOLLOWING*/
             position: relative;
-            margin: 0 15px;
+            /*margin: 0 15px;*/
             text-decoration: none;
             color: #fff;
             letter-spacing: 2px;
@@ -78,11 +64,10 @@
             transition: 0.6s;
         }
 
-        a.navbar-brand { /*KINGZWILL ADDED THE FOLLOWING*/
+        a.navbar-brand { /*KINGZWILL ADDED THE FOLLOWING*/ /*just this out*/
             white-space: normal;
             text-align: center;
             word-break: break-all;
-            /*ADDED BY KINGZWILL*/
             float: left;
             display: block;
             color: #f2f2f2;
@@ -102,234 +87,38 @@
             top: 0;
         }
 
-        a.navbar-brand { /*KINGZWILL ADDED THE FOLLOWING*/
-            white-space: normal;
-            text-align: center;
-            word-break: break-all;
-            /*ADDED BY KINGZWILL*/
-            float: left;
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-        }
+        /*Drop Down Menu*/
 
-        .navbar a { /*ADDED BY KINGZWILL*/
-            font-weight: 500;
-            color: blue;
-        }
-
-        .navbar { /*ADDED BY KINGZWILL*/
-            /*overflow: hidden;*/
-            top: 0;
-        }
-
-        .navbar .dropdown-menu{
-            padding: 5px;
-            position: relative;
-        }
-
-        .navbar .dropdown-menu li{
-            text-align: left;
-        }
-
-        .navbar .dropdown-menu li:hover{
-            background-color: grey;
-            transition: 0.4s;
-        }
-
-        .navbar .dropdown-menu a{
-            color: black;
-            text-decoration: none;
-        }
-
-        .navbar .dropdown .dropdown-menu a.dropbtn{
-            -webkit-appearance: none;
-            background: darkgoldenrod;
-            border: 2px solid black;
-            border-radius: 4px;
-            outline: none;
-            padding: 0.5em 0.8em;
-            margin-right: 15px;
-            color: black;
-            font-size: 1em;
-            font-family: sans-serif;
-            font-weight: bold;
-            cursor: pointer;
-            align-content: center;
-        }
-
-        .navbar .dropdown .dropdown-menu a.dropbtn:hover {
-            background: gold;
-        }
-
-        .navbar .dropdown .dropdown-menu a.dropbtn:active {
-            background: goldenrod;
-            color: black;
-        }
-
-        .navbar li:hover { /*ADDED BY KINGZWILL*/
-            background: none;
-            border-color: black;
-            border-style: solid;
-        }
-
-        /* Button
-        -------------------------------------------------- */
-
-        .navbar button { /*ADDED BY KINGZWILL*/
-            align-items: center;
-            text-align: center;
-            font-size: 16px;
-            font-weight: 500;
-            margin: 4px 2px;
-            cursor: pointer;
-            background-color: goldenrod;
-            color: black;
-            position: relative;
-            transition: 0.6s;
-            display: inline-block;
-        }
-
-        /*Login-dropdown menu*/
-        ul.navbar-nav li div.dropdown:hover > div.dropdown-menu { /*ADDED BY KINGZWILL*/
-            display: inline-grid; /*only grid and inline-grid works the way i want so far*/
-        }
-
-
-        .navbar button:hover { /*ADDED BY KINGZWILL*/
-            background-color: darkgoldenrod;
-            position: relative;
-            transition: 0.6s;
-            display: block;
-        }
-
-        /*Menu-dropdown menu*/
-        ul.navbar-nav li div.dropdown:hover > ul.dropdown-menu {
+        ul.navbar-nav li div.dropdown:hover > ul.dropdown-menu { /*display menu list on hover*/
             display: inline-grid;
         }
 
+        .navbar .dropdown .dropdown-menu { /*alignment of the dropdown menu items*/
+            padding: 10px;
+            top: 30px;
+            left: 30px;
+        }
 
-        /* Feedback page css
-        -------------------------------------------------- */
-        .feedback-btn {
-            -webkit-appearance: none;
-            background: darkgoldenrod;
-            border: 2px solid black;
-            border-radius: 4px;
-            outline: none;
-            padding: 0.5em 0.8em;
-            margin-right: 15px;
+        .navbar .dropdown-menu a {
             color: black;
-            font-size: 1em;
-            font-family: sans-serif;
-            font-weight: bold;
-            cursor: pointer;
-            align-content: center;
+            text-decoration: none;
         }
 
-        .feedback-btn:hover{
-            background: gold;
+        .navbar .dropdown-menu li {
+            text-align: left;
         }
 
-        .feedback-btn:active{
-            background: goldenrod;
-            color: black;
-        }
+            /*Removes the black box on the dropdown menu items on hover*/
+            /*Adds a grey background on hover*/
+            .navbar .dropdown-menu li:hover {
+                background: none;
+                border-color: none;
+                border-style: none;
+                background-color: grey;
+                transition: 0.4s;
+            }
 
-        .feedback-modal {
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.7);
-            opacity: 0.9;
-            position: absolute;
-            top: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            display: none;
-        }
-
-        .feedbackmodal-content{
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-        }
-
-        .feedbackmodal-content form{
-            width: 100%;
-        }
-
-        .feedbackmodal-content .row100{
-            display: flex;
-            width: 100%;
-        }
-
-        .feedbackmodal-content .row100 .inputBx50{
-            width: 50%;
-            margin-left: 0 20px;
-        }
-
-        .feedbackmodal-content .row100 .inputBx100{
-            width: 100%;
-            margin: 0 20px;
-        }
-
-        .feedbackmodal-content .row100 input,
-        .feedbackmodal-content .row100 textarea{
-            position: relative;
-            border: none;
-            border-bottom: 1px solid #fff;
-            color: black;
-            background: transparent;
-            width: 100%;
-            padding: 10px 0;
-            outline: none;
-            font-size: 18px;
-            font-weight: 400;
-            margin: 20px 0;
-            resize: none;
-        }
-
-        .feedbackmodal-content .row100 textarea{
-            height: 100px;
-        }
-
-        .feedbackmodal-content .row100 input::placeholder,
-        .feedbackmodal-content .row100 textarea::placeholder{
-            color: black;
-        }
-
-        .feedbackmodal-content .row100 input[type="submit"] {
-            -webkit-appearance: none;
-            background: #fff;
-            border-radius: 4px;
-            font-size: 1em;
-            font-family: sans-serif;
-            font-weight: bold;
-            cursor: pointer;
-            align-content: center;
-        }
-
-        .modal-header h2 {
-            font: bold 30px Sans-Serif;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            background: #369;
-            color: #fff;
-            padding: 5px 10px;
-            margin: 0 0 10px 0;
-            line-height: 24px;
-        }
-
-        .modal-header {
-            display: block;
-            position: relative;
-            margin: 40px 0;
-        }
+        
     </style>
 </head>
 <body class="layout">
@@ -352,11 +141,11 @@
                             <div class="dropdown">
                                 <a class="nav-link text-dark dropdown-toggle choose" asp-area="" asp-controller="Home" asp-action="Menu">Menu</a>
                                 <ul class="dropdown-menu">
-                                    <li><a asp-area="" asp-controller="Home" asp-action="DailyBinarySignals">Daily/Binary Signals</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="DailySignals">Trade Signals</a></li>
                                     <li><a asp-area="" asp-controller="Home" asp-action="Stocks">Stocks Portfolio</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="IM_Academy">IM_Academy</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="OurTeam">Our Team </a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="OurAchievements">Our Achievements</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="IM_Academy">Earn & Learn Daily & Binary</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="OurTeam">Meet the Team </a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="OurAchievements">Achievements</a></li>
                                     <li><a asp-area="" asp-controller="Home" asp-action="ContactUs">Contact Us</a></li>
                                     <li><a asp-area="" asp-controller="Home" asp-action="Policy">Policy</a></li>
                                 </ul>
@@ -378,39 +167,7 @@
             Copyright &copy; 2020 - Planiture. All rights reserved - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>-->
-    <div class="" role="button" tabindex="0" style="height:130px; position:fixed; z-index:999;
-        right:0; top:80%; margin-top:-65px; width:40px;">
-        <button class="feedback-btn modal-open" id="feedbackBtn" type="button" data-modal="modal-feedback" style="-webkit-transform: rotate(-90deg);height:50px; position:fixed;z-index:999;right: -50px;">FeedBack</button>
-    </div>
-    <div class="modal feedback-modal" id="modal-feedback">
-        <div class="feedbackmodal-content kingz">
-            <div class="close modal-close">+</div>
-            <form>
-                <div class="modal-header">
-                    <h2>FeedBack</h2>
-                </div>
-                <div class="row100">
-                    <div class="inputBx50">
-                        <input type="text" placeholder="Full Name" />
-                    </div>
-                    <div class="inputBx50">
-                        <input type="text" placeholder="Investment No." />
-                    </div>
-                </div>
-                <div class="row100">
-                    <div class="inputBx100">
-                        <p>Please type or copy and paste your feedback below <b>(word limit: 150 words)</b></p>
-                        <textarea placeholder="Message"></textarea>
-                    </div>
-                </div>
-                <div class="row100">
-                    <div class="inputBx100">
-                        <input type="submit" value="Send" />
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

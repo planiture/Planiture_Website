@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "DailyBinarySignals";
+    ViewData["Title"] = "Daily Signals";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,7 +11,7 @@
         <!--added image-->
         <div class="signals-menu" id="signals">
             <div class="container">
-                <h1>Daily & Binary Signals</h1>
+                <h1>@ViewData["Title"]</h1>
                 <br />
                 <div class="row">
                     <div class="col-sm-6 col-md-6">
@@ -19,14 +19,15 @@
                             <img src="~/css/binaryaccount.jpg" alt="Binary_account" width="300" height="250">
                             <br />
                             <br />
+                            <div class="thumbnail-border">
+                                <p>SIGNAL PLANS</p>
+                            </div>
                             <div class="caption">
                                 <p>
-                                    <a asp-area="Identity" asp-page="/Account/Register">'Open an Account'</a> - Deposit fund to your
-                                    <br />Account and have your funds invested into 
-                                    <br />trades.
+                                    <a asp-area="Identity" asp-page="/Account/Register">'View Signal Plans'</a> - open a basic account
+                                    <br />and select from our Signal Plans to have your money work for you. 
                                     <br />
                                     <br />
-                                    (Create an Account)
                                 </p>
                             </div>
                         </div>
@@ -36,12 +37,15 @@
                             <img src="~/css/binarysubcribe.jpg" alt="Binary_subscribe" width="300" height="250"/>
                             <br />
                             <br />
+                            <div class="thumbnail-border">
+                                <p>SIGNAL APP</p>
+                            </div>
                             <div class="caption">
                                 <p>
                                     <a asp-controller="Home" asp-action="CheckOut">'Subcribe to Signals'</a> - Subscribe to our
-                                    <br />signal group for daily trade signals. <br />
+                                    <br />signal group for daily currency and 
+                                    <br />commodity trade signals.
                                     <br />
-                                    (Subscribe for Signals)
                                 </p>
                             </div>
                         </div>
@@ -92,5 +96,12 @@
     .row .col-md-6 .thumbnail {
         border-radius: 4px;
         padding: 1px;
+        text-align: center;
+    }
+    .thumbnail-border {
+        border-radius: 4px;
+        padding: 1px;
+        border: 2px solid peachpuff;
+        text-align: center;
     }
 </style>
