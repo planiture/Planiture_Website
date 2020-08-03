@@ -30,14 +30,14 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender,
-            RoleManager<ApplicationRole> roleManager)
+            RoleManager<ApplicationRole> roleManager,
+            IEmailSender emailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
-            _emailSender = emailSender;
             _roleManager = roleManager;
+            _emailSender = emailSender;
         }
 
         [BindProperty]
@@ -128,8 +128,8 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser 
-                { 
+                var user = new ApplicationUser
+                {
                     FirstName = Input.FirstName,
                     LastName = Input.LastName,
                     DOB = Input.DOB,
@@ -139,7 +139,8 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
                     Occupation = Input.Occupation,
                     Residency = Input.Residency,
                     UserName = Input.Username,
-                    Email = Input.Email 
+                    Email = Input.Email,
+                    FirstAccessed = true
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
@@ -148,13 +149,14 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
 
                     //Create User/Customer role *Default role*
                     var role = new ApplicationRole();
-                   role.Name = "Customer";
+                   role.Name = "Admin";
                    await _roleManager.CreateAsync(role);
 
                     //Add new user to the default role
-                    var addrole = await _userManager.AddToRoleAsync(user, "Customer");
+                    var addrole = await _userManager.AddToRoleAsync(user, "Admin");
                     _logger.LogInformation("User role added.");
 
+                    //Email Verification Process
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(
@@ -163,8 +165,18 @@ namespace Planiture_Website.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        "<h1>Please confirm your email address</h1> <p>Hi"+Input.Username+", Please confirm your account by <a role='button' href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.</p>");
+                    /*_logger.Log(LogLevel.Warning, callbackUrl);
+                    ViewBag.ErrorTitle = "Registration Successful";*/
+
+
+                    //test EmailSender
+                    await _emailSender.SendEmailAsync(Input.Email, "Test Email",
+                        "<h1>Test email</h1><p>Hi" + Input.Username + ", Please confirm your account by <a role='button' href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.</p>");
+
+                    _logger.LogInformation("Email Sent");
+
+                    //await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                    //    "<h1>Please confirm your email address</h1> <p>Hi"+Input.Username+", Please confirm your account by <a role='button' href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.</p>");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

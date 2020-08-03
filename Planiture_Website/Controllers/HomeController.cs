@@ -21,7 +21,7 @@ namespace Planiture_Website.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ApplicationDbContext _context;
-        
+
 
         public HomeController(
             ILogger<HomeController> logger,
@@ -34,10 +34,40 @@ namespace Planiture_Website.Controllers
             _signInManager = signInManager;
             _context = context;
         }
-       
+
         public IActionResult Index()
         {
             return View();
+        }
+
+        //Checks if user is logining for the first time
+        
+        public async Task<IActionResult> CheckUser()
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            var Accessed = user.FirstAccessed;
+
+            if(User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            if(User.IsInRole("Customer"))
+            {
+                if (Accessed == true)
+                {
+                    _logger.LogInformation("User's first login");
+                    return RedirectToAction("AccountOptions");
+                }
+                else
+                {
+                    _logger.LogInformation("User logged in.");
+                    return RedirectToAction("Index", "Profile");
+                }
+            }
+            _logger.LogInformation("Error logging user in");
+            return RedirectToAction("Index", "Home");
+            
         }
 
         public IActionResult Menu()
@@ -221,8 +251,9 @@ namespace Planiture_Website.Controllers
 
                 //Append User signature to User Record
                 user.Signature = invest.Signature;
+                user.FirstAccessed = false;
                 await _userManager.UpdateAsync(user);
-                _logger.LogInformation("User signature appended");
+                _logger.LogInformation("User signature appended and firstAccessed value updated");
 
                 //Append UserID to User's investment Record
                 invest.UserID = user.Id;
@@ -272,9 +303,10 @@ namespace Planiture_Website.Controllers
                 invest.Ques2.ToUpper();
 
                 //Append User signature to User Record
-                user.Signature = invest.Signature;
+                user.Signature = invest.Signature; 
+                user.FirstAccessed = false;
                 await _userManager.UpdateAsync(user);
-                _logger.LogInformation("User signature appended");
+                _logger.LogInformation("User signature appended and firstAccessed value updated");
 
                 //Append UserID to User's investment Record
                 invest.UserID = user.Id;
@@ -319,9 +351,10 @@ namespace Planiture_Website.Controllers
                 var user = await _userManager.GetUserAsync(User);
 
                 //Append User signature to User Record
-                user.Signature = invest.Signature;
+                user.Signature = invest.Signature; 
+                user.FirstAccessed = false;
                 await _userManager.UpdateAsync(user);
-                _logger.LogInformation("User signature appended");
+                _logger.LogInformation("User signature appended and firstAccessed value updated");
 
                 //Append UserID to User's investment Record
                 invest.UserID = user.Id;
@@ -347,6 +380,12 @@ namespace Planiture_Website.Controllers
                 return RedirectToAction("StocksProfile", "Profile");
             }
 
+            return View();
+        }
+
+        //If the User Account is successfully added the following notification page will be displayed
+        public IActionResult AccountConfirmed()
+        {
             return View();
         }
 

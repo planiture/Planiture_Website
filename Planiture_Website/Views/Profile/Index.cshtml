@@ -1,5 +1,5 @@
-﻿@model Planiture_Website.Models.ApplicationUser
-
+﻿@using  Planiture_Website.Models
+@model Planiture_Website.Models.ApplicationUser
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,37 +10,24 @@
     <section id="profile-background">
         <div class="profile-menu" id="profile">
             <div class="container">
-                <br />
-                <br />
-                <h1>Basic Account</h1>
-                <br />
-                <br />
                 <div class="row">
                     <div class="col-sm-4 col-md-4">
-                        <center>
-                            <div class="row">
-                                <div class="col-sm-1 col-md-1"></div>
-                                <div class="col-sm-1 col-md-10">
-                                    <center>
-                                        <div class="thumbnail-pic">
-                                            <h5>Profile Pic</h5>
-                                        </div>
-                                    </center>
-                                </div>
-                                <div class="col-sm-1 col-md-1"></div>
-                            </div>
-                        </center>
+                        <img id="profileImage" src="~/css/default-profile-picture.png" style="width:150px; height:150px; float:left; border-radius:50%;
+                      margin-right: 25px;" />
                     </div>
-                    <div class="col-sm-4 col-md-4"></div>
-                    <div class="col-sm-4 col-md-4">
-                        <div class="thumbnail-invest">
-                            <h5>Investment Account</h5>
-                        </div>
+                    <div class="col-sm-8 col-md-8">
+                        <form method="post" enctype="multipart/form-data">
+                            <h3>@User.Identity.Name's Profile <i style="font-size:24px" class="fa fa-gear modal-open" data-modal="modal-feedback"></i></h3>
+                            <label>Update Profile Image</label>
+                            <br />
+                            <button type="button" class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Edit", "Profile", new {@Model.Id })';">Edit Profile</button>
+                        </form>
                     </div>
                 </div>
+                <hr />
                 <br />
                 <div class="row">
-                    <div class="col-sm-6 col-md-6">
+                    <div class="col-sm-7 col-md-7">
                         <div class="personal-info">
                             <dl class="row">
                                 <dt class="col-sm-5">
@@ -74,33 +61,76 @@
                                     @Html.DisplayFor(model => model.PhoneNumber)
                                 </dd>
                             </dl>
-                            <center><a href="#">(view personal info.)</a></center>
+                            <center><a asp-controller="Profile" asp-action="PersonalInfo">(view personal information)</a></center>
                         </div>
                     </div>
-                    <div class="col-sm-2 col-md-2"></div>
+                    <div class="col-sm-1 col-md-1"></div>
                     <div class="col-sm-4 col-md-4">
                         <div class="thumbnail-transaction" style="text-align: center; font-weight: 500;">
-                            <h5 style="font-size: 25px">Transactions</h5>
-                            <br />
-                            <a style="font-size: 20px" href="#">Deposit</a>
+                            <a style="font-size: 20px" href="#">Withdraw/Deposit</a>
                             <br />
                             <br />
-                            <a style="font-size: 20px" href="#">Withdraw</a>
+                            <a style="font-size: 20px" href="#">Signal Plans</a>
                             <br />
                             <br />
-                            <p style="font-weight: 500;">
+
+                            <a style="font-size: 20px" href="#">
                                 Live Chat<br />
                                 (12pm - 6pm)
-                            </p>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <div class="thumbnail-invest">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-6">
+                                    <center>
+                                        <h5>Recent Transaction</h5>
+                                        <br />
+                                        <p>>>>Transaction Here<<<</p>
+                                        <br />
+                                        <a asp-controller="Profile" asp-action="Transactions">(view transactions)</a>
+                                    </center>
+                                </div>
+                                <div class="col-sm-6 col-md-6">
+                                    <center>
+                                        <h5>Available Balance</h5>
+                                        <br />
+                                        <p>>>>Balance Here<<<</p>
+                                        <br />
+                                        <a asp-controller="Profile" asp-action="">(view Accounts)</a>
+                                    </center>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <section class="modal feedback-modal" id="modal-feedback">
+        <div class="feedbackmodal-content kingz">
+            <div class="container">
+                <div class="modal-header">
+                    <h4>Settings</h4>
+                </div>
+                <center>
+                    <div class="nav-fill">
+                        <a class="nav-link" asp-controller="Profile" asp-action="">Change Password</a>
+                        <a class="nav-link" asp-area="Identity" asp-page="/Account/Logout" 
+                           asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })"
+                           role="button">Log Out</a>
+                        <a class="nav-link modal-close" href="#">Cancel</a>
+                    </div>
+                </center>
+            </div>
+        </div>
+    </section>
 </asp:Content>
-
-
 
 <style>
     .profile-background {
@@ -123,50 +153,111 @@
         align-items: center;
     }
 
-    .profile-menu h1 {
-        font-size: 40px;
-        font-weight: 200;
-        margin-bottom: 10px;
-        color: darkgoldenrod;
-        text-transform: uppercase;
-        text-align: right;
-    }
-
-    .profile-menu p {
-        position: relative;
-        font-size: 18px;
-        font-weight: 300;
-        margin-bottom: 20px;
-        letter-spacing: 1px;
-    }
-
-    dl{
+    dl {
         font-size: 16px;
         text-align: left;
     }
 
-    .thumbnail-pic {
-        border-radius: 4px;
+    .personal-info {
+        border-radius: 25px;
         padding: 50px;
-        border: 2px solid black;
-    }
-
-    .thumbnail-invest {
-        border-radius: 4px;
-        padding: 50px;
-        border: 2px solid black;
-        background-color: white;
+        border: 2px solid white;
+        background-color: whitesmoke;
     }
 
     .thumbnail-transaction {
-        border-radius: 4px;
+        border-radius: 25px;
         padding: 50px;
-        border: 2px solid black;
+        border: 2px solid white;
+        background-color: whitesmoke;
     }
 
-    .personal-info {
+    .thumbnail-invest {
+        border-radius: 25px;
         padding: 50px;
-        border: 2px solid black;
-        background-color: white;
+        border: 2px solid white;
+        background-color: whitesmoke;
+    }
+
+    /* Settings css
+    -------------------------------------------------- */
+    .fa-gear {
+        background-color: transparent;
+        border: none;
+        color: dimgrey;
+        padding: 12px 16px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    .fa-gear:hover{
+        color: black;
+    }
+    .feedback-modal {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.7);
+        opacity: 0.9;
+        position: absolute;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: none;
+    }
+    .feedbackmodal-content {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+        display: flex;
+        background-color: black;
+    }
+    .feedbackmodal-content a.nav-link {
+        color: white;
+        padding: 15px;
+        font-weight: 400;
+    }
+    .feedbackmodal-content a.nav-link:hover {
+        color: black;
+        background-color: darkgoldenrod;
+        font-weight: 500;
+    }
+    .modal-header {
+        display: block;
+        position: relative;
+        margin: 40px 0;
+    }
+    .modal-header h4 {
+        font: bold 30px Sans-Serif;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: darkgoldenrod;
+        padding: 5px 10px;
+        margin: 0 0 10px 0;
+        line-height: 24px;
     }
 </style>
+
+<script>
+    //displays a form on screen when the deposit form button is clicked
+
+    var modalBtns = document.querySelectorAll(".modal-open");
+
+    modalBtns.forEach(function (btn) {
+        btn.onclick = function () {
+            var modal = btn.getAttribute("data-modal");
+
+            document.getElementById(modal).style.display = "flex";
+        }
+    });
+
+
+    //close the form after it has been opened
+
+    var closeBtns = document.querySelectorAll('.modal-close');
+
+    closeBtns.forEach(function (btn) {
+        btn.onclick = function () {
+            var modal = btn.closest(".modal").style.display = "none";
+        }
+    });
+</script>

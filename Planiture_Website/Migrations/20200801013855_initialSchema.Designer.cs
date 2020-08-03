@@ -10,14 +10,14 @@ using Planiture_Website.Models;
 namespace Planiture_Website.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200722042457_initialSchema")]
+    [Migration("20200801013855_initialSchema")]
     partial class initialSchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.5")
+                .HasAnnotation("ProductVersion", "3.1.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -221,6 +221,9 @@ namespace Planiture_Website.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("FirstAccessed")
+                        .HasColumnType("bit");
+
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
@@ -281,6 +284,9 @@ namespace Planiture_Website.Migrations
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
+
+                    b.Property<string>("avatar")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

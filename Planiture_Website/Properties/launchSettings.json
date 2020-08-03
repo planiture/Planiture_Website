@@ -22,8 +22,7 @@
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
-        "SENDEMAILDEMO_ENVIRONMENT_SENDGRID_KEY": "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",
-        "Key": "Value",
+        "SendGridKey": "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",
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"
       },

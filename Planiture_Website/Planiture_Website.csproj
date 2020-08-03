@@ -8,27 +8,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20200708214632_initialSchema.cs" />
-    <Compile Remove="Migrations\20200708214632_initialSchema.Designer.cs" />
-    <Compile Remove="Migrations\20200708220003_initialSchema.cs" />
-    <Compile Remove="Migrations\20200708220003_initialSchema.Designer.cs" />
-    <Compile Remove="Migrations\20200708221254_initialSchema.cs" />
-    <Compile Remove="Migrations\20200708221254_initialSchema.Designer.cs" />
-    <Compile Remove="Migrations\20200713015100_initalSchema.cs" />
-    <Compile Remove="Migrations\20200713015100_initalSchema.Designer.cs" />
-    <Compile Remove="Migrations\20200721234928_initialSchema.cs" />
-    <Compile Remove="Migrations\20200721234928_initialSchema.Designer.cs" />
-    <Compile Remove="Migrations\20200722022851_initialSchema.cs" />
-    <Compile Remove="Migrations\20200722022851_initialSchema.Designer.cs" />
-    <Compile Remove="Migrations\20200722025237_update.cs" />
-    <Compile Remove="Migrations\20200722025237_update.Designer.cs" />
+    <Compile Remove="Migrations\20200731182112_initialSchema.cs" />
+    <Compile Remove="Migrations\20200731182112_initialSchema.Designer.cs" />
+    <Compile Remove="Migrations\20200731230948_initialSchema.cs" />
+    <Compile Remove="Migrations\20200731230948_initialSchema.Designer.cs" />
+    <Compile Remove="Migrations\20200801013300_initialSchema.cs" />
+    <Compile Remove="Migrations\20200801013300_initialSchema.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="bootstrap" Version="4.5.0" />
+    <PackageReference Include="DataAnnotationsExtensions" Version="5.0.1.27" />
     <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.6" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.6" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.6" />

@@ -18,6 +18,7 @@ namespace Planiture_Website.Models
         public DbSet<Account_Info> UserAccount { get; set; }
         public DbSet<CusTransaction> UserTransaction { get; set; }
         public DbSet<Feedback> UserFeedback { get; set; }
+        public DbSet<ApplicationUser> UserInfo { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

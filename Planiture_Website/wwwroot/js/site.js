@@ -3,7 +3,7 @@
 
 // Write your JavaScript code.
 
-//KINGZWILL ADDED THE FOLLOWING
+//KINGZWILL ADDED THE FOLLOWING -- for navigation bar
 window.addEventListener("scroll", function () {
     var header = document.querySelector("header");
     header.classList.toggle("sticky", window.scrollY > 0);

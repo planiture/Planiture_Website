@@ -1,0 +1,23 @@
+﻿@page
+@model List<Planiture_Website.Models.Account_Info>
+@{
+    ViewData["Title"] = "Transaction";
+}
+
+<h4>@ViewData["Title"]</h4>
+
+<table>
+    <tr>
+        <th>AccountName</th>
+        <th>AccountNumber</th>
+        <th>AccountType</th>
+    </tr>
+    @foreach (var account in Model)
+    {
+        <tr>
+            <td>@account.AccountName</td>
+            <td>@account.AccountNumber</td>
+            <td>@account.AccountType</td>
+        </tr>
+    }
+</table>

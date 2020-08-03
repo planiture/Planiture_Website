@@ -17,25 +17,26 @@ namespace Planiture_Website.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
+        [Display(Name = "Form Type")]
         public string FormType { get; set; }
 
-        [Display(Name = "Ques1")]
+        [Display(Name = "Question 1")]
         public string Ques1 { get; set; }
 
 
-        [Display(Name = "Ques2")]
+        [Display(Name = "Question 2")]
         public string Ques2 { get; set; }
 
-        [Display(Name = "Ques3")]
+        [Display(Name = "Question 3")]
         public string Ques3 { get; set; }
 
-        [Display(Name = "Ques4")]
+        [Display(Name = "Question 4")]
         public string Ques4 { get; set; }
 
-        [Display(Name = "Ques5")]
+        [Display(Name = "Question 5")]
         public string Ques5 { get; set; }
 
-        [Display(Name = "Ques6")]
+        [Display(Name = "Question 6")]
         public string Ques6 { get; set; }
 
         //Customer Information
@@ -73,6 +74,7 @@ namespace Planiture_Website.Models
         public string BenAddress { get; set; }
 
         //User Foreign Key
+        [Display(Name = "Address")]
         public int UserID { get; set; }
         public ApplicationUser User { get; set; }
 

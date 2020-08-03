@@ -35,7 +35,7 @@ namespace Planiture_Website
 
             services.AddMvc(option => option.EnableEndpointRouting = false); //ADDED BY KINGZWILL
 
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContextPool<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("AuthDbContextConnection")));
 
@@ -72,13 +72,13 @@ namespace Planiture_Website
 
             //Just added -- this requires the user to be logged in before being able to view the site
 
-           /*services.AddMvc(options =>
-            {
-                var policy = new AuthorizationPolicyBuilder()
-                                 .RequireAuthenticatedUser()
-                                 .Build();
-                options.Filters.Add(new AuthorizeFilter(policy));
-            }).AddXmlSerializerFormatters();*/
+            /*services.AddMvc(options =>
+             {
+                 var policy = new AuthorizationPolicyBuilder()
+                                  .RequireAuthenticatedUser()
+                                  .Build();
+                 options.Filters.Add(new AuthorizeFilter(policy));
+             }).AddXmlSerializerFormatters();*/
 
             services.AddControllersWithViews();
             services.AddRazorPages();

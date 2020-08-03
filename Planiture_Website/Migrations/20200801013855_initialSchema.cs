@@ -42,6 +42,7 @@ namespace Planiture_Website.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
+                    avatar = table.Column<string>(nullable: true),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     DOB = table.Column<DateTime>(nullable: false),
@@ -51,6 +52,7 @@ namespace Planiture_Website.Migrations
                     Address = table.Column<string>(nullable: true),
                     Residency = table.Column<string>(nullable: true),
                     Signature = table.Column<string>(nullable: true),
+                    FirstAccessed = table.Column<bool>(nullable: false),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true)
                 },
                 constraints: table =>

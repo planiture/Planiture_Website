@@ -17,42 +17,27 @@ namespace Planiture_Website.Models
 
         [PersonalData]
        // [Required]
-        [Display(Name = "TransactionAmount")]
+        [Display(Name = "Transaction Amount")]
         public float TransactionAmount { get; set; }
 
         [PersonalData]
        // [Required]
-        [Display(Name = "TransactionType")]
+        [Display(Name = "Transaction Type")]
         public string TransactionType { get; set; }
 
         [PersonalData]
        // [Required]
-        [Display(Name = "Trans_AccountNumber")]
+        [Display(Name = "Account Number")]
         public string Trans_AccountNumber { get; set; }
 
         [PersonalData]
         //[Required]
-        [Display(Name = "Trans_OtherAccount")]
+        [Display(Name = "Other Account")]
         public string Trans_OtherAccount { get; set; }
 
         [PersonalData]
         //[Required]
-        [Display(Name = "Trans_CustomerID")]
-        public string Trans_CustomerID { get; set; }
-
-        [PersonalData]
-       // [Required]
-        [Display(Name = "Trans_EmployeeID")]
-        public string Trans_EmployeeID { get; set; }
-
-        [PersonalData]
-        //[Required]
-        [Display(Name = "ApprovedBy")]
-        public string ApprovedBy { get; set; }
-
-        [PersonalData]
-        //[Required]
-        [Display(Name = "Trans_TransactionStatus")]
+        [Display(Name = "Transaction Status")]
         public string Trans_TransactionStatus { get; set; }
 
         //User Foreign Key
