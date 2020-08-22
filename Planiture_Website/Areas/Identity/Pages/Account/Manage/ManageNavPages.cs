@@ -29,6 +29,8 @@ namespace Planiture_Website.Areas.Identity.Pages.Account.Manage
         public static string Dashboard => "Dashboard";
         public static string Accounts => "Accounts";
         public static string Transactions => "Transactions";
+        public static string ConfigureChat => "Set Up Live Chat";
+        public static string AgentLogin => "AgentLogin";
 
         public static string IndexNavClass(ViewContext viewContext) => PageNavClass(viewContext, Index);
 
@@ -51,6 +53,8 @@ namespace Planiture_Website.Areas.Identity.Pages.Account.Manage
         public static string DashboardNavClass(ViewContext viewContext) => PageNavClass(viewContext, Dashboard);
         public static string AccountsNavClass(ViewContext viewContext) => PageNavClass(viewContext, Accounts);
         public static string TransactionsNavClass(ViewContext viewContext) => PageNavClass(viewContext, Transactions);
+        public static string ConfigureChatNavClass(ViewContext viewContext) => PageNavClass(viewContext, ConfigureChat);
+        public static string AgentLoginNavClass(ViewContext viewContext) => PageNavClass(viewContext, AgentLogin);
 
         private static string PageNavClass(ViewContext viewContext, string page)
         {

@@ -43,6 +43,14 @@
         </div>
         <a href="#">Employees</a>
     </div>
+    <button class="dropdown-btn">
+        LiveChat
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+        <a class="nav-link @ManageNavPages.ConfigureChatNavClass(ViewContext)" id="personal-data" asp-page="./Live Chat/ConfigureChat">Configure Chat</a>
+        <a class="nav-link @ManageNavPages.AgentLoginNavClass(ViewContext)" id="personal-data" asp-page="./Live Chat/AgentLogin">Agent Login</a>
+    </div>
 </div>
 
 

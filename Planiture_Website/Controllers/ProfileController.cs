@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Dynamic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
@@ -20,64 +23,88 @@ namespace Planiture_Website.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<ProfileController> _logger;
         private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _HostEnvironment;
 
         public ProfileController(UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<ProfileController> logger,
-            ApplicationDbContext context)
+            ApplicationDbContext context,
+            IWebHostEnvironment hostEnvironment)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _context = context;
+            _HostEnvironment = hostEnvironment;
         }
 
-        public List<CusTransaction> getTransactions()
+        public SetPasswordClass SetNewPassword { get; set; }
+        public Account_Info Account { get; set; }
+        public CusTransaction Transaction { get; set; }
+
+
+        public List<CusTransaction> GetTransaction()
         {
-            List<CusTransaction> list_transactions = _context.UserTransaction.ToList();
-            return list_transactions;
+            var userid = _userManager.GetUserId(HttpContext.User);
+
+            var translist = from trans in _context.UserTransaction
+                       where trans.UserID == Convert.ToInt32(userid)
+                       select trans;
+            return translist.ToList();
+        }
+
+        public List<Account_Info> GetAccount()
+        {
+            var userid = _userManager.GetUserId(HttpContext.User);
+
+            var acclist = from acc in _context.UserAccount
+                            where acc.UserID == Convert.ToInt32(userid)
+                            select acc;
+
+            return acclist.ToList();
+        }
+        
+        public List<ApplicationUser> GetUser()
+        {
+            var userid = _userManager.GetUserId(HttpContext.User);
+
+            
+            var list = from user in  _context.Users.ToList()
+                       where user.Id == Convert.ToInt32(userid)
+                       select user;
+
+            return list.ToList();
         }
 
         //check which user profile to load
         /*public async Task<IActionResult> CheckProfile()
         {
             var user = await _userManager.GetUserAsync(User);
-            var account = new Account_Info();
 
-            if(account.UserID == user.Id)
+            var account = _context.UserAccount.Where(a => a.UserID == user.Id);
+            foreach(Account_Info acc in account)
             {
-                if(account.AccountType == "Basic Account")
+                if(acc.AccountType == "Basic Account")
                 {
                     return RedirectToAction("Index", "Profile");
                 }
-                if(account.AccountType == "Advanced Account")
+                if(acc.AccountType == "Advanced Account")
                 {
                     return RedirectToAction("AdvancedProfile", "Profile");
                 }
-                if(account.AccountType == "Stocks Account")
+                if(acc.AccountType == "Stocks Account")
                 {
                     return RedirectToAction("StocksProfile", "Profile");
                 }
-                if(account.AccountType == "Golden20 Account")
-                {
-                    return RedirectToAction("Golden20Profile", "Profile");
-                }
-            }
-            else
-            {
-                if(account.AccountType =="Basic Account")
-                {
-                    return RedirectToAction("Index", "Profile");
-                }
-
-                _logger.LogInformation("ID's do not match");
-                return RedirectToAction("Index", "Home");
             }
 
-            return View();
+            _logger.LogInformation("ID's do not match");
+            return RedirectToAction("Index", "Home");
         }*/
 
+
         //basic account user profile
+        [HttpGet]
         public IActionResult Index()
         {
             var userid = _userManager.GetUserId(HttpContext.User);
@@ -88,7 +115,13 @@ namespace Planiture_Website.Controllers
             else
             {
                 ApplicationUser user = _userManager.FindByIdAsync(userid).Result;
-                return View(user);
+
+                dynamic dy = new ExpandoObject();
+                dy.transactionList = GetTransaction();
+                dy.accountList = GetAccount();
+                dy.userlist = GetUser();
+                //return View(user);
+                return View(dy);
             }
             
         }
@@ -107,7 +140,6 @@ namespace Planiture_Website.Controllers
             }
         }
 
-
         //Edit userprofile
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
@@ -123,27 +155,19 @@ namespace Planiture_Website.Controllers
             var model = new EditUser
             {
                 Id = user.Id,
+                FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
                 Occupation = user.Occupation,
                 UserName = user.UserName,
                 Gender = user.Gender,
                 DOB = user.DOB,
+                Signature = user.Signature,
                 Address = user.Address,
                 Residency = user.Residency
             };
             return View(model);
             
-            /*ApplicationUser userlist = _context.UserInfo.Find(id);
-            
-            return View(userlist);*/
-
-            /*var userid = _userManager.GetUserId(HttpContext.User);
-
-            List<ApplicationUser> users = _context.UserInfo.ToList();
-            int tempID = Convert.ToInt32(userid);
-
-            return View(users.Find(p => p.Id == tempID));*/
         }
 
         [HttpPost]
@@ -182,13 +206,102 @@ namespace Planiture_Website.Controllers
         }
 
         [HttpGet]
-        public IActionResult ChangePassword()
+        public async Task<IActionResult> SetPasword()
         {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
+
+            var hasPassword = await _userManager.HasPasswordAsync(user);
+
+            if (hasPassword)
+            {
+                return RedirectToPage("./ChangePassword");
+            }
+
             return View();
         }
 
-        public IActionResult Transactions()
+        [HttpPost]
+        public async Task<IActionResult> SetPassword()
         {
+            if(!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
+
+
+            var addPasswordResult = await _userManager.AddPasswordAsync(user, SetNewPassword.NewPassword);
+            if(!addPasswordResult.Succeeded)
+            {
+                foreach(var error in addPasswordResult.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+                return View();
+            }
+
+            await _signInManager.RefreshSignInAsync(user);
+
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ChangePassword()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            
+            if(user == null)
+            {
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
+
+            var hasPassword = await _userManager.HasPasswordAsync(user);
+            if(!hasPassword)
+            {
+                return RedirectToAction("SetPassword");
+            }
+
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(ChangePasswordClass change)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
+            var changePasswordResult = await _userManager.ChangePasswordAsync(user, change.OldPassword, change.NewPassword);
+            if (!changePasswordResult.Succeeded)
+            {
+                foreach (var error in changePasswordResult.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+                return View();
+            }
+            return View();
+        }
+
+        public async Task<IActionResult> Transactions()
+        {
+            var user = await _userManager.GetUserAsync(User);
             var userid = _userManager.GetUserId(HttpContext.User);
             if (userid == null)
             {
@@ -197,36 +310,64 @@ namespace Planiture_Website.Controllers
             else
             {
                 dynamic dy = new ExpandoObject();
-                dy.transactionlist = getTransactions();
+                dy.Transactionlist = GetTransaction();
+
                 return View(dy);
             }
-            
         }
 
-        public ActionResult GetAll()
+        public async Task<IActionResult> Accounts()
         {
-            //database coonection string
-            string connectString = connectString = "Data Source=MSI;Initial Catalog=Planiture_Records;Integrated Security=True";
-            
-            string sql = "select * from UserAccount";
-            SqlConnection connect = new SqlConnection(connectString);
-            SqlCommand cmd = new SqlCommand(sql, connect);
-
-            var model = new List<Account_Info>();
-            using (connect)
+            var user = await _userManager.GetUserAsync(User);
+            var userid = _userManager.GetUserId(HttpContext.User);
+            if (userid == null)
             {
-                connect.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-                while(reader.Read())
-                {
-                    var account = new Account_Info();
-                    account.AccountName = (string)reader["AccountName"];
-
-                    model.Add(account);
-                }
+                return RedirectToAction("Index", "Home");
             }
-            return View(model);
+            else
+            {
+                dynamic dy = new ExpandoObject();
+                dy.Accountlist = GetAccount();
+
+                return View(dy);
+            }
         }
 
+        [HttpGet]
+        public IActionResult DepositWithdrawal()
+        {
+            //Check if this is a Deposit or Withdrawal
+
+            //verify user information
+
+            //verify user account information
+
+            //Store Transaction to database
+
+            //Email a copy of the Transaction 
+
+            return View();
+        }
+
+        public IActionResult DepositConfirmed()
+        {
+            return View();
+        }
+
+        public IActionResult WithdrawalConfirmed()
+        {
+            return View();
+        }
+
+        public IActionResult SignalPlans()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Idk()
+        {
+            var transactionlist = await _context.UserAccount.ToListAsync();
+            return View(transactionlist);
+        }
     }
 }

@@ -14,8 +14,6 @@ namespace Planiture_Website.Models
 {
     public class ApplicationUser : IdentityUser<int>
     {
-        //Info for Customer_Info table
-        public string avatar { get; set; }
         [Display(Name ="First Name")]
         public string FirstName { get; set; }
         [Display(Name = "Last Name")]
@@ -24,6 +22,7 @@ namespace Planiture_Website.Models
         
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         [Display(Name = "Date of Birth")]
+        [DataType(DataType.Date)]
         public DateTime DOB { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]

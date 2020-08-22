@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Planiture_Website.Migrations
 {
-    public partial class initialSchema : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -42,7 +42,6 @@ namespace Planiture_Website.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    avatar = table.Column<string>(nullable: true),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     DOB = table.Column<DateTime>(nullable: false),
@@ -58,6 +57,35 @@ namespace Planiture_Website.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ChangePasswordClass",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OldPassword = table.Column<string>(nullable: false),
+                    NewPassword = table.Column<string>(maxLength: 100, nullable: false),
+                    ConfirmPassword = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ChangePasswordClass", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SetPasswordClass",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NewPassword = table.Column<string>(maxLength: 100, nullable: false),
+                    ConfirmPassword = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SetPasswordClass", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -188,6 +216,7 @@ namespace Planiture_Website.Migrations
                 {
                     AccountNumber = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Capacity = table.Column<int>(nullable: false),
                     AccountName = table.Column<string>(nullable: true),
                     AccountType = table.Column<string>(nullable: true),
                     AvailableBalance = table.Column<float>(nullable: false),
@@ -251,11 +280,8 @@ namespace Planiture_Website.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TransactionAmount = table.Column<float>(nullable: false),
                     TransactionType = table.Column<string>(nullable: true),
-                    Trans_AccountNumber = table.Column<string>(nullable: true),
+                    Trans_AccountNumber = table.Column<int>(nullable: false),
                     Trans_OtherAccount = table.Column<string>(nullable: true),
-                    Trans_CustomerID = table.Column<string>(nullable: true),
-                    Trans_EmployeeID = table.Column<string>(nullable: true),
-                    ApprovedBy = table.Column<string>(nullable: true),
                     Trans_TransactionStatus = table.Column<string>(nullable: true),
                     UserID = table.Column<int>(nullable: false),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: true)
@@ -313,7 +339,8 @@ namespace Planiture_Website.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_UserAccount_UserID",
                 table: "UserAccount",
-                column: "UserID");
+                column: "UserID",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserInvestment_UserID",
@@ -342,6 +369,12 @@ namespace Planiture_Website.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "ChangePasswordClass");
+
+            migrationBuilder.DropTable(
+                name: "SetPasswordClass");
 
             migrationBuilder.DropTable(
                 name: "UserAccount");

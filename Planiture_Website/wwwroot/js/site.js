@@ -36,7 +36,23 @@ Array.prototype.forEach.call(document.querySelectorAll('.upload-btn'), function 
     });
 })
 
-//displays a form on screen when the deposit form button is clicked
+//THe following is for uploading profile photo
+Array.prototype.forEach.call(document.querySelectorAll('.upload-link'), function (a) {
+    const hiddenInput = a.parentElement.querySelector('.photo-input');
+
+    //this triggers the file selecting browser function
+    a.addEventListener('click', function () {
+        hiddenInput.click();
+    });
+
+    hiddenInput.addEventListener('change', function () {
+        const filenameList = Array.prototype.map.call(hiddenInput.files, function (file) {
+            return file.name;
+        });
+    });
+})
+
+//displays a form on screen when the button is clicked
 
 var modalBtns = document.querySelectorAll(".modal-open");
 
@@ -78,3 +94,19 @@ for (i = 0; i < acc.length; i++) {
         }
     });
 }
+
+//Page Loader Animation
+const loader = document.querySelector('.loader');
+const main = document.querySelector('.main');
+
+function init() {
+    setTimeout(() => {
+        loader.style.opacity = 0;
+        loader.style.display = 'none';
+
+        main.style.display = 'block';
+        setTimeout(() => main.style.opacity = 1, 50);
+    }, 4000);
+}
+
+init();

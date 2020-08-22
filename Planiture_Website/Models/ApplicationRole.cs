@@ -10,4 +10,5 @@ namespace Planiture_Website.Models
     public class ApplicationRole : IdentityRole<int>
     {
     }
+
 }

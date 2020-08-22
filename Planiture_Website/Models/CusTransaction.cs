@@ -28,7 +28,7 @@ namespace Planiture_Website.Models
         [PersonalData]
        // [Required]
         [Display(Name = "Account Number")]
-        public string Trans_AccountNumber { get; set; }
+        public int Trans_AccountNumber { get; set; }
 
         [PersonalData]
         //[Required]

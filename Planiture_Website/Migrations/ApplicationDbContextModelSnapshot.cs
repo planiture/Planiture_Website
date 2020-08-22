@@ -139,6 +139,9 @@ namespace Planiture_Website.Migrations
                     b.Property<float>("AvailableBalance")
                         .HasColumnType("real");
 
+                    b.Property<int>("Capacity")
+                        .HasColumnType("int");
+
                     b.Property<float>("DepositAmount")
                         .HasColumnType("real");
 
@@ -158,7 +161,8 @@ namespace Planiture_Website.Migrations
 
                     b.HasKey("AccountNumber");
 
-                    b.HasIndex("UserID");
+                    b.HasIndex("UserID")
+                        .IsUnique();
 
                     b.ToTable("UserAccount");
                 });
@@ -283,9 +287,6 @@ namespace Planiture_Website.Migrations
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
-                    b.Property<string>("avatar")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -297,6 +298,50 @@ namespace Planiture_Website.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("Planiture_Website.Models.ChangePasswordClass", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ConfirmPassword")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NewPassword")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("OldPassword")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("ChangePasswordClass");
+                });
+
+            modelBuilder.Entity("Planiture_Website.Models.ConfigFile", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("AdminPass")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AgentPass")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ConfigFiles");
                 });
 
             modelBuilder.Entity("Planiture_Website.Models.CusTransaction", b =>
@@ -311,8 +356,8 @@ namespace Planiture_Website.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
 
-                    b.Property<string>("Trans_AccountNumber")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Trans_AccountNumber")
+                        .HasColumnType("int");
 
                     b.Property<string>("Trans_OtherAccount")
                         .HasColumnType("nvarchar(max)");
@@ -424,6 +469,26 @@ namespace Planiture_Website.Migrations
                     b.ToTable("UserInvestment");
                 });
 
+            modelBuilder.Entity("Planiture_Website.Models.SetPasswordClass", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ConfirmPassword")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NewPassword")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("ID");
+
+                    b.ToTable("SetPasswordClass");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("Planiture_Website.Models.ApplicationRole", null)
@@ -478,8 +543,8 @@ namespace Planiture_Website.Migrations
             modelBuilder.Entity("Planiture_Website.Models.Account_Info", b =>
                 {
                     b.HasOne("Planiture_Website.Models.ApplicationUser", "User")
-                        .WithMany("UserAccount")
-                        .HasForeignKey("UserID")
+                        .WithOne("UserAccount")
+                        .HasForeignKey("Planiture_Website.Models.Account_Info", "UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

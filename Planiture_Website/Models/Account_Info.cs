@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,38 +10,38 @@ using static Planiture_Website.Areas.Identity.Pages.Account.RegisterModel;
 
 namespace Planiture_Website.Models
 {
-    public class Account_Info
+    public class Account_Info : List<Account_Info>
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int AccountNumber { get; set; }
 
         [PersonalData]
-        [Display(Name = "AccountName")]
+        [Display(Name = "Account Name")]
         public string AccountName { get; set; }
 
         [PersonalData]
-        [Display(Name = "AccountType")]
+        [Display(Name = "Account Type")]
         public string AccountType { get; set; }
 
         [PersonalData]
-        [Display(Name = "AvailableBalance")]
+        [Display(Name = "Available Balance")]
         public float AvailableBalance { get; set; }
 
         [PersonalData]
-        [Display(Name = "ActualBalance")]
+        [Display(Name = "Actual Balance")]
         public float ActualBalance { get; set; }
 
         [PersonalData]
-        [Display(Name = "WithdrawalAmount")]
+        [Display(Name = "Withdrawal Amount")]
         public float WithdrawalAmount { get; set; }
 
         [PersonalData]
-        [Display(Name = "DepositAmount")]
+        [Display(Name = "Deposit Amount")]
         public float DepositAmount { get; set; }
 
         [PersonalData]
-        [Display(Name = "OtherAccount")]
+        [Display(Name = "Other Account")]
         public string OtherAccount { get; set; }
 
         //User Foreign Key
@@ -51,4 +52,5 @@ namespace Planiture_Website.Models
         public byte[] RowVersion { get; set; }
 
     }
+
 }

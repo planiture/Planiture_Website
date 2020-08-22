@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Planiture_Website.Controllers;
+using Planiture_Website.Models;
 
 namespace Planiture_Website.Models
 {
@@ -18,7 +19,7 @@ namespace Planiture_Website.Models
         public DbSet<Account_Info> UserAccount { get; set; }
         public DbSet<CusTransaction> UserTransaction { get; set; }
         public DbSet<Feedback> UserFeedback { get; set; }
-        public DbSet<ApplicationUser> UserInfo { get; set; }
+        public DbSet<ConfigFile> ConfigFiles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -29,6 +30,10 @@ namespace Planiture_Website.Models
             builder.Entity<ApplicationUser>()
                 .Property(p => p.MemberSince)
                 .HasDefaultValueSql("getdate()");
+
+            //builder.Entity<Account_Info>()
+             //   .Property(p => p.AccountNumber)
+             //   .HasDefaultValueSql("NEWID()");
             //builder.Entity<Investment_Info>()
             //    .HasOne(p => p.User)
              //   .WithMany(b => b.UserInvestments)
@@ -43,5 +48,9 @@ namespace Planiture_Website.Models
             //builder.Entity<ApplicationUser>().ToTable("Users");
 
         }
+
+        public DbSet<Planiture_Website.Models.SetPasswordClass> SetPasswordClass { get; set; }
+
+        public DbSet<Planiture_Website.Models.ChangePasswordClass> ChangePasswordClass { get; set; }
     }
 }

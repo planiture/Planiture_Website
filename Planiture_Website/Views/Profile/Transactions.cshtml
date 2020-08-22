@@ -7,14 +7,13 @@
 
 
 <asp:Content id="BodyContent" ContentPlaceHolderID="Main Content" runat="server">
-    <section id="profile-background">
+    <section class="profile-background">
         <div class="profile-menu" id="profile">
-            <div class="container">
-                <h1>@ViewData["Title"]</h1>
-                <hr />
-                <br />
-                <br />
-                <table>
+            <h1>@ViewData["Title"]</h1>
+            <br />
+            <br />
+            <table class="table">
+                <thead>
                     <tr>
                         <th>Transaction Amount($)</th>
                         <th>Transaction Type</th>
@@ -23,19 +22,33 @@
                         <th>TransactionStatus</th>
                         <th>UserID</th>
                     </tr>
-                    @foreach (CusTransaction transaction in Model.transactionlist)
-                    {
+                </thead>
+                <tbody>
+                    @foreach (CusTransaction transaction in Model.Transactionlist)
+                     {
                         <tr>
-                            <td>@transaction.TransactionAmount</td>
-                            <td>@transaction.TransactionType</td>
-                            <td>@transaction.Trans_AccountNumber</td>
-                            <td>@transaction.Trans_OtherAccount</td>
-                            <td>@transaction.Trans_TransactionStatus</td>
-                            <td>@transaction.UserID</td>
+                            <td>
+                                @Html.DisplayFor(modelItem => transaction.TransactionAmount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => transaction.TransactionType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => transaction.Trans_AccountNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => transaction.Trans_OtherAccount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => transaction.Trans_TransactionStatus)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => transaction.User.Id)
+                            </td>
                         </tr>
-                    }
-                </table>
-            </div>
+                     }
+                </tbody>
+            </table>
         </div>
     </section>
 </asp:Content>
@@ -45,36 +58,27 @@
 </div>
 
 <style>
+
     .profile-background {
         position: relative;
         width: 100%;
         min-height: 100vh;
         background-size: cover;
-        display: flex; /*changed from inline*/
+        /*display: flex;*/ /*changed from inline*/
         justify-content: center;
         align-items: center;
     }
-
     .profile-menu {
         position: relative;
-        padding: 100px;
+        /*padding: 100px;*/
         min-height: 100vh;
         background-size: cover;
-        display: flex;
+        /*display: flex;*/
         justify-content: center;
         align-items: center;
     }
 
-        .profile-menu h1 {
-            font-size: 40px;
-            font-weight: 200;
-            margin-bottom: 10px;
-            color: darkgoldenrod;
-            text-transform: uppercase;
-            text-align: right;
-        }
-
-    table {
+    /*table {
         border-collapse: collapse;
     }
 
@@ -82,5 +86,5 @@
         border: 2px solid black;
         padding: 35px;
         text-align: center;
-    }
+    }*/
 </style>

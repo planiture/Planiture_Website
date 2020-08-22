@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Planiture_Website.Models;
 
@@ -14,30 +15,30 @@ namespace Planiture_Website.Areas.Identity.Pages.Account.Manage
 {
     public class TransactionsModel : PageModel
     {
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly ILogger<TransactionsModel> _logger;
+        private readonly ApplicationDbContext _context;
 
-        public IActionResult OnGet()
+        public TransactionsModel(UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            ILogger<TransactionsModel> logger,
+            ApplicationDbContext context)
         {
-            //database coonection string
-            string connectString = connectString = "Data Source=MSI;Initial Catalog=Planiture_Records;Integrated Security=True";
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _logger = logger;
+            _context = context;
+        }
 
-            string sql = "select * from UserAccount";
-            SqlConnection connect = new SqlConnection(connectString);
-            SqlCommand cmd = new SqlCommand(sql, connect);
+        public IList<Account_Info> Accounts { get; set; }
 
-            var model = new List<Account_Info>();
-            using (connect)
-            {
-                connect.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    var account = new Account_Info();
-                    account.AccountName = (string)reader["AccountName"];
-
-                    model.Add(account);
-                }
-            }
-            return Page();
+        public async Task OnGet()
+        {
+            Accounts = await _context.UserAccount
+                .Include(c => c.User)
+                .AsNoTracking()
+                .ToListAsync();
         }
 
     }

@@ -1,7 +1,7 @@
 ﻿@model Planiture_Website.Models.ApplicationUser
 
 @{
-    ViewData["Title"] = "Personal Info";
+    ViewData["Title"] = "Personal Information";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -10,7 +10,7 @@
     <section id="profile-background">
         <div class="profile-menu" id="profile">
             <div class="container">
-                <h4>User Information</h4>
+                <h4>@ViewData["Title"]</h4>
                 <hr />
                 <dl class="row">
                     <dt class="col-sm-2">

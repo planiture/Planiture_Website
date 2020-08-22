@@ -79,273 +79,41 @@ body {
 }
 
 
-
-/* UPLOAD/SIGN DOCUMENTS Page
--------------------------------------------------- */
-
-.upload-background{
-    /*position: relative;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(800px,5fr));
-    grid-gap: 30px;
-    max-width: 150%;
-    margin-top: 40px;
-    background-image: url(securityimage.jpg);*/
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    background-image: url();
-    /*background-color: darkgrey;*/
-    background-size: cover;
-    display: flex; /*changed from inline*/
-    justify-content: center;
-    align-items: center;
+/*Loader*/
+.loader {
+    border: 16px solid gold;
+    border-radius: 50%;
+    border-top: 16px solid black;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
 }
 
-.upload-menu {
-    position: relative;
-    padding: 100px;
-    min-height: 100vh;
-    background-image: url();
-    background-color: whitesmoke;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-}
-
-.upload-menu h1 {
-    font-size: 40px;
-    font-weight: 200;
-    margin-bottom: 10px;
-    color: darkgoldenrod;
-    text-transform: uppercase;
-    text-align: center;
-}
-
-
-.upload-file{
-    display: inline-flex;
-    align-items: center;
-    font-size: 15px;
-
-}
-
-.file-input{
+.main {
+    width: 90%;
+    opacity: 0;
     display: none;
+    transition: opacity 1s ease-in;
 }
 
-.upload-btn {
-    -webkit-appearance: none;
-    background: darkgoldenrod;
-    border: 2px solid black;
-    border-radius: 4px;
-    outline: none;
-    padding: 0.5em 0.8em;
-    margin-right: 15px;
-    color: black;
-    font-size: 1em;
-    font-family: sans-serif;
-    font-weight: bold;
-    cursor: pointer;
-    align-content: center;
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
 }
 
-.upload-btn:hover{
-    background: gold;
-}
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
 
-.upload-btn:active{
-    background: goldenrod;
-    color: black;
-}
-
-.upload-label{
-    max-width: 250px;
-    font-size: 0.95em;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-
-/* UPLOAD/SIGN DOCUMENTS Page - Display Forms Buttons
--------------------------------------------------- */
-
-.deposit-btn {
-    -webkit-appearance: none;
-    background: darkgoldenrod;
-    border: 2px solid black;
-    border-radius: 4px;
-    outline: none;
-    padding: 0.5em 0.8em;
-    margin-right: 15px;
-    color: black;
-    font-size: 1em;
-    font-family: sans-serif;
-    font-weight: bold;
-    cursor: pointer;
-    align-content: center;
-}
-
-.deposit-btn:hover {
-    background: gold;
-}
-
-.deposit-btn:active{
-    background: goldenrod;
-    color: black;
-}
-
-.withdrawal-btn {
-    -webkit-appearance: none;
-    background: darkgoldenrod;
-    border: 2px solid black;
-    border-radius: 4px;
-    outline: none;
-    padding: 0.5em 0.8em;
-    margin-right: 15px;
-    color: black;
-    font-size: 1em;
-    font-family: sans-serif;
-    font-weight: bold;
-    cursor: pointer;
-    align-content: center;
-}
-
-.withdrawal-btn:hover {
-    background: gold;
-}
-
-.withdrawal-btn:active {
-    background: goldenrod;
-    color: black;
-}
-
-.payment-btn {
-    -webkit-appearance: none;
-    background: darkgoldenrod;
-    border: 2px solid black;
-    border-radius: 4px;
-    outline: none;
-    padding: 0.5em 0.8em;
-    margin-right: 15px;
-    color: black;
-    font-size: 1em;
-    font-family: sans-serif;
-    font-weight: bold;
-    cursor: pointer;
-    align-content: center;
-}
-
-.payment-btn:hover {
-    background: gold;
-}
-
-.payment-btn:active {
-    background: goldenrod;
-    color: black;
-}
-
-
-/* UPLOAD/SIGN DOCUMENTS Page - ALL FORMS
--------------------------------------------------- */
-.upload-menu .modal {
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.7);
-    opacity: 0.9;
-    position: absolute;
-    top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    display: none;
-}
-
-.upload-menu .modal-content {
-    width: 800px;
-    height: 700px;
-    background-color: white;
-    border-radius: 4px;
-    text-align: center;
-    padding: 20px;
-    position: relative
-}
-
-/*trying something*/
-.csstransforms .col-md-3 {
-    border-left: 34px solid #369;
-    padding-left: 10px;
-}
-
-.csstransforms .col-md-3 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    /* Border is the new background */
-    background: none;
-    /* Rotate from top left corner (not default) */
-    transform-origin: 0 0;
-    transform: rotate(180deg);
-}
-
-.col-md-3 h2 {
-    font: bold 30px Sans-Serif;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    background: #369;
-    color: #fff;
-    padding: 5px 10px;
-    margin: 0 0 10px 0;
-    line-height: 24px;
-    transform: rotate(90deg);
-
-}
-
-.col-md-3 {
-    display: block;
-    position: relative;
-    margin: 40px 0;
-}
-
-
-.kingz {
-    border-radius: 5px;
-    background-color: darkgoldenrod;
-    padding: 20px;
-}
-
-
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-.col-25 {
-    float: left;
-    width: 25%;
-    margin-top: 6px;
-}
-
-.col-75 {
-    float: left;
-    width: 75%;
-    margin-top: 6px;
-}
-
-label {
-    padding: 12px 12px 12px 0;
-    display: inline-block;
-}
-
-
-.close{
-    position: absolute;
-    top: 0;
-    right: 14px;
-    font-size: 42px;
-    transform: rotate(45deg);
-    cursor: pointer; 
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
