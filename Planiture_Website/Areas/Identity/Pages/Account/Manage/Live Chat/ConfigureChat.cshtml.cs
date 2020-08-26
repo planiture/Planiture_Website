@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -37,6 +38,7 @@ namespace Planiture_Website.Areas.Identity.Pages.Account.Manage.Live_Chat
             public string AdminPass { get; set; }
             [DataType(DataType.EmailAddress)]
             public string Email { get; set; }
+            public string login_pass {get; set;}
         }
 
         public IActionResult OnGet()
@@ -71,5 +73,6 @@ namespace Planiture_Website.Areas.Identity.Pages.Account.Manage.Live_Chat
             }
             return Page();
         }
+
     }
 }

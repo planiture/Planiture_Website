@@ -152,7 +152,7 @@ namespace Planiture_Website.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> CheckOut()
+        public IActionResult CheckOut()
         {
             if(ModelState.IsValid)
             {

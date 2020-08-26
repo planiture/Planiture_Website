@@ -16,6 +16,7 @@ using Planiture_Website.Models;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Planiture_Website.Hubs;
 
 namespace Planiture_Website
 {
@@ -34,6 +35,8 @@ namespace Planiture_Website
             services.AddMvc(); //ADDED BY KINGZWILL
 
             services.AddMvc(option => option.EnableEndpointRouting = false); //ADDED BY KINGZWILL
+
+            services.AddSignalR();
 
             services.AddDbContextPool<ApplicationDbContext>(options =>
                 options.UseSqlServer(
@@ -110,12 +113,14 @@ namespace Planiture_Website
             app.UseCookiePolicy(); //KINGZWILL
            app.UseMvc(); //KINGZWILL
 
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+                endpoints.MapHub<ChatHub>("/chathub");
             });
         }
     }
