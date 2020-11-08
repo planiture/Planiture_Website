@@ -1,0 +1,159 @@
+﻿
+@{
+    ViewData["Title"] = "EarnLearn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<asp:Content id="BodyContent" ContentPlaceHolderID="Main Content" runat="server">
+    <section id="traders-background">
+        <!--added image-->
+        <div class="traders-menu" id="traders">
+            <div class="container">
+                <br />
+                <br />
+                <div class="row">
+                    <div class="col-sm-6 col-md-6">
+                        <h3>EARN & LEARN - BASIC FOREX</h3>
+                        <br />
+                        <div class="row">
+                            <br />
+                            <div class="col-sm-4 col-md-4">
+                                <img src="~/css/IMAcademy.png" alt="IM_Academy_Earn_&_Learn" width="140" height="150" />
+                            </div>
+                            <div class="col-sm-8 col-md-8">
+                                <p>
+                                    - A LARGE LEARNING PLATFORM (tools need to become a successful trader)
+                                    <br />
+                                    - Mentorship
+                                    <br />
+                                    - Trading Sessions (Signal Group)
+                                </p>
+                                <br />
+                                <p>
+                                    COST: $225.00
+                                    <br />
+                                    <br />
+                                    $174.00 /monthly
+                                </p>
+                            </div>
+                            <center>
+                                <br />
+                                <div class="thumbnail">
+                                    <p>(<a href="https://iM.Academy/corp/cjoin?enroller=BBBabootie">https://iM.Academy/corp/cjoin?enroller=BBBabootie</a>)</p>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <h3>EARN & LEARN - BINARY</h3>
+                        <br />
+                        <p>
+                            - A LARGE LEARNING PLATFORM (Binary course & tools)
+                            <br />
+                            - Mentorship
+                            <br />
+                            - Trading Sessions (Signal Group)
+                        </p>
+                        <br />
+                        <br />
+                        <p>
+                            COST: $199.00
+                            <br />
+                            <br />
+                            $174.00 /monthly
+                        </p>
+                        <center>
+                            <br />
+                            <br />
+                            <br />
+                            <div class="thumbnail">
+                                <p>(LINK WILL BE PLACED HERE)</p>
+                            </div>
+                        </center>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <br />
+                <div class="form-group" align="center">
+                    <button id="cancelBtn" type="reset" class="btn btn-primary" onclick="location.href = '@Url.Action("IM_Academy", "Home")';">CANCEL</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</asp:Content>
+
+<style>
+    .traders-background {
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        background-size: cover;
+        display: flex; /*changed from inline*/
+        justify-content: center;
+        align-items: center;
+    }
+
+    .traders-menu {
+        position: relative;
+        padding: 100px;
+        min-height: 100vh;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .traders-menu h3 {
+        font-size: 30px;
+        font-weight: 200;
+        margin-bottom: 10px;
+        color: darkgoldenrod;
+        text-transform: uppercase;
+        text-align: right;
+    }
+
+    .traders-menu p {
+        position: relative;
+        font-size: 18px;
+        font-weight: 400;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+    }
+
+    .thumbnail {
+        border-radius: 4px;
+        padding: 1px;
+        border: 1px solid black;
+        background-color: white;
+    }
+    .thumbnail p{
+        font-weight: 500;
+    }
+    #cancelBtn {
+        -webkit-appearance: none;
+        border: 1px solid #E89E63;
+        border-radius: 4px;
+        outline: none;
+        padding: 0.5em 0.8em;
+        margin-right: 15px;
+        color: black;
+        font-size: 1em;
+        font-family: sans-serif;
+        font-weight: bold;
+        cursor: pointer;
+        align-content: center;
+        background-color: #ffe8d7;
+        width: 20%;
+    }
+
+    #cancelBtn:hover {
+        background: gold;
+    }
+
+    #cancelBtn:active {
+        background: goldenrod;
+        color: black;
+    }
+</style>

@@ -8,10 +8,15 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
-using Planiture_Website.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Planiture_Website.Controllers;
+using Planiture_Website.Models;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Planiture_Website.Hubs;
 
 namespace Planiture_Website
 {
@@ -31,11 +36,53 @@ namespace Planiture_Website
 
             services.AddMvc(option => option.EnableEndpointRouting = false); //ADDED BY KINGZWILL
 
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddSignalR();
+
+            services.AddDbContextPool<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                    Configuration.GetConnectionString("AuthDbContextConnection")));
+
+            services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = true;
+                options.SignIn.RequireConfirmedPhoneNumber = false;
+                options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                options.User.RequireUniqueEmail = true;
+
+                //need to test the following
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = true;
+
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 1;
+            })
+                    .AddDefaultTokenProviders()
+                    .AddDefaultUI()
+                    .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //   options.UseSqlServer(
+            //      Configuration.GetConnectionString("AuthDbContextConnection")));
+
+            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //  .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
+            //Just added -- this requires the user to be logged in before being able to view the site
+
+            /*services.AddMvc(options =>
+             {
+                 var policy = new AuthorizationPolicyBuilder()
+                                  .RequireAuthenticatedUser()
+                                  .Build();
+                 options.Filters.Add(new AuthorizeFilter(policy));
+             }).AddXmlSerializerFormatters();*/
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
@@ -64,9 +111,8 @@ namespace Planiture_Website
 
             app.UseDefaultFiles(); //KINGZWILL
             app.UseCookiePolicy(); //KINGZWILL
-            app.UseHttpsRedirection(); //KINGZWILL
-            app.UseMvc(); //KINGZWILL
-            app.UseStaticFiles(); //KINGZWILL
+           app.UseMvc(); //KINGZWILL
+
 
             app.UseEndpoints(endpoints =>
             {
@@ -74,6 +120,7 @@ namespace Planiture_Website
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+                endpoints.MapHub<ChatHub>("/chathub");
             });
         }
     }

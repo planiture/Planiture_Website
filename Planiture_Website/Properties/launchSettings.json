@@ -1,4 +1,4 @@
-﻿{
+{
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
@@ -12,6 +12,8 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
+        "Key": "Value",
+        "“SENDEMAILDEMO_ENVIRONMENT_SENDGRID_KEY": "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",
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"
       }
@@ -19,11 +21,12 @@
     "Planiture_Website": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
+        "SendGridKey": "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",
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"
-      }
+      },
+      "applicationUrl": "https://localhost:5001;http://localhost:5000"
     }
   }
 }

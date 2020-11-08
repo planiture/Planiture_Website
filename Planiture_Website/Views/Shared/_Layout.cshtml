@@ -1,20 +1,137 @@
-﻿<!--KINGZWILL-->
+﻿
+
+<!--KINGZWILL-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="~/css/website logo.jpg" rel="icon" type="images/png"/>
+    <link href="~/css/website logo.jpg" rel="icon" type="images/png" />
     <title>Planiture - @ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <style>
+        /* Navigation Bar
+        -------------------------------------------------- */
+
+        /* Body Header
+        ---------------- */
+        header { /*KINGZWILL ADDED THE FOLLOWING*/
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: inline;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0px; /*adjusts the alignment of the navigation bar*/
+            z-index: 100;
+            transition: 0.6s;
+        }
+
+        .sticky { /*ADDED BY KINGZWILL*/
+            padding: 5px 100px;
+            background: #fff;
+            border-bottom: 1px solid black;
+        }
+
+        header ul { /*ADDED BY KINGZWILL*/
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            header ul li { /*ADDED BY KINGZWILL*/
+                position: relative;
+                list-style: none;
+            }
+
+        .navbar li:hover { /*Adds a black box on the navigation options on hover*/
+            background: none;
+            border-color: black;
+            border-style: solid;
+        }
+
+        header ul li a { /*KINGZWILL ADDED THE FOLLOWING*/
+            position: relative;
+            /*margin: 0 15px;*/
+            text-decoration: none;
+            color: #fff;
+            letter-spacing: 2px;
+            font-weight: 300;
+            transition: 0.6s;
+        }
+
+        a.navbar-brand { /*KINGZWILL ADDED THE FOLLOWING*/ /*just this out*/
+            white-space: normal;
+            text-align: center;
+            word-break: break-all;
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .navbar a { /*ADDED BY KINGZWILL*/
+            font-weight: 500;
+            color: blue;
+        }
+
+        .navbar { /*ADDED BY KINGZWILL*/
+            /*overflow: hidden;*/
+            top: 0;
+        }
+
+        /*Drop Down Menu*/
+
+        ul.navbar-nav li div.dropdown:hover > ul.dropdown-menu { /*display menu list on hover*/
+            display: inline-grid;
+        }
+
+        .navbar .dropdown .dropdown-menu { /*alignment of the dropdown menu items*/
+            padding: 10px;
+            top: 30px;
+            left: 30px;
+        }
+
+        .navbar .dropdown-menu a {
+            color: black;
+            text-decoration: none;
+        }
+
+        .navbar .dropdown-menu li {
+            text-align: left;
+        }
+
+            /*Removes the black box on the dropdown menu items on hover*/
+            /*Adds a grey background on hover*/
+            .navbar .dropdown-menu li:hover {
+                background: none;
+                border-color: none;
+                border-style: none;
+                background-color: grey;
+                transition: 0.4s;
+            }
+    </style>
 </head>
-<body>
+<body class="layout">
     <header id="header" class="sticky">
         <!--added sticky class to header... KINGZWILL-->
         <nav class="navbar navbar-expand-sm  navbar-fixed-top navbar-toggleable-sm navbar-light mb-3">
             <div class="container">
-                <a class="navbar-brand logo" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/css/website logo.jpg" alt="Company logo" width="100" height="100" /></a>
+                <a class="navbar-brand logo" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/css/website logo.jpg" alt="Company logo" width="150" height="55" /></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -23,22 +140,19 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Welcome</a>
                         </li>
                         <li class="nav-item">
                             <div class="dropdown">
-                                <a class="nav-link text-dark dropdown-toggle" asp-area="" asp-controller="Home" asp-action="Menu">Menu</a>
+                                <a class="nav-link text-dark dropdown-toggle choose" asp-area="" asp-controller="Home" asp-action="Menu">Menu</a>
                                 <ul class="dropdown-menu">
-                                    
-                                    <li><a asp-area="" asp-controller="Home" asp-action="Investments">Investments</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="Subscriptions">Subscriptions</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="PlanitureAcademy">Planiture Academy</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="">Upload/Sign Documents</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="">Information Center</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="">Career</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="">Calculator</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="Security">Security</a></li>
-                                    <li><a asp-area="" asp-controller="Home" asp-action="CustomerService">Customer Service</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="DailySignals">Trade Signals</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="Stocks">Stocks Portfolio</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="IM_Academy">Earn & Learn Daily & Binary</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="OurTeam">Meet the Team </a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="OurAchievements">Achievements</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="ContactUs">Contact Us</a></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="Policy">Policy</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -53,11 +167,12 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <!--<footer class="border-top footer text-muted">
         <div class="container">
             Copyright &copy; 2020 - Planiture. All rights reserved - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
+    </footer>-->
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
